@@ -1,0 +1,82 @@
+{% extends 'common.html' %}
+{% load static %}
+{% load crispy_forms_filters %}
+{% block content %}
+
+<head>
+	<title>{% block title %}Profile{% endblock %}</title>
+    <style>
+    header{
+        background-color:#000000;
+    }
+    </style>
+</head>
+
+<div style="margin-top:150px;margin-bottom:20px" class="center">
+
+</div>
+
+
+<main class="main-rows center" style="margin-top:0px;margin-bottom:100px" >
+    <div class="container col-md-12 col-sm-6 center">
+        <form method="post" action="#" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div style="margin-bottom:10px">
+                <hr>
+                <center><img class="account-img" src="{{member.image1.url}}" width="270" height="270" style="object-fit:cover" >
+                {% if member.image1 == " " %}
+                    <p>Upload your image!</p>
+                {% endif %}
+                </center>
+
+                <hr>
+            </div>
+            <div>
+                <label style="margin:5px 0px">First Name</label>
+                <input type="text" value="{{member.member.first_name}}" readonly>
+            </div>
+            <div>
+                <label style="margin:5px 0px">Last Name</label>
+                <input type="text" value="{{member.member.last_name}}" readonly>
+            </div>
+            <div>
+                <label style="margin:5px 0px">Email</label>
+                <input type="text" value="{{member.member.email}}" readonly>
+            </div>
+            <div>
+                <label style="margin:5px 0px">Phone</label>
+                <input type="text" value="{{member.phone}}" readonly>
+            </div>
+            <div>
+                <label style="margin:5px 0px">Address</label>
+                <textarea readonly>{{member.address}}</textarea>
+            </div>
+            <div>
+                <label style="margin:5px 0px">Date of Birth</label>
+                <input type="text" name="dob" readonly value="{{member.dob}}" >
+            </div>
+            <div>
+                <label style="margin:5px 0px">Gender</label>
+                <input type="text" readonly value="{{member.gender}}">
+            </div>
+            <!--<div>-->
+                <!--<label style="margin:5px 0px">Occupation</label>-->
+                <!--<input type="text" readonly value="{{member.occupation}}">-->
+            <!--</div>-->
+            <!--<div>-->
+                <!--<label style="margin:5px 0px">No. of Family Members</label>-->
+                <!--<input type="text" readonly value="{{member.no_fam_mem}}">-->
+            <!--</div>-->
+
+            <div style="margin-top:20px">
+                <a href="javascript:history.go(-1)"><button type="button" class="myBtn"><i class="fa fa-arrow-left"></i>  Back</button></a>
+                <a href="{% url 'Member:edit_profile' %}"><button type="button" class="myBtn"><i class="fa fa-pen"></i>  Edit</button></a>
+            </div>
+            <div  style="margin-top:20px">
+                <a href="{% url 'Member:change_password' %}"><button style="width:200px" type="button" class="myBtn">Change Password</button></a>
+            </div>
+        </form>
+    </div>
+</main>
+
+{% endblock %}

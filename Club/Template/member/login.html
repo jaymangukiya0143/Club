@@ -1,0 +1,180 @@
+{% extends 'common.html' %}
+{% load static %}
+{% load crispy_forms_filters %}
+{% block content %}
+
+<head>
+	<title>{% block title %}Member Login{% endblock %}</title>
+    <style>
+    header{
+        background-color:#000000;
+    }
+    </style>
+
+
+
+</head>
+
+
+<div style="margin-top:200px;margin-bottom:20px" class="center">
+    <h3>Member Login<hr></h3>
+</div>
+<main class="main-rows center" style="margin-top:20px;margin-bottom:100px" >
+    <div id="r46" class="row-container  container ">
+         <div class="row mainRow "
+            style="">
+            <div
+               class="column col-sm-12 "
+               dataColumn-id="70"
+               style="     "
+               >
+               <div class="column-container vertical-top"
+                  style="" aria-label="column" role="contentinfo">
+                  <div
+                     class="module-container   only-mobile   align-center ModuleForm
+                     first   last                             "
+                     style=" padding: 0px 40px 0px 40px  "
+                     aria-label="module container" role="contentinfo"
+                     id="m106"
+                     >
+                     <div
+                        class="   module ModuleForm "
+                        dataModule-id="106"
+                        style="display:block;max-width:560px;"
+                        >
+                        <style>
+                           #form-module-106 .form-submit {
+                           text-align: right;
+                           }
+                        </style>
+
+
+                                <form method="post" id="login_form" name="login" action="{% url 'Member:login_member' %}" class="col-md-12" onsubmit="return validation()" email-validate-url="{% url 'Member:validate_email' %}">
+                                   {% csrf_token %}
+                                   <div class="form-group">
+                                      <div class="form-element">
+                                         <input tabindex="1" type="email" name="email" placeholder="Email" id="email">
+                                          <span style="color:red" id="email_error"></span>
+                                      </div>
+                                   </div>
+                                    <div class="form-group">
+                                      <div class="form-element">
+                                         <input tabindex="2" type="password" id="password" name="password" placeholder="Password"   >
+                                          <span style="color:red" id="password_error"></span>
+                                      </div>
+                                   </div>
+                                    <span style="color:red;display:flex;justify-content:right">
+                                        <a tabindex="4" href="{% url 'Member:forgot_password' %}">Forgot Password?</a>
+                                    </span>
+                                   <div class="last-cart l-mrgn" style="width:130px;height:20px;margin-top:15px">
+                                      <input tabindex="3" type="submit" value="Login" style="height:40px" class="myBtn">
+                                   </div>
+                                </form>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+    </div>
+</main>
+
+<script>
+
+function imgup(){
+
+    var img = document.getElementById("image1").value;
+    var x = document.getElementById("imgdiv");
+    alert(img);
+    if (img){
+        x.style.display = "block";
+        document.getElementById("upl").innerHTML = "Uploaded : " + img;
+    }
+    else{
+        x.style.display = "none";
+    }
+}
+
+
+
+function validation(){
+    var email_exp = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+    var password_exp = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/;
+    var email = login.email.value;
+    var password = login.password.value;
+    var error = 0;
+
+    document.getElementById("email_error").innerHTML = "";
+    document.getElementById("password_error").innerHTML = "";
+
+    if(email == ""){
+        error += 1;
+        document.getElementById("email_error").innerHTML = "Enter email address";
+    }
+    else{
+        if(email_exp.test(email) == false){
+            error += 1;
+            document.getElementById("email_error").innerHTML = "Enter an valid email address";
+        }
+    }
+
+    if(password == ""){
+        error += 1;
+        document.getElementById("password_error").innerHTML = "Enter an password";
+    }
+    else{
+        if(password.length < 8){
+            error += 1;
+            document.getElementById("password_error").innerHTML = "Enter an valid password";
+        }
+        else{
+            if(password_exp.test(password) == false){
+                error += 1;
+                document.getElementById("password_error").innerHTML = "Enter an valid password";
+            }
+        }
+    }
+
+    if(error > 0){
+        swal("","Correct the error(s) and try again!","error");
+        return false;
+    }
+    else{
+        return true;
+    }
+}
+
+$(document).ready(function(){
+    $("#login_form").submit(function(e){
+        e.preventDefault();
+        var form = $(this).closest("form");
+        var email = document.getElementById("email").value;
+        var password = document.getElementById("password").value;
+        if (email != "" && password != ""){
+            $.ajax({
+                type: "POST",
+                url: form.attr("email-validate-url"),
+                data: form.serialize(),
+                dataType: 'json',
+                success: function (data){
+                    if (data.is_exists == 'False'){
+                        swal("","Email address doesn't exist","error");
+                    }
+                    else{
+                        if(data.password_matches == 'False'){
+                            swal("","Password didn't matched","error");
+                        }
+                        else{
+                            $("#login_form").unbind().submit();
+                        }
+                    }
+                }
+            });
+        }
+    });
+});
+
+</script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+{% endblock %}

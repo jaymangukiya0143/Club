@@ -1,0 +1,143 @@
+{% extends 'common.html' %}
+{% load static %}
+{% block content %}
+
+<head>
+	<title>{% block title %}Safety Measures{% endblock %}</title>
+    <style>
+    header{
+        background-color:#000000;
+    }
+
+    img{
+        border:1px transparent;
+        border-radius:5px;
+        max-height:500px;
+    }
+    img:hover{
+        opacity:0.9;
+        transition:0.3s
+    }
+    h2,h4{
+                padding:12px;
+                text-align:center;
+    }
+    p{
+            padding:2px;
+            text-align:center;
+    }
+    </style>
+</head>
+
+
+<main class="main-rows">
+    <div class="uc-row-wrapper">
+		<div class="uc-row first backgroundCover" data-id="47" style="   margin-bottom:15.730337078652vh;  ">
+			<div id="r47" class="row-container  container ">
+				<div class="row mainRow " style="">
+					<div class="column col-sm-12" dataColumn-id="71" style="     ">
+						<div class="column-container vertical-top" style=" margin-top:31.104356636272vh; " aria-label="column" role="contentinfo">
+							<div class="module-container   only-mobile   align-center ModuleTitle first" style=" padding: 0px 40px 0px 40px  ; padding-bottom:4.2598509052183vh ; " aria-label="module container" role="contentinfo" id="m107">
+								<div class="   module ModuleTitle" dataModule-id="107" style="display:block;max-width:613px;">
+									<div class="uc-content">
+										<div id="ember441" class="ember-view">
+											<h1 style="color:rgb(255, 255, 255);background-color:rgba(255, 255, 255, 0);filter:drop-shadow(0 0 0.95rem #000000);">Safety Measures</h1>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="bg-image">
+				<div  class="bg-image-view  lazy " data-bg="{% static 'img/clean.jpg' %}" style="
+											opacity: 0.95;
+											background-position: 50% 100%;
+											" aria-label="background image" role="img">
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div>
+		<div class="container row" style="margin:30px auto">
+			<div class="col-md-6 col-lg-6" style="padding:10px">
+				<div>
+					<img style="max-height:400px" src="{% static 'img/clean2.jpg' %}">
+				</div>
+				<div class="center">
+					<h4>We keep every corner clean, organised, and clutter-free</h4>
+				</div>
+				<div class="row" style="padding:10px">
+					<p>Slipping and tripping are usually caused by scattered objects or spills on the floor. We make sure that your workplace is always clean and fresh. We keep aisles clean, organised, and clutter-free to ensure that nothing is in the way that could hurt.</p>
+				</div>
+			</div>
+			<div class="col-md-6 col-lg-6" style="padding:10px">
+				<div>
+					<img style="max-height:400px" src="{% static 'img/firstaid.jpg' %}">
+				</div>
+				<div class="center">
+					<h4>First Aid Training</h4>
+				</div>
+				<div class="row" style="padding:10px">
+					<p>Providing our employees with first aid stations goes a long way towards safety and is a practical way to deal with emergencies. </p>
+				</div>
+			</div>
+		</div>
+
+		<div class="container row" style="margin:30px auto">
+			<div class="col-md-6 col-lg-6" style="padding:10px">
+				<div>
+					<img style="max-height:400px" src="{% static 'img/danger.jpg' %}">
+				</div>
+				<div class="center">
+					<h4>Clearly label designated hazardous zones</h4>
+				</div>
+				<div class="row" style="padding:10px">
+					<p>Areas, where dangerous equipment is stored are clearly labelled and the walkways are highlighted with the necessary signage.</p>
+				</div>
+			</div>
+			<div class="col-md-6 col-lg-6" style="padding:10px">
+				<div>
+					<img style="max-height:400px;" src="{% static 'img/service.jpg' %}">
+				</div>
+				<div class="center">
+					<h4>Servicing our equipments and machinery regularly</h4>
+				</div>
+				<div class="row" style="padding:10px">
+					<p>Machines live longer with regular maintenance. Risk of cause also decreases when equipments are serviced regularly.</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="container row" style="margin:30px auto">
+			<div class="col-md-6 col-lg-6" style="padding:10px">
+				<div>
+					<img style="max-height:400px" src="{% static 'img/fire.jpg' %}">
+				</div>
+				<div class="center">
+					<h4>Fire Safety</h4>
+				</div>
+				<div class="row" style="padding:10px">
+					<p>Fire extinguisher cylinder is installed within small distance in whole club.</p>
+				</div>
+			</div>
+			<div class="col-md-6 col-lg-6" style="padding:10px">
+				<div>
+					<img style="max-height:400px;" src="{% static 'img/covid.jpg' %}">
+				</div>
+				<div class="center">
+					<h4>Covid-19 Safety Measures</h4>
+				</div>
+				<div class="row" style="padding:10px">
+					<p>All the guidelines given by the goverment are been followed by the club including frequent sanitising, welcoming virtual meeting, digital payments only, face recognition attendance, etc.</p>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</main>
+
+
+{% endblock %}

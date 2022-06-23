@@ -1,0 +1,87 @@
+{% extends 'custom_admin/common.html' %}
+{% load static %}
+
+<head>
+    <title>{% block title %}Request : {{booking.member.member.first_name}} {{booking.member.member.last_name}} {% endblock %}</title>
+</head>
+
+{% block content %}
+
+<!--page-wrapper-->
+		<div class="page-wrapper">
+			<!--page-content-wrapper-->
+			<div class="page-content-wrapper">
+				<div class="page-content">
+					<!--breadcrumb-->
+					<div class="page-breadcrumb d-none d-md-flex align-items-center mb-3">
+						<div class="pl-3">
+							<nav aria-label="breadcrumb">
+								<ol class="breadcrumb mb-0 p-0">
+									<li class="breadcrumb-item"><a href="javascript:;"><i class='bx bx-home-alt'></i></a>
+									</li>
+                                    <li class="breadcrumb-item active" aria-current="page">Booking Request by  {{booking.member.member.first_name}} {{booking.member.member.last_name}} </li>
+								</ol>
+							</nav>
+						</div>
+					</div>
+					<!--end breadcrumb-->
+					<div class="card">
+						<div class="card-body">
+                            <label>Amenity</label>
+                            <input type="text" value="{{booking.amenity.name}}" class="form-control" readonly>
+
+                            <label style="margin:10px 0px">Member</label>
+                            <input type="text" value="{{booking.member.member.first_name}} {{booking.member.member.last_name}}" class="form-control" readonly>
+
+                            <label style="margin:10px 0px">From</label>
+                            <input type="text" value="{{booking.from_date}} - {{booking.from_time}}" class="form-control" readonly>
+
+                            <label style="margin:10px 0px">To</label>
+                            <input type="text" value="{{booking.to_date}} - {{booking.to_time}}" class="form-control" readonly>
+
+                            <label style="margin:10px 0px">No. of Slots</label>
+                            <input type="text" value="{{booking.no_of_slots}}" class="form-control" readonly>
+
+                            <label style="margin:10px 0px">Total(&#8377;)</label>
+                            <input type="text" value="{{booking.total}}" class="form-control" readonly>
+
+                            <label style="margin:10px 0px">Approved</label>
+                            {% if booking.status == True %}
+                                <input style="background-color:rgba(0,255,0,0.2)" type="text" value="Yes" class="form-control" readonly>
+                            {% else %}
+                                <input style="background-color:rgba(255,215,0,0.2)" type="text" value="Pending" class="form-control" readonly>
+                            {% endif %}
+
+                            <label style="margin:10px 0px">Confirmed</label>
+                            {% if booking.confirm == True %}
+                                <input style="background-color:rgba(0,255,0,0.2)" type="text" value="Yes" class="form-control" readonly>
+                            {% else %}
+                                <input style="background-color:rgba(255,215,0,0.2)" type="text" value="No" class="form-control" readonly>
+                            {% endif %}
+
+                            <label style="margin:10px 0px">Requested On</label>
+                            <input type="text" value="{{booking.booked_on}}" class="form-control" readonly>
+
+
+                            {% if booking.status == False %}
+                                <div style="margin:20px 0px">
+                                    <a href="{% url 'Custom_Admin:accept_booking_request' booking.id %}"><button style="color:#32CD32" type="button" class="btn btn-light m-1"><i class="fa fa-check"></i>  Accept</button></a>
+                                </div>
+                            {% endif %}
+
+
+                            <div style="margin:10px 0px">
+                            </div>
+                            <a href="javascript:history.go(-1)"><button type="button" class="btn btn-light m-1"><i class="fa fa-arrow-left"></i>  Back</button></a>
+						</div>
+                        <div>
+                        </div>
+					</div>
+				</div>
+			</div>
+			<!--end page-content-wrapper-->
+		</div>
+		<!--end page-wrapper-->
+
+	<!-- App JS -->
+{% endblock %}

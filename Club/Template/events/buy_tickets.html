@@ -1,0 +1,111 @@
+{% extends 'common.html' %}
+{% load static %}
+{% load crispy_forms_filters %}
+{% block content %}
+
+<head>
+	<title>{% block title %}Buy Tickets : {{event.name}} {% endblock %}</title>
+    <style>
+    header{
+        background-color:#000000;
+    }
+    footer{
+    position:absolute;
+    bottom:0;
+    }
+
+    td{
+        min-width:150px;
+    }
+
+    #quanAlert{
+        color:red;
+    }
+    </style>
+
+</head>
+
+
+<main class="main-rows center" style="margin-top:200px;margin-bottom:100px">
+    <div class="container col-md-12 col-sm-6 center">
+        <div class="col-md-6">
+            <form class="form-group row" method="post" onload="javascript:setTotal()" action="{% url 'Payments:process_payment_ticket' event.id %}">
+                {% csrf_token %}
+                <table class="table">
+                    <tr>
+                        <td colspan="2"><img style="border-radius:5px" src="{{event.image1.url}}"></td>
+                    </tr>
+                    <tr>
+                        <td>Event Name : </td>
+                        <td>{{event.name}}</td>
+                    </tr>
+                    <tr>
+                        <td>Description : </td>
+                        <td>{{event.description}}</td>
+                    </tr>
+                    <tr>
+                        <td>Venue : </td>
+                        <td>{{event.amenity.name}}</td>
+                    </tr>
+                    <tr>
+                        <td>Timing : </td>
+                        <td>From : {{event.from_date}}<br>To : {{event.to_date}}</td>
+                    </tr>
+                    <tr>
+                        <td>Price per Ticket : </td>
+                        <td>&#8377 {{event.price}}</td>
+                    </tr>
+                    <form method="post">
+                        <tr>
+                            <td>No. of Tickets : </td>
+                            <td><input name="quantity" id="quantity" class="form-control" type="number" value="1" min="1" max="10" onchange="changeTotal()"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" id="quanAlert"></td>
+                        </tr>
+                        <tr>
+                            <td>Total : </td>
+                            <td id="total"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <center>
+                                    <input type="submit" class="myBtn" value="Proceed" id="submitButton" style="width:100%">
+                                </center>
+                            </td>
+                        </tr>
+                    </form>
+                </table>
+            </form>
+
+            <div style="margin-top:30px">
+                <a class="myBtn" href="javascript:history.go(-1)"><i class="fa fa-arrow-left"></i>&nbsp;&nbsp;Back</a>
+            </div>
+
+        </div>
+    </div>
+</main>
+
+<script type="text/javascript">
+
+    $(document).ready( function(){
+        changeTotal();
+     });
+
+    function changeTotal(){
+        var total = document.getElementById("quantity").value * {{event.price}};
+        document.getElementById("total").innerHTML = "&#8377  ";
+        document.getElementById("total").innerHTML += total;
+
+        var quantity = document.getElementById("quantity").value;
+        if(quantity > 10){
+            document.getElementById("quanAlert").innerHTML = "You can buy maximum 10 tickets!";
+        }
+
+        document.getElementById("submitButton").value = "Proceed to pay Rs. ";
+        document.getElementById("submitButton").value += total;
+    }
+
+</script>
+
+{% endblock %}

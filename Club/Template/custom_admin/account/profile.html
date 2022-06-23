@@ -1,0 +1,143 @@
+{% extends 'custom_admin/common.html' %}
+{% load static %}
+
+<head>
+    <title>{% block title %}Admin Profile {% endblock %}</title>
+
+
+</head>
+
+{% block content %}
+
+<!--page-wrapper-->
+		<div class="page-wrapper">
+			<!--page-content-wrapper-->
+			<div class="page-content-wrapper">
+				<div class="page-content">
+					<!--breadcrumb-->
+					<div class="page-breadcrumb d-none d-md-flex align-items-center mb-3">
+						<div class="pl-3">
+							<nav aria-label="breadcrumb">
+								<ol class="breadcrumb mb-0 p-0">
+									<li class="breadcrumb-item"><a href="javascript:;"><i class='bx bx-home-alt'></i></a>
+									</li>
+									<li class="breadcrumb-item active" aria-current="page">Admin Profile</li>
+								</ol>
+							</nav>
+						</div>
+					</div>
+					<!--end breadcrumb-->
+
+                    <div class="page-content">
+
+					<div class="user-profile-page">
+						<div class="card radius-15">
+							<div class="card-body">
+								<div class="row">
+									<div class="col-12 col-lg-7">
+										<div class="d-md-flex align-items-center">
+											<div class="mb-md-0 mb-3">
+												<img src="{% static 'custom_admin/assets/images/icons/admin.gif' %}" class="rounded-circle shadow" alt="" width="130" height="130">
+											</div>
+											<div class="ml-md-4 flex-grow-1">
+												<div class="d-flex align-items-center mb-1">
+													<h4 class="mb-0">{{admin.username}}</h4>
+
+												</div>
+											</div>
+										</div>
+									</div>
+                                </div>
+                                <div class="col-12 col-lg-12" style="margin-top:30px">
+										<table class="table table-sm table-borderless mt-md-0 mt-3">
+											<tbody>
+                                                <tr>
+                                                    <th>Role</th>
+                                                    <td>{% if request.user.is_superuser %}
+                                                            All Privileges
+                                                        {% else %}
+                                                            {% if perms.Amenities.view_booking %}
+                                                                Managing Amenities and Bookings
+                                                            {% elif perms.Events.manage_events_and_tickets %}
+                                                                Managing Events and Tickets
+                                                            {% elif perms.Inquiry.manage_inquiries_and_feedbacks %}
+                                                                Managing Inquiries and Feedbacks
+                                                            {% endif %}
+                                                        {% endif %}
+                                                    </td>
+                                                </tr>
+												<tr>
+													<th>Username</th>
+													<td>{{admin.username}}</td>
+												</tr>
+												<tr>
+													<th>First Name</th>
+													<td>{{admin.first_name}}</td>
+												</tr>
+                                                <tr>
+													<th>Last Name</th>
+													<td>{{admin.last_name}}</td>
+												</tr>
+                                                <tr>
+													<th>Email</th>
+													<td>{{admin.email}}</td>
+												</tr>
+                                                <tr>
+                                                    <th rowspan="3">Permission</th>
+                                                    <td>Active :
+                                                        {% if admin.is_active %}
+                                                            <span style="background-color:#32CD32" class="badge badge-light">{{admin.is_active}}</span>
+                                                        {% else %}
+                                                            <span style="background-color:red" class="badge badge-light">{{admin.is_active}}</span>
+                                                        {% endif %}
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Staff :
+                                                        {% if admin.is_staff %}
+                                                            <span style="background-color:#32CD32" class="badge badge-light">{{admin.is_staff}}</span>
+                                                        {% else %}
+                                                            <span style="background-color:red" class="badge badge-light">{{admin.is_staff}}</span>
+                                                        {% endif %}
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>SuperUser :
+                                                        {% if admin.is_superuser %}
+                                                            <span style="background-color:#32CD32" class="badge badge-light">{{admin.is_superuser}}</span>
+                                                        {% else %}
+                                                            <span style="background-color:red" class="badge badge-light">{{admin.is_superuser}}</span>
+                                                        {% endif %}
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Date Joined</th>
+                                                    <td>
+                                                        {{admin.date_joined}}
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Last Login</th>
+                                                    <td>
+                                                        {{admin.last_login}}
+                                                    </td>
+                                                </tr>
+											</tbody>
+										</table>
+									</div>
+                                <div style="margin-top:20px">
+                                    <a href="{% url 'Custom_Admin:admin_change_password' %}"><button type="button" class="btn btn-light m-1">Change Password</button></a>
+                                </div>
+                                <div>
+                                    <a href="javascript:history.go(-1)"><button type="button" class="btn btn-light m-1">Back</button></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+{% endblock %}

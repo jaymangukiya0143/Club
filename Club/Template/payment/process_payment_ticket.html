@@ -1,0 +1,57 @@
+{% extends 'common.html' %}
+{% load static %}
+{% block content %}
+
+<head>
+	<title>{% block title %}Payment Ticket{% endblock %}</title>
+    <style>
+    header{
+        background-color:#000000;
+    }
+
+    th,td{
+        padding:10px;
+    }
+</style>
+</head>
+
+<div style="margin-top:200px;margin-bottom:0px">
+    <div class="container">
+        <div class="col-md-12">
+            <center>
+                <div>
+                    <table style="border:1px solid grey">
+                        <tr>
+                            <th>Event Name</th>
+                            <td>{{event.name}}</td>
+                        </tr>
+                        <tr>
+                            <th>Timing</th>
+                            <td>{{event.from_date}}<br>{{event.to_date}}</td>
+                        </tr>
+                        <tr>
+                            <th>Ticket</th>
+                            <td>&#8377 {{event.price}}</td>
+                        </tr>
+                        <tr>
+                            <td>Quantity</td>
+                            <td>{{request.session.quantity}}</td>
+                        </tr>
+                        <tr>
+                            <td>Total</td>
+                            <td>{{request.session.total}}</td>
+                        </tr>
+                    </table>
+                </div>
+                <div style="width:200px;height:100px;margin-top:50px">
+                {{form.render}}
+                </div>
+                <div style="margin:20px 0px">
+                    <a href="javascript:history.go(-1)"><button type="button" class="myBtn" style="width:200px"><i class="fa fa-arrow-left"></i>  Back</button></a>
+                </div>
+            </center>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

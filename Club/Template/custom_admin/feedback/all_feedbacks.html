@@ -1,0 +1,344 @@
+{% extends 'custom_admin/common.html' %}
+{% load static %}
+
+<head>
+    <title>{% block title %}All Feedbacks{% endblock %}</title>
+</head>
+
+{% block content %}
+
+<!--page-wrapper-->
+		<div class="page-wrapper">
+			<!--page-content-wrapper-->
+			<div class="page-content-wrapper">
+				<div class="page-content">
+					<!--breadcrumb-->
+					<div class="page-breadcrumb d-none d-md-flex align-items-center mb-3">
+						<div class="pl-3">
+							<nav aria-label="breadcrumb">
+								<ol class="breadcrumb mb-0 p-0">
+									<li class="breadcrumb-item"><a href="javascript:;"><i class='bx bx-home-alt'></i></a>
+									</li>
+									<li class="breadcrumb-item active" aria-current="page">Feedbacks</li>
+								</ol>
+							</nav>
+						</div>
+					</div>
+					<!--end breadcrumb-->
+					<div class="card">
+						<div class="card-body">
+                            <div class="row">
+                                <div class="col-12 col-lg-12">
+                                    <div class="card radius-15">
+                                        <div class="card-body">
+                                            <div class="media align-items-center">
+                                                <div class="media-body">
+                                                    <h4 class="mb-0 font-weight-bold text-white">{{no_of_feedbacks}}</h4>
+                                                    <p class="mb-0 text-white">Total Feedbacks</p>
+                                                </div>
+                                                <div class="font-35 text-white"><i class="bx bx-arrow-to-top"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12 col-lg-2">
+                                    <div class="card radius-15">
+                                        <div class="card-body text-center">
+                                            <div class="widgets-icons mx-auto rounded-circle">
+                                                {% if avg_all < 50 %}
+                                                    <i class="bx bx-dislike" style="fill:red;color:red"></i>
+                                                {% else %}
+                                                    <i class="bx bx-like" style="fill:#32CD32;color:#32CD32"></i>
+                                                {% endif %}
+                                            </div>
+                                            <h4 class="mb-0 font-weight-bold mt-3 text-white">{{avg_all}}%</h4>
+                                            <p style="margin-top:5px" class="mb-0">Overall</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-lg-2">
+                                    <div class="card radius-15">
+                                        <div class="card-body text-center">
+                                            <div class="widgets-icons mx-auto rounded-circle">
+                                                {% if overall_experience < 50 %}
+                                                    <i class="bx bx-dislike" style="fill:red;color:red"></i>
+                                                {% else %}
+                                                    <i class="bx bx-like" style="fill:#32CD32;color:#32CD32"></i>
+                                                {% endif %}
+                                            </div>
+                                            <h4 class="mb-0 font-weight-bold mt-3 text-white">{{overall_experience}}%</h4>
+                                            <p style="margin-top:5px" class="mb-0">Overall Experience</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-lg-2">
+                                    <div class="card radius-15">
+                                        <div class="card-body text-center">
+                                            <div class="widgets-icons mx-auto rounded-circle">
+                                                {% if timely_response < 50 %}
+                                                    <i class="bx bx-dislike" style="fill:red;color:red"></i>
+                                                {% else %}
+                                                    <i class="bx bx-like" style="fill:#32CD32;color:#32CD32"></i>
+                                                {% endif %}
+                                            </div>
+                                            <h4 class="mb-0 font-weight-bold mt-3 text-white">{{timely_response}}%</h4>
+                                            <p style="margin-top:5px" class="mb-0">Timely Response</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-lg-2">
+                                    <div class="card radius-15">
+                                        <div class="card-body text-center">
+                                            <div class="widgets-icons mx-auto rounded-circle">
+                                                {% if our_support < 50 %}
+                                                    <i class="bx bx-dislike" style="fill:red;color:red"></i>
+                                                {% else %}
+                                                    <i class="bx bx-like"  style="fill:#32CD32;color:#32CD32"></i>
+                                                {% endif %}
+                                            </div>
+                                            <h4 class="mb-0 font-weight-bold mt-3">{{our_support}}%</h4>
+                                            <p style="margin-top:5px" class="mb-0">Our Support</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-lg-2">
+                                    <div class="card radius-15">
+                                        <div class="card-body text-center">
+                                            <div class="widgets-icons mx-auto rounded-circle">
+                                                {% if overall_satisfaction < 50 %}
+                                                    <i class="bx bx-dislike" style="fill:red;color:red"></i>
+                                                {% else %}
+                                                    <i class="bx bx-like" style="fill:#32CD32;color:#32CD32"></i>
+                                                {% endif %}
+                                            </div>
+                                            <h4 class="mb-0 font-weight-bold mt-3">{{overall_satisfaction}}%</h4>
+                                            <p style="margin-top:5px" class="mb-0">Overall Satisfaction</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-lg-2">
+                                    <div class="card radius-15">
+                                        <div class="card-body text-center">
+                                            <div class="widgets-icons mx-auto rounded-circle">
+                                                {% if member_service < 50 %}
+                                                    <i class="bx bx-dislike" style="fill:red;color:red"></i>
+                                                {% else %}
+                                                    <i class="bx bx-like" style="fill:#32CD32;color:#32CD32"></i>
+                                                {% endif %}
+                                            </div>
+                                            <h4 class="mb-0 font-weight-bold mt-3">{{member_service}}%</h4>
+                                            <p style="margin-top:5px" class="mb-0">Member Services</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+							<div class="table-responsive">
+							<div class="table-responsive">
+								<table id="example" class="table table-striped table-bordered" style="width:100%">
+									<thead>
+										<tr style="text-align:center">
+											<th>Name</th>
+											<th>Overall <br>Experience</th>
+											<th>Timely<br> Response</th>
+											<th>Our Support</th>
+                                            <th>Overall <br> Satisfaction</th>
+                                            <th>Member <br>Services</th>
+                                            <th></th>
+										</tr>
+									</thead>
+									<tbody>
+                                    {% for f in feedbacks %}
+									  	<tr style="text-align:center">
+											<td>{{f.member.first_name}} {{f.member.last_name}}</td>
+											<td>
+                                                {% if f.rating.0 == "1" %}
+                                                    {% with var="1" %}
+                                                        {% for i in var %}
+                                                            <i class="bx bxs-star" style="fill:gold;color:gold"></i>
+                                                        {% endfor %}
+                                                    {% endwith %}
+                                                {% elif f.rating.0 == "2" %}
+                                                    {% with var="12" %}
+                                                    {% for i in var %}
+                                                            <i class="bx bxs-star" style="fill:gold;color:gold"></i>
+                                                        {% endfor %}
+                                                    {% endwith %}
+                                                {% elif f.rating.0 == "3" %}
+                                                    {% with var="123" %}
+                                                        {% for i in var %}
+                                                            <i class="bx bxs-star" style="fill:gold;color:gold"></i>
+                                                        {% endfor %}
+                                                    {% endwith %}
+                                                {% elif f.rating.0 == "4" %}
+                                                    {% with var="1234" %}
+                                                        {% for i in var %}
+                                                            <i class="bx bxs-star" style="fill:gold;color:gold"></i>
+                                                        {% endfor %}
+                                                    {% endwith %}
+                                                {% else %}
+                                                    {% with var="12345" %}
+                                                        {% for i in var %}
+                                                            <i class="bx bxs-star" style="fill:gold;color:gold"></i>
+                                                        {% endfor %}
+                                                    {% endwith %}
+                                                {% endif %}
+                                            </td>
+											<td>
+                                                    {% if f.rating.2 == "1" %}
+                                                    {% with var="1" %}
+                                                        {% for i in var %}
+                                                            <i class="bx bxs-star" style="fill:gold;color:gold"></i>
+                                                        {% endfor %}
+                                                    {% endwith %}
+                                                {% elif f.rating.2 == "2" %}
+                                                    {% with var="12" %}
+                                                    {% for i in var %}
+                                                            <i class="bx bxs-star" style="fill:gold;color:gold"></i>
+                                                        {% endfor %}
+                                                    {% endwith %}
+                                                {% elif f.rating.2 == "3" %}
+                                                    {% with var="123" %}
+                                                        {% for i in var %}
+                                                            <i class="bx bxs-star" style="fill:gold;color:gold"></i>
+                                                        {% endfor %}
+                                                    {% endwith %}
+                                                {% elif f.rating.2 == "4" %}
+                                                    {% with var="1234" %}
+                                                        {% for i in var %}
+                                                            <i class="bx bxs-star" style="fill:gold;color:gold"></i>
+                                                        {% endfor %}
+                                                    {% endwith %}
+                                                {% else %}
+                                                    {% with var="12345" %}
+                                                        {% for i in var %}
+                                                            <i class="bx bxs-star" style="fill:gold;color:gold"></i>
+                                                        {% endfor %}
+                                                    {% endwith %}
+                                                {% endif %}
+                                            </td>
+                                            <td>
+                                                {% if f.rating.4 == "1" %}
+                                                    {% with var="1" %}
+                                                        {% for i in var %}
+                                                            <i class="bx bxs-star" style="fill:gold;color:gold"></i>
+                                                        {% endfor %}
+                                                    {% endwith %}
+                                                {% elif f.rating.4 == "2" %}
+                                                    {% with var="12" %}
+                                                    {% for i in var %}
+                                                            <i class="bx bxs-star" style="fill:gold;color:gold"></i>
+                                                        {% endfor %}
+                                                    {% endwith %}
+                                                {% elif f.rating.4 == "3" %}
+                                                    {% with var="123" %}
+                                                        {% for i in var %}
+                                                            <i class="bx bxs-star" style="fill:gold;color:gold"></i>
+                                                        {% endfor %}
+                                                    {% endwith %}
+                                                {% elif f.rating.4 == "4" %}
+                                                    {% with var="1234" %}
+                                                        {% for i in var %}
+                                                            <i class="bx bxs-star" style="fill:gold;color:gold"></i>
+                                                        {% endfor %}
+                                                    {% endwith %}
+                                                {% else %}
+                                                    {% with var="12345" %}
+                                                        {% for i in var %}
+                                                            <i class="bx bxs-star" style="fill:gold;color:gold"></i>
+                                                        {% endfor %}
+                                                    {% endwith %}
+                                                {% endif %}
+                                            </td>
+                                            <td>
+                                                {% if f.rating.6 == "1" %}
+                                                    {% with var="1" %}
+                                                        {% for i in var %}
+                                                            <i class="bx bxs-star" style="fill:gold;color:gold"></i>
+                                                        {% endfor %}
+                                                    {% endwith %}
+                                                {% elif f.rating.6 == "2" %}
+                                                    {% with var="12" %}
+                                                    {% for i in var %}
+                                                            <i class="bx bxs-star" style="fill:gold;color:gold"></i>
+                                                        {% endfor %}
+                                                    {% endwith %}
+                                                {% elif f.rating.6 == "3" %}
+                                                    {% with var="123" %}
+                                                        {% for i in var %}
+                                                            <i class="bx bxs-star" style="fill:gold;color:gold"></i>
+                                                        {% endfor %}
+                                                    {% endwith %}
+                                                {% elif f.rating.6 == "4" %}
+                                                    {% with var="1234" %}
+                                                        {% for i in var %}
+                                                            <i class="bx bxs-star" style="fill:gold;color:gold"></i>
+                                                        {% endfor %}
+                                                    {% endwith %}
+                                                {% else %}
+                                                    {% with var="12345" %}
+                                                        {% for i in var %}
+                                                            <i class="bx bxs-star" style="fill:gold;color:gold"></i>
+                                                        {% endfor %}
+                                                    {% endwith %}
+                                                {% endif %}
+                                            </td>
+
+                                            <td>
+                                                {% if f.rating.8 == "1" %}
+                                                    {% with var="1" %}
+                                                        {% for i in var %}
+                                                            <i class="bx bxs-star" style="fill:gold;color:gold"></i>
+                                                        {% endfor %}
+                                                    {% endwith %}
+                                                {% elif f.rating.8 == "2" %}
+                                                    {% with var="12" %}
+                                                    {% for i in var %}
+                                                            <i class="bx bxs-star" style="fill:gold;color:gold"></i>
+                                                        {% endfor %}
+                                                    {% endwith %}
+                                                {% elif f.rating.8 == "3" %}
+                                                    {% with var="123" %}
+                                                        {% for i in var %}
+                                                            <i class="bx bxs-star" style="fill:gold;color:gold"></i>
+                                                        {% endfor %}
+                                                    {% endwith %}
+                                                {% elif f.rating.8 == "4" %}
+                                                    {% with var="1234" %}
+                                                        {% for i in var %}
+                                                            <i class="bx bxs-star" style="fill:gold;color:gold"></i>
+                                                        {% endfor %}
+                                                    {% endwith %}
+                                                {% else %}
+                                                    {% with var="12345" %}
+                                                        {% for i in var %}
+                                                            <i class="bx bxs-star" style="fill:gold;color:gold"></i>
+                                                        {% endfor %}
+                                                    {% endwith %}
+                                                {% endif %}
+                                            </td>
+
+											<td style="width:10%">
+												<a href="{% url 'Custom_Admin:view_feedback' f.id %}" title="Reply"><button type="button" class="btn btn-light m-1"><i class="fa fa-eye"></i></button></a>
+												<a href="{% url 'Custom_Admin:delete_feedback' f.id %}" title="Delete"><button type="button" class="btn btn-light m-1"><i class="fa fa-trash"></i></button></a>
+											</td>
+										</tr>
+                                    {% endfor %}
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--end page-content-wrapper-->
+		</div>
+		<!--end page-wrapper-->
+
+{% endblock %}

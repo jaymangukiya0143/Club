@@ -1,0 +1,104 @@
+{% extends 'common.html' %}
+{% load static %}
+{% block content %}
+
+<head>
+	<title>{% block title %}{{amenity.name}} | Amenities{% endblock %}</title>
+    <style>
+    header{
+        background-color:#000000;
+    }
+
+
+.mySlides {display:none}
+.w3-left, .w3-right, .w3-badge {cursor:pointer}
+.w3-badge {height:13px;width:13px;padding:0}
+
+</style>
+</head>
+
+<main class="main-rows" style="margin-top:130px">
+    <div class="container form-group col-md-12">
+
+        <div class="col-md-12">
+            <div class="row">
+                <h4 style="margin:20px 0px" class="center">{{amenity.name}}</h4>
+            </div>
+            <div class="row" style="margin-bottom:20px">
+                <div class="col-lg-12 col-md-12">
+                    <div class="w3-content w3-display-container" style="max-width:800px">
+                        <img class="mySlides" src="{{amenity.image1.url}}" style="width:100%;border-radius:5px">
+                        <img class="mySlides" src="{{amenity.image2.url}}" style="width:100%;border-radius:5px">
+                        <img class="mySlides" src="{{amenity.image3.url}}" style="width:100%;border-radius:5px">
+                        <img class="mySlides" src="{{amenity.image4.url}}" style="width:100%;border-radius:5px">
+
+                      <div class="w3-center w3-container w3-section w3-large w3-text-white w3-display-bottommiddle" style="width:100%">
+                          <div style="width:50px;border-radius:10px;background-color:rgba(0,0,0,0.5)" class="w3-left w3-hover-text-khaki" onclick="plusDivs(-1)">&#10094;</div>
+                          <div style="width:50px;border-radius:10px;background-color:rgba(0,0,0,0.5)" class="w3-right w3-hover-text-khaki" onclick="plusDivs(1)">&#10095;</div>
+                          <span style="opacity:0.7" class="w3-badge demo w3-border w3-transparent w3-hover-khaki" onclick="currentDiv(1)"></span>
+                          <span style="opacity:0.7" class="w3-badge demo w3-border w3-transparent w3-hover-khaki" onclick="currentDiv(2)"></span>
+                          <span style="opacity:0.7" class="w3-badge demo w3-border w3-transparent w3-hover-khaki" onclick="currentDiv(3)"></span>
+                          <span style="opacity:0.7" class="w3-badge demo w3-border w3-transparent w3-hover-khaki" onclick="currentDiv(4)"></span>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="center">
+                <h5>Description<hr></h5>
+            </div>
+            <div class="container center">
+                <p style="margin:0px 10%">{{amenity.description}}</p>
+            </div>
+
+            <div class="container center">
+                <h6 style="margin:0px 10%;margin-top:20px">Rate : &#8377;&nbsp;{{amenity.rate}}/slot</h6>
+            </div>
+
+            <div class="row center" style="margin:30px 0px">
+                <a href="javascript:history.go(-1);" class="myBtn"><i class="fa fa-arrow-left"></i>&nbsp;Back</a>
+                <a style="margin:0px 10px" href="{% url 'Amenities:book_amenity' amenity.id %}" class="myBtn">Book now</a>
+            </div>
+
+        </div>
+
+    </div>
+</main>
+
+
+
+
+
+<script>
+var slideIndex = 1;
+showDivs(slideIndex);
+
+function plusDivs(n) {
+  showDivs(slideIndex += n);
+}
+
+function currentDiv(n) {
+  showDivs(slideIndex = n);
+}
+
+function showDivs(n) {
+  var i;
+  var x = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("demo");
+  if (n > x.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = x.length}
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";
+  }
+  for (i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" w3-white", "");
+  }
+  x[slideIndex-1].style.display = "block";
+  dots[slideIndex-1].className += " w3-white";
+}
+
+</script>
+
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+{% endblock %}

@@ -1,0 +1,303 @@
+{% extends 'common.html' %}
+{% load static %}
+{% block content %}
+
+<head>
+	<title>{% block title %}Give Feedback{% endblock %}</title>
+    <style>
+    header{
+        background-color:#000000;
+    }
+        td,th{
+            border:1px solid black;
+            padding:12px;
+            text-align:center;
+        }
+    </style>
+</head>
+
+<main style="margin:200px 0px;">
+<div class="container col-md-6">
+		<form method="post" action="{% url 'Feedback:give_feedback' %}">
+            {% csrf_token %}
+            <div class="form-group">
+                <div class="form-element">
+                    <h6 style="margin-bottom:10px">Your Name</h6>
+                    <input type="text" value="{{member.username}}" readonly required>
+                </div>
+
+                <div class="form-element">
+                    <h6 style="margin-bottom:10px">Email</h6>
+                    <input type="text" value="{{member.email}}" readonly required>
+                </div>
+
+                <div class="form-element">
+                    <h6 style="margin-bottom:10px">Your Review (Tips and Guidelines)</h6>
+                    <textarea onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Type here';}" required="" name="feedback">Type here</textarea>
+                </div>
+
+                <div class="form-element">
+                    <h6 style="margin-bottom:10px">Overall Experience</h6>
+                    <div class="form-check form-check-inline">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="inlineRadioOptions1"
+                        value="5"
+                      />
+                      <label class="form-check-label" >5</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="inlineRadioOptions1"
+                        value="4"
+                      />
+                      <label class="form-check-label">4</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="inlineRadioOptions1"
+                        value="3"
+                      />
+                      <label class="form-check-label">3</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="inlineRadioOptions1"
+                        value="2"
+                      />
+                      <label class="form-check-label">2</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="inlineRadioOptions1"
+                        value="1"
+                        required
+                      />
+                      <label class="form-check-label">1</label>
+                    </div>
+                </div>
+
+                <div class="form-element">
+                    <h6 style="margin-bottom:10px">Timely Response</h6>
+                    <div class="form-check form-check-inline">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="inlineRadioOptions2"
+                        value="5"
+                      />
+                      <label class="form-check-label">5</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="inlineRadioOptions2"
+                        value="4"
+                      />
+                      <label class="form-check-label">4</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="inlineRadioOptions2"
+                        value="3"
+                      />
+                      <label class="form-check-label">3</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="inlineRadioOptions2"
+                        value="2"
+                      />
+                      <label class="form-check-label">2</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="inlineRadioOptions2"
+                        value="1"
+                        required
+                      />
+                      <label class="form-check-label">1</label>
+                    </div>
+                </div>
+
+                <div class="form-element">
+                    <h6 style="margin-bottom:10px">Our Support</h6>
+                    <div class="form-check form-check-inline">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="inlineRadioOptions3"
+                        value="5"
+                      />
+                      <label class="form-check-label">5</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="inlineRadioOptions3"
+                        value="4"
+                      />
+                      <label class="form-check-label">4</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="inlineRadioOptions3"
+                        value="3"
+                      />
+                      <label class="form-check-label">3</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="inlineRadioOptions3"
+                        value="2"
+                      />
+                      <label class="form-check-label">2</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="inlineRadioOptions3"
+                        value="1"
+                        required
+                      />
+                      <label class="form-check-label">1</label>
+                    </div>
+                </div>
+
+                <div class="form-element">
+                    <h6 style="margin-bottom:10px">Overall Satisfaction</h6>
+                    <div class="form-check form-check-inline">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="inlineRadioOptions4"
+                        value="5"
+                      />
+                      <label class="form-check-label">5</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="inlineRadioOptions4"
+                        value="4"
+                      />
+                      <label class="form-check-label">4</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="inlineRadioOptions4"
+                        value="3"
+                      />
+                      <label class="form-check-label">3</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="inlineRadioOptions4"
+                        value="2"
+                      />
+                      <label class="form-check-label">2</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="inlineRadioOptions4"
+                        value="1"
+                        required
+                      />
+                      <label class="form-check-label">1</label>
+                    </div>
+                </div>
+
+                <div class="form-element">
+                    <h6 style="margin-bottom:10px">Want to rate us for member services</h6>
+                    <div class="form-check form-check-inline">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="inlineRadioOptions5"
+                        value="5"
+                        style="width:27px;height:15px"
+                        required
+                      />
+                      <label class="form-check-label">5</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="inlineRadioOptions5"
+                        value="4"
+                        style="width:27px;height:15px"
+                      />
+                      <label class="form-check-label">4</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="inlineRadioOptions5"
+                        value="3"
+                        style="width:27px;height:15px"
+                      />
+                      <label class="form-check-label">3</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="inlineRadioOptions5"
+                        value="2"
+                        style="width:27px;height:15px"
+                      />
+                      <label class="form-check-label">2</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="inlineRadioOptions5"
+                        value="1"
+                        style="width:30px;height:15px"
+                      />
+                      <label class="form-check-label">1</label>
+                    </div>
+                </div>
+
+                <div class="form-element">
+                    <input type="submit" value="Give Feedback" class="myBtn">
+                </div>
+
+            </div>
+		</form>
+	</div>
+</main>
+
+{% endblock %}

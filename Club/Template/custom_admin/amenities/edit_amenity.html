@@ -1,0 +1,95 @@
+{% extends 'custom_admin/common.html' %}
+{% load static %}
+{% load crispy_forms_filters %}
+<head>
+    <title>{% block title %}Edit Amenity : {{a.name}}{% endblock %}</title>
+</head>
+
+{% block content %}
+
+<!--page-wrapper-->
+		<div class="page-wrapper">
+			<!--page-content-wrapper-->
+			<div class="page-content-wrapper">
+				<div class="page-content">
+					<!--breadcrumb-->
+					<div class="page-breadcrumb d-none d-md-flex align-items-center mb-3">
+						<div class="pl-3">
+							<nav aria-label="breadcrumb">
+								<ol class="breadcrumb mb-0 p-0">
+									<li class="breadcrumb-item"><a href="javascript:;"><i class='bx bx-home-alt'></i></a>
+									</li>
+									<li class="breadcrumb-item active" aria-current="page">Amenities : {{a.name}}</li>
+                                    <li style="margin-left:10px">
+                                        <i class="fa fa-pen"></i>
+                                    </li>
+								</ol>
+							</nav>
+						</div>
+					</div>
+					<!--end breadcrumb-->
+					<div class="card col-md-6 col-lg-6">
+						<div class="card-body">
+
+                        <form method="post" action="{% url 'Custom_Admin:edit_amenity' a.id %}" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {{ amenity | crispy }}
+                            <div style="margin-top:20px">
+                                <input type="submit" class="btn btn-light m-1" value="save">
+                                <a href="javascript:history.go(-1)"><button type="button" class="btn btn-light m-1">Cancle</button></a>
+                            </div>
+                        </form>
+<hr>
+                            <div class="card" style="margin-top:50px">
+                                <div class="card-body">
+                                    <h3>Images</h3>
+                                </div>
+                                <div class="row" style="margin:20px 0px">
+                                    <div class="col-12 col-lg-6 col-xl-6">
+                                        <div class="card mb-3">
+                                            <img src="{{a.image1.url}}" style="max-height:245px" class="card-img-top" alt="..." >
+                                            <div class="card-body" style="max-height:60px">
+                                                <h5 class="card-title">Image 1</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-lg-6 col-xl-6">
+                                        <div class="card mb-3">
+                                            <img src="{{a.image2.url}}" style="max-height:245px" class="card-img-top" alt="..." >
+                                            <div class="card-body" style="max-height:60px">
+                                                <h5 class="card-title">Image 2</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row" style="margin:15px 0px">
+                                    <div class="col-12 col-lg-6 col-xl-6">
+                                        <div class="card mb-3">
+                                            <img src="{{a.image3.url}}" style="max-height:245px" class="card-img-top" alt="...">
+                                            <div class="card-body" style="max-height:60px">
+                                                <h5 class="card-title">Image 3</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-lg-6 col-xl-6">
+                                        <div class="card mb-3">
+                                            <img src="{{a.image4.url}}" style="max-height:245px" class="card-img-top" alt="..." >
+                                            <div class="card-body" style="max-height:60px">
+                                                <h5 class="card-title">Image 4</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div>
+
+						</div>
+                        <div>
+                        </div>
+					</div>
+				</div>
+			</div>
+			<!--end page-content-wrapper-->
+		</div>
+		<!--end page-wrapper-->
+
+
+{% endblock %}

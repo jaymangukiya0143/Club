@@ -1,0 +1,160 @@
+{% extends 'common.html' %}
+{% load static %}
+{% load crispy_forms_filters %}
+{% block content %}
+
+<head>
+	<title>{% block title %}Reset Password{% endblock %}</title>
+    <style>
+    header{
+        background-color:#000000;
+    }
+    </style>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <script>
+
+        function validation(){
+            document.getElementById("otp_error").innerHTML = "";
+            document.getElementById("password1_error").innerHTML = "";
+            document.getElementById("password2_error").innerHTML = "";
+            document.getElementById("pass").innerHTML = "";
+
+            var error = 0;
+            var password1 = reset_password.password1.value;
+            var password2 = reset_password.password2.value;
+            var otp_structure = /^[0-9]{6}$/;
+
+            var password_structure  = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/;
+
+            if(reset_password.otp.value == ""){
+                error += 1;
+                document.getElementById("otp_error").innerHTML = "Please enter OTP";
+            }
+            else{
+                if (otp_structure.test(reset_password.otp.value) == false){
+                    error += 1;
+                    document.getElementById("otp_error").innerHTML = "Please enter an valid otp";
+                }
+            }
+
+            if(password1 == ""){
+                error += 1;
+                document.getElementById("password1_error").innerHTML = "Please enter password";
+            }
+            else{
+                if(password1.length < 8){
+                    error += 1;
+                   document.getElementById("password1_error").innerHTML = "Password must contain minimum 8 characters";
+                }
+                else{
+                    if(password_structure.test(password1) == false){
+                        error += 1;
+                        document.getElementById("password1_error").innerHTML = "Password must contain one special character, digit and letter";
+                    }
+                }
+            }
+
+            if(password2 == ""){
+                error += 1;
+                document.getElementById("password2_error").innerHTML = "Please enter confirm password";
+            }
+            else{
+                if(password2.length < 8){
+                    error += 1;
+                    document.getElementById("password2_error").innerHTML = "Password must contain minimum 8 characters";
+                }
+                else{
+                    if(password_structure.test(password2) == false){
+                        error += 1;
+                        document.getElementById("password2_error").innerHTML = "Password must contain one special character, digit and letter";
+                    }
+                }
+            }
+
+            if (password1 != password2){
+                error += 1;
+                document.getElementById("pass").innerHTML = "Both password must be same!";
+            }
+
+            if(error > 0){
+                swal("","Correct the error(s) and try again!","error");
+                return false;
+            }
+            else{
+                return true;
+            }
+
+        }
+
+    $(document).ready(function(){
+		$("#reset_form").submit(function(e){
+			e.preventDefault();
+			var form = $(this).closest("form");
+			var otp = document.getElementById("otp").value;
+
+			if(otp != ""){
+				$.ajax({
+					type : "POST",
+					url : form.attr("otp-validate-url"),
+					data : form.serialize(),
+					dataType : "json",
+					success : function(data){
+						if(data.is_same == 'True'){
+							$("#reset_form").unbind().submit();
+						}
+						else{
+							swal("","OTP didn't matched","error");
+							document.getElementById("otp").value = "";
+							document.getElementById("password").value = "";
+							document.getElementById("password2").value = "";
+						}
+                    }
+                });
+            }
+        });
+	});
+    </script>
+</head>
+
+<div style="margin-top:150px;margin-bottom:20px" class="center">
+
+</div>
+
+<main class="main-rows center" style="margin-top:20px;margin-bottom:100px" >
+	<div class="container col-md-6">
+        <form id="reset_form" method="post" action="#" name="reset_password" onsubmit="return validation()" otp-validate-url="{% url 'Member:validate_otp' 2 %}">
+            {% csrf_token %}
+            <div class="center">
+                <h4>Reset Password<hr></h4>
+            </div>
+            <div class="form_group" style="margin:15px 0px">
+                <div class="form-element">
+                    <input id="otp" type="password" placeholder="OTP" name="otp">
+                    <span style="color:red" id="otp_error"></span>
+                </div>
+            </div>
+            <div class="form_group" style="margin:15px 0px">
+                <div class="form-element">
+                    <input id="password" type="password" placeholder="New Password" name="password1">
+                    <span  style="color:red" id="password1_error"></span>
+
+                </div>
+            </div>
+            <div class="form_group" style="margin:15px 0px">
+                <div class="form-element">
+                    <input id="password2" type="password" placeholder="Confirm New Password" name="password2">
+                    <span style="color:red" id="password2_error"></span>
+                    <br>
+                    <span style="color:red" id="pass"></span>
+                </div>
+            </div>
+            <div class="form-group" style="margin-top:20px">
+                <input type="submit" value="Reset Password" class="myBtn" style="width:150px">
+            </div>
+        </form>
+	</div>
+</main>
+
+{% endblock %}

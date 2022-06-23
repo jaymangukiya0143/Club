@@ -1,0 +1,80 @@
+{% extends 'custom_admin/common.html' %}
+{% load static %}
+
+<head>
+    <title>{% block title %}All Events{% endblock %}</title>
+</head>
+
+{% block content %}
+
+<!--page-wrapper-->
+		<div class="page-wrapper">
+			<!--page-content-wrapper-->
+			<div class="page-content-wrapper">
+				<div class="page-content">
+					<!--breadcrumb-->
+					<div class="page-breadcrumb d-none d-md-flex align-items-center mb-3">
+						<div class="pl-3">
+							<nav aria-label="breadcrumb">
+								<ol class="breadcrumb mb-0 p-0">
+									<li class="breadcrumb-item"><a href="javascript:;"><i class='bx bx-home-alt'></i></a>
+									</li>
+									<li class="breadcrumb-item active" aria-current="page">Events</li>
+								</ol>
+							</nav>
+						</div>
+					</div>
+					<!--end breadcrumb-->
+
+
+                    <div class="row">
+                                <div class="col-md-12 col-lg-12">
+                                    <div class="card radius-15">
+                                        <div class="card-body col-md-12">
+                                            <div class="media align-items-center">
+                                                <div class="media-body">
+                                                    <h4 class="mb-0 font-weight-bold text-white">{{events|length}}</h4>
+                                                    <p class="mb-0 text-white">Total Events</p>
+                                                </div>
+                                                <div class="font-35 text-white"><i class="bx bx-arrow-to-top"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+							</div>
+
+                                {% for e in events %}
+                                <div class="card ">
+                                    <div class="card-body row">
+                                        <div class="col-12 col-lg-6 col-xl-6">
+                                            <div class="card mb-3">
+                                                <img src="{{e.image1.url}}" style="max-height:245px" class="card-img-top" alt="...">
+                                                <div class="card-body" style="max-height:60px">
+                                                    <h5 style="text-align:center" class="card-title">{{e.name}}</h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-lg-6 col-xl-6">
+                                            <h6 style="max-height:120px;overflow:hidden;">{{e.description}}</h6><h5>...</h5>
+                                            <h6 style="text-align:center;margin-top:30px">From : {{e.from_date}}</h6>
+                                            <h6 style="text-align:center">To : {{e.to_date}}</h6>
+                                            <h6 style="text-align:center">Venue : {{e.amenity.name}}</h6>
+                                            <h5 style="margin-top:30px;text-align:center">Ticket : &#8377<b> {{e.price}}</b>/per person</h5>
+                                        </div>
+                                    </div>
+                                    <center>
+                                        <div style="margin-bottom:10px;margin-top:0px">
+                                            <a href="{% url 'Custom_Admin:view_event' e.id %}"><button type="button" class="btn btn-light m-1"><i class="fa fa-eye"></i></button></a>
+                                            <a href="{% url 'Custom_Admin:edit_event' e.id %}"><button type="button" class="btn btn-light m-1"><i class="fa fa-pen"></i></button></a>
+
+
+                                            <a href="{% url 'Custom_Admin:delete_event' e.id %}"><button type="button" class="btn btn-light m-1"><i class="fa fa-trash"></i></button></a>
+                                        </div>
+                                    </center>
+                                </div>
+                                {% endfor %}
+
+							</div>
+
+{% endblock %}

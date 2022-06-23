@@ -1,0 +1,30 @@
+{% extends 'common.html' %}
+{% load static %}
+{% load crispy_forms_filters %}
+{% block content %}
+
+<head>
+	<title>{% block title %}Add Amenity{% endblock %}</title>
+    <style>
+    header{
+        background-color:#000000;
+    }
+    </style>
+</head>
+
+<main class="main-rows center" style="margin-top:200px;margin-bottom:100px" >
+    <div class="container form-group col-md-6 center">
+        <form method="post" action="{% url 'Amenities:add_amenity' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div>
+                {{amenity_form | crispy}}
+            </div>
+            <div>
+                <input type="submit" value="Add Amenity" style="height:40px;width:150px;margin-top:20px" class="myBtn">
+            </div>
+        </form>
+    </div>
+</main>
+
+
+{% endblock %}

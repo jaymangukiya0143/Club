@@ -1,0 +1,155 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+
+<!-- Mirrored from codervent.com/syntrans/demo/vertical/authentication-login.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 06 Jan 2021 07:19:10 GMT -->
+<head>
+	<!-- Required  meta tags -->
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<title>Admin Login</title>
+	<!--favicon-->
+	<link rel="icon" href="{% static 'img/Hawk copy1.png' %}" type="image/png" />
+	<!-- loader-->
+	<!--<link href="{% static 'custom_admin/assets/css/pace.min.css' %}" rel="stylesheet" />-->
+	<!--<script src="{% static 'custom_admin/assets/js/pace.min.js' %}"></script>-->
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="{% static 'custom_admin/assets/css/bootstrap.min.css' %}" />
+	<!-- Icons CSS -->
+	<link rel="stylesheet" href="{% static 'custom_admin/assets/css/icons.css' %}" />
+	<!-- App CSS -->
+	<link rel="stylesheet" href="{% static 'custom_admin/assets/css/app.css' %}" />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+
+<body class="bg-theme bg-theme1">
+	<!-- wrapper -->
+	<div class="wrapper">
+		<div class="section-authentication-login d-flex align-items-center justify-content-center">
+			<div class="row">
+				<div class="col-12 col-lg-10 mx-auto">
+					<div class="card radius-15">
+						<div class="row no-gutters">
+							<div class="col-lg-6">
+								<div class="card-body p-md-5">
+									<div class="text-center">
+										<img src="{% static 'img/Hawk copy.png' %}" width="80" alt="">
+										<h3 class="mt-4 font-weight-bold">Welcome Back</h3>
+									</div>
+									<form id="login_admin" action="{% url 'Custom_Admin:admin_login' %}" method="post" name="login" onsubmit="return validation()" email-validate-url="{% url 'Custom_Admin:validate_login' %}">
+                                        {% csrf_token %}
+                                        <div class="form-group mt-4">
+                                            <label>Username</label>
+                                            <input id="username" type="text" class="form-control" name="username" placeholder="Enter your email address"   />
+											<span id="username_error" style="color:rgba(255,60,60)"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Password</label>
+                                            <input id="password" type="password" class="form-control" placeholder="Enter your password" name="password"   />
+											<span id="password_error" style="color:rgba(255,60,60)"></span>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group col text-right"> <a href="{% url 'Custom_Admin:admin_forgot_password' %}"><i class='bx bxs-key mr-2'></i>Forget Password?</a>
+                                            </div>
+                                        </div>
+                                        <div class="btn-group mt-3 w-100">
+                                            <input type="submit" class="btn btn-light btn-block" value="Login">
+                                        </div>
+                                    </form>
+								</div>
+							</div>
+							<div class="col-lg-6">
+								<img src="{% static 'custom_admin/assets/images/login-images/login-frent-img.jpg' %}" class="card-img login-img h-100" alt="...">
+							</div>
+						</div>
+						<!--end row-->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end wrapper -->
+</body>
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+    $("#login_admin").submit(function(e){
+        e.preventDefault();
+        var form = $(this).closest("form");
+        var username = document.getElementById("username").value;
+        var password = document.getElementById("password").value;
+        if (username != "" && password != ""){
+            $.ajax({
+                type: "POST",
+                url: form.attr("email-validate-url"),
+                data: form.serialize(),
+                dataType: 'json',
+                success: function (data){
+                    if (data.is_exists == 'False'){
+                        swal("","Email address doesn't exist","error");
+                    }
+                    else{
+                        if(data.password_matches == 'False'){
+                            swal("","Password didn't matched","error");
+                        }
+                        else{
+                            $("#login_admin").unbind().submit();
+                        }
+                    }
+                }
+            });
+        }
+    });
+});
+
+</script>
+
+<script>
+	function validation(){
+		document.getElementById("username_error").innerHTML = "";
+		document.getElementById("password_error").innerHTML = "";
+		var error = 0;
+		var username_exp = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+		var password_exp = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/;
+
+		if(login.username.value == ""){
+			error += 1;
+			document.getElementById("username_error").innerHTML = "Please enter your email address";
+		}
+		else{
+			if(username_exp.test(login.username.value) == false){
+				error += 1;
+				document.getElementById("username_error").innerHTML = "Please enter an valid email address";
+			}
+		}
+
+		if(login.password.value == ""){
+			error += 1;
+			document.getElementById("password_error").innerHTML = "Please enter password";
+		}
+		else{
+			if(password_exp.test(login.password.value) == false){
+				error += 1;
+				document.getElementById("password_error").innerHTML = "Please enter a valid password";
+			}
+		}
+
+		if(error > 0){
+			swal("","Correct error(s) and try again","error");
+			return false;
+		}
+		else{
+			return true;
+		}
+	}
+
+</script>
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
+<!-- Mirrored from codervent.com/syntrans/demo/vertical/authentication-login.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 06 Jan 2021 07:19:11 GMT -->
+</html>

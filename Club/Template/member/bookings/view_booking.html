@@ -1,0 +1,105 @@
+{% extends 'common.html' %}
+{% load static %}
+{% load crispy_forms_filters %}
+{% block content %}
+
+<head>
+	<title>{% block title %}Booking : {{booking.amenity.name}}{% endblock %}</title>
+    <style>
+    header{
+        background-color:#000000;
+    }
+
+
+    tr,th,td{
+        text-align:center;
+    }
+
+    p{
+        padding:10px;
+    }
+
+    </style>
+
+
+</head>
+
+<div style="margin-top:150px;margin-bottom:20px" class="center">
+
+</div>
+
+<main class="main-rows center" style="margin-top:60px;margin-bottom:100px" >
+	<div class="container col-md-8">
+        <div style="border-radius:5px;margin:5px 0px;box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 16px 32px;">
+            <div style="margin:0px 40px">
+                <div class="center">
+                    <h5 style="margin:10px 0px">{{booking.amenity.name}}</h5>
+                </div>
+
+                <div class="row">
+                    <div class="center col-md-6">
+                        <p>From : {{booking.from_date}} - {% if booking.from_time == 'M' %} Morning {% else %} Evening {% endif %}<hr></p>
+                        <p></p>
+                    </div>
+
+                    <div class="center col-md-6">
+                        <p>To : {{booking.to_date}} - {% if booking.to_time == 'M' %} Morning {% else %} Evening {% endif %}</p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="center col-md-6">
+                        <p>No. of Slots : {{booking.no_of_slots}}<hr></p>
+                    </div>
+
+                    <div class="center col-md-6">
+                        <p>Amount :&nbsp;&#8377;&nbsp;{{booking.total}}</p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="center col-md-6">
+                        Approved :
+                        {% if booking.status == True %}
+                            <p style="color:green">&nbsp;Yes</p>
+                        {% else %}
+                            <p style="color:red">&nbsp;No</p>
+                        {% endif %}
+                    </div>
+
+                    <div class="center col-md-6">
+                        Confirmed :
+                        {% if booking.confirm == True %}
+                            <p style="color:green">&nbsp;Yes</p>
+                        {% else %}
+                            <p style="color:red">&nbsp;No</p>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="center col-md-6">
+                        <p>Requested On : {{booking.booked_on}}<hr></p>
+                        <p></p>
+                    </div>
+
+                    <div class="center col-md-6">
+                        <p>Confirmed On : {{payment.date}}</p>
+                    </div>
+                </div>
+
+                <div class="center">
+                    <a href="{% url 'Custom_Admin:view_invoice' payment.id %}" style="margin-bottom:15px;margin-top:5px" class="myBtn"><i class="fa fa-download"></i>&nbsp;&nbsp;Invoice</a>
+                </div>
+
+            </div>
+        </div>
+
+    <div class="center" style="margin-top:80px">
+        <a href="javascript:history.go(-1)" style="margin-bottom:15px'margin-top:5px" class="myBtn"><i class="fa fa-arrow-left"></i>&nbsp;&nbsp;Back</a>
+    </div>
+
+	</div>
+</main>
+
+{% endblock %}

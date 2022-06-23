@@ -1,0 +1,33 @@
+{% extends 'common.html' %}
+{% load static %}
+{% block content %}
+
+<head>
+	<title>{% block title %}Payment Failed{% endblock %}</title>
+    <style>
+    header{
+        background-color:#000000;
+    }
+
+</style>
+</head>
+
+<div style="margin-top:200px;margin-bottom:0px">
+    <div class="container">
+        <div class="col-md-12">
+            <center>
+                <div style="width:200px;height:200px">
+                    <img src="{% static 'img/failed.png' %}">
+                </div>
+                <div style="margin-bottom:10px">
+                    <h3>Payment Failed</h3>
+                </div>
+                <div style="margin:50px 0px">
+                    <a href="javascript:history.go(-1)"><button type="button" class="myBtn" style="width:200px"><i class="fa fa-arrow-left"></i>  Back</button></a>
+                </div>
+            </center>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

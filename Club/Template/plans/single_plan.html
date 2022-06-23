@@ -1,0 +1,62 @@
+{% extends 'common.html' %}
+{% load static %}
+{% load crispy_forms_filters %}
+{% block content %}
+
+<head>
+	<title>{% block title %}Plan : {{plan.name}}{% endblock %}</title>
+    <style>
+    header{
+        background-color:#000000;
+    }
+
+
+    tr,th,td{
+        text-align:center;
+    }
+
+    p{
+        padding:10px;
+    }
+
+    </style>
+
+
+</head>
+
+<div style="margin-top:150px;margin-bottom:20px" class="center">
+
+</div>
+
+<main class="main-rows center" style="margin-top:60px;margin-bottom:100px" >
+	<div class="container col-md-8">
+        <div style="margin:5px 0px;box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 16px 32px;">
+            <div style="margin:5px 40px">
+                <div class="center">
+                    <h5 style="margin:20px 0px">{{plan.name}}<hr></h5>
+                </div>
+                <div class="center">
+                    <p>{{plan.description}}</p>
+                </div>
+                <div class="center">
+                    <h6><hr>Duration : {{plan.duration}}&nbsp;Months<hr></h6>
+                </div>
+                <div class="center">
+                    <h6>Fees : &#8377;&nbsp;{{plan.fees}}<hr></h6>
+                </div>
+                {% if request.user.is_authenticated %}
+                <div class="center">
+                    <a style="margin-bottom:15px" class="myBtn" href="{% url 'Payments:process_payment_plan' plan.id %}">Select</a>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+
+    <div class="center" style="margin-top:80px">
+        <a href="javascript:history.go(-1)" style="margin-bottom:15px'margin-top:5px" class="myBtn"><i class="fa fa-arrow-left"></i>&nbsp;&nbsp;Back</a>
+    </div>
+
+	</div>
+</main>
+
+{% endblock %}

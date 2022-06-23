@@ -1,0 +1,109 @@
+{% extends 'custom_admin/common.html' %}
+{% load static %}
+
+<head>
+    <title>{% block title %}Amenity : {{amenity.name}}{% endblock %}</title>
+
+
+
+</head>
+
+{% block content %}
+
+<!--page-wrapper-->
+		<div class="page-wrapper">
+			<!--page-content-wrapper-->
+			<div class="page-content-wrapper">
+				<div class="page-content">
+					<!--breadcrumb-->
+					<div class="page-breadcrumb d-none d-md-flex align-items-center mb-3">
+						<div class="pl-3">
+							<nav aria-label="breadcrumb">
+								<ol class="breadcrumb mb-0 p-0">
+									<li class="breadcrumb-item"><a href="javascript:;"><i class='bx bx-home-alt'></i></a>
+									</li>
+									<li class="breadcrumb-item active" aria-current="page">Amenities : {{amenity.name}}</li>
+								</ol>
+							</nav>
+						</div>
+					</div>
+					<!--end breadcrumb-->
+					<div class="card">
+						<div class="card-body">
+							<div class="col-md-6 col-lg-6">
+                            <label>Name</label>
+                            <input type="text" value="{{amenity.name}}" class="form-control" readonly>
+                            <label style="margin:10px 0px">Description</label>
+                            <textarea class="form-control" readonly>{{amenity.description}}</textarea>
+                            <label style="margin:10px 0px">Type</label>
+
+							{% if amenity.amenity_type == "A1" %}
+							<input type="text" value="Amenity" class="form-control" readonly>
+							{% else %}
+							<input type="text" value="Activity" class="form-control" readonly>
+							{% endif %}
+
+                            <label style="margin:10px 0px">Occupancy</label>
+                            <input type="text" value="{{amenity.occupancy}}" class="form-control" readonly>
+
+							{% if amenity.amenity_type == "A1" %}
+							<label style="margin:10px 0px">Rate</label>
+                            <input type="text" value="{{amenity.rate}}" class="form-control" readonly>
+							{% endif %}
+
+							</div>
+							<div class="row" style="margin:20px 0px">
+								<div class="col-12 col-lg-6 col-xl-6">
+									<div class="card mb-3">
+										<img src="{{amenity.image1.url}}" style="max-height:245px" class="card-img-top" alt="...">
+										<div class="card-body" style="max-height:60px">
+											<h5 class="card-title">Image 1</h5>
+										</div>
+									</div>
+								</div>
+								<div class="col-12 col-lg-6 col-xl-6">
+									<div class="card mb-3">
+										<img src="{{amenity.image2.url}}" style="max-height:245px" class="card-img-top" alt="...">
+										<div class="card-body" style="max-height:60px">
+											<h5 class="card-title">Image 2</h5>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row" style="margin:15px 0px">
+								<div class="col-12 col-lg-6 col-xl-6">
+									<div class="card mb-3">
+										<img src="{{amenity.image3.url}}" style="max-height:245px" class="card-img-top" alt="...">
+										<div class="card-body" style="max-height:60px">
+											<h5 class="card-title">Image 3</h5>
+										</div>
+									</div>
+								</div>
+								<div class="col-12 col-lg-6 col-xl-6">
+									<div class="card mb-3">
+										<img src="{{amenity.image4.url}}" style="max-height:245px" class="card-img-top" alt="...">
+										<div class="card-body" style="max-height:60px">
+											<h5 class="card-title">Image 4</h5>
+										</div>
+									</div>
+								</div>
+							</div>
+
+                            <div style="margin:10px 0px">
+                            </div>
+                            <a href="javascript:history.go(-1)"><button type="button" class="btn btn-light m-1"><i class="fa fa-arrow-left"></i>  Back</button></a>
+                            <a href="{% url 'Custom_Admin:edit_amenity' amenity.id %}"><button type="button" class="btn btn-light m-1"><i class="fa fa-pen"></i>  Edit</button></a>
+							<a href="#"><button type="button" class="btn btn-light m-1"><i class="fa fa-trash"></i>  Delete</button></a>
+						</div>
+                        <div>
+                        </div>
+					</div>
+				</div>
+			</div>
+			<!--end page-content-wrapper-->
+		</div>
+		<!--end page-wrapper-->
+
+	<!-- App JS -->
+
+{% endblock %}

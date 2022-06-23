@@ -1,0 +1,42 @@
+{% extends 'common.html' %}
+{% load static %}
+{% load crispy_forms_filters %}
+{% block content %}
+
+<head>
+	<title>{% block title %}Add Plan{% endblock %}</title>
+    <style>
+    header{
+        background-color:#000000;
+    }
+    footer{
+    position:relative;
+    bottom:0;
+    }
+        td,th{
+            border:1px solid black;
+            padding:12px;
+            text-align:center;
+        }
+    </style>
+</head>
+
+<main class="main-rows" style="margin:200px 30px" >
+    <div class="container form-group col-md-6 col-lg-6">
+        <div>
+            <form method="post" action="{% url 'Plans:add_plans' %}" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div>
+                    {{plan_form | crispy}}
+                </div>
+                <div>
+                    <input type="submit" value="Add Plan" style="height:40px;width:150px;margin-top:20px" class="myBtn">
+                </div>
+            </form>
+        </div>
+    </div>
+</main>
+
+
+
+{% endblock %}

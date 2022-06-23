@@ -1,0 +1,119 @@
+{% extends 'custom_admin/common.html' %}
+{% load static %}
+{% load crispy_forms_filters %}
+<head>
+    <title>{% block title %} Member : {{member.member.first_name}} {{member.member.last_name}} {% endblock %}</title>
+</head>
+
+{% block content %}
+
+<!--page-wrapper-->
+		<div class="page-wrapper">
+			<!--page-content-wrapper-->
+			<div class="page-content-wrapper">
+				<div class="page-content">
+					<!--breadcrumb-->
+					<div class="page-breadcrumb d-none d-md-flex align-items-center mb-3">
+						<div class="pl-3">
+							<nav aria-label="breadcrumb">
+								<ol class="breadcrumb mb-0 p-0">
+									<li class="breadcrumb-item"><a href="javascript:;"><i class='bx bx-home-alt'></i></a>
+									</li>
+									<li class="breadcrumb-item active" aria-current="page">Member : {{member.member.email}}</li>
+								</ol>
+							</nav>
+						</div>
+					</div>
+					<!--end breadcrumb-->
+					<div class="card">
+                        <div class="card-body">
+                                <center>
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <img class="account-img" src="{{member.image1.url}}" width="270" height="270" style="object-fit:cover" >
+                                        </div>
+                                    </div>
+                                </center>
+
+                            <div class="card-body">
+                                <label>Name</label>
+                                <input type="text" value="{{member.member.first_name}} {{member.member.last_name}}" readonly class="form-control">
+                                <label style="margin-top:10px">Email</label>
+                                <input type="text" value="{{member.member.email}}" readonly class="form-control">
+                                <label style="margin-top:10px">Phone</label>
+                                <input type="text" value="{{member.phone}}" readonly class="form-control">
+                                <label style="margin-top:10px">Address</label>
+                                <textarea class="form-control" readonly>{{member.address}}</textarea>
+                                <label style="margin-top:10px">Date of Birth</label>
+                                <input type="text" value="{{member.dob}}" readonly class="form-control">
+                                <label style="margin-top:10px">Gender</label>
+                                {% if member.gender == "M" %}
+                                    <input type="text" value="Male" readonly class="form-control">
+                                {% else %}
+                                    <input type="text" value="Female" readonly class="form-control">
+                                {% endif %}
+
+                                <!--<label style="margin-top:10px">Occupation</label>-->
+                                <!--<input type="text" value="{{member.occupation}}" readonly class="form-control">-->
+
+                                <!--<label style="margin-top:10px">No. of Family Members</label>-->
+                                <!--<input type="text" value="{{member.no_fam_mem}}" readonly class="form-control">-->
+
+                                <!--<hr>-->
+
+                                <label style="margin-top:10px">Join Date</label>
+                                <input type="text" value="{{member.created_at}}" readonly class="form-control">
+
+                                <hr>
+                                <label style="margin-top:10px">Active</label>
+                                {% if member.member.is_active == True %}
+                                    <input style="background-color:rgba(0,255,0,0.2)" type="text" value="{{member.member.is_active}}" readonly class="form-control">
+                                    <a href="{% url 'Custom_Admin:active_deactive_member' member.id %}"><button type="button" class="btn btn-light m-1"></i> Deactivate</button></a>
+                                {% else %}
+                                    <input style="background-color:rgba(255,0,0,0.2)" type="text" value="{{member.member.is_active}}" readonly class="form-control">
+                                    <a href="{% url 'Custom_Admin:active_deactive_member' member.id %}"><button type="button" class="btn btn-light m-1"></i> Activate</button></a>
+                                {% endif %}
+
+
+
+                                <hr>
+                                <table class="table table-striped table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th colspan="5">Membership(s)</th>
+                                        </tr>
+                                        <tr>
+                                            <th>No.</th>
+                                            <th>Membership Plan</th>
+                                            <th>Brought On</th>
+                                            <th>Expiry Date</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for m in membership %}
+                                        <tr>
+                                            <td>{{ forloop.counter }}</td>
+                                            <td>{{ m.mem_plan.name }}</td>
+                                            <td>{{ m.brought_at }}</td>
+                                            <td>{{ m.expiry_at }}</td>
+                                            {% if m.is_expired == False %}
+                                                <td style="text-align:center;background-color:rgba(0,255,0,0.2)">Active</td>
+                                            {% else %}
+                                                <td style="text-align:center;background-color:rgba(255,0,0,0.2)">Expired</td>
+                                            {% endif %}
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+
+                                <div style="margin-top:30px">
+                                    <a href="javascript:history.go(-1)"><button type="button" class="btn btn-light m-1">Back</button></a>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+{% endblock %}

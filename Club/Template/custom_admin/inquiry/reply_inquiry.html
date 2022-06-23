@@ -1,0 +1,68 @@
+{% extends 'custom_admin/common.html' %}
+{% load static %}
+{% load crispy_forms_filters %}
+<head>
+    <title>{% block title %}Reply Inquiry : {{inquiry.name}}{% endblock %}</title>
+</head>
+
+{% block content %}
+
+<!--page-wrapper-->
+		<div class="page-wrapper">
+			<!--page-content-wrapper-->
+			<div class="page-content-wrapper">
+				<div class="page-content">
+					<!--breadcrumb-->
+					<div class="page-breadcrumb d-none d-md-flex align-items-center mb-3">
+						<div class="pl-3">
+							<nav aria-label="breadcrumb">
+								<ol class="breadcrumb mb-0 p-0">
+									<li class="breadcrumb-item"><a href="javascript:;"><i class='bx bx-home-alt'></i></a>
+									</li>
+									<li class="breadcrumb-item active" aria-current="page">Reply Inquiry</li>
+                                    <li style="margin-left:10px">
+                                        <i class="fa fa-pen"></i>
+                                    </li>
+								</ol>
+							</nav>
+						</div>
+					</div>
+					<!--end breadcrumb-->
+					<div class="card  col-md-6 col-lg-6">
+						<div class="card-body">
+
+                        <form method="post" action="{% url 'Custom_Admin:reply_inquiry' inquiry.id %}" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <form method="post" action="#">
+                                <div class="form-group">
+                                    <label>Inquire Name</label>
+                                    <input type="text" value="{{inquiry.name}}" readonly class="form-control">
+                                    <label style="margin-top:10px">Inquire email</label>
+                                    <input type="text" value="{{inquiry.email}}" readonly class="form-control">
+                                    <label style="margin-top:10px">Subject</label>
+                                    <input class="form-control" type="text" value="{{inquiry.subject}}" readonly>
+                                    <label style="margin-top:10px">Message</label>
+                                    <textarea class="form-control" readonly>{{inquiry.message}}</textarea>
+                                    <label style="margin-top:10px">Date of Inquiry</label>
+                                    <input class="form-control" type="text" value="{{inquiry.created_at}}" readonly>
+
+
+                                    <label style="margin-top:10px">Reply</label>
+                                    {% if inquiry.reply %}
+                                        <textarea class="form-control" name="reply" readonly>{{inquiry.reply}}</textarea>
+                                        <div style="margin-top:10px">
+                                            <a href="javascript:history.go(-1)"><button type="button" class="btn btn-light m-1">Back</button></a>
+                                        </div>
+                                    {% else %}
+                                        <textarea class="form-control" name="reply" required></textarea>
+                                        <div>
+                                            <a href="javascript:history.go(-1)"><button type="button" class="btn btn-light m-1">Back</button></a>
+                                            <input type="submit" class="btn btn-light m-3" value="Send Reply">
+                                        </div>
+                                    {% endif %}
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+{% endblock %}

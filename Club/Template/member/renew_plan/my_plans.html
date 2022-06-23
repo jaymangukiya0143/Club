@@ -1,0 +1,75 @@
+{% extends 'common.html' %}
+{% load static %}
+{% load crispy_forms_filters %}
+{% block content %}
+
+<head>
+	<title>{% block title %}My Plans{% endblock %}</title>
+    <style>
+    header{
+        background-color:#000000;
+    }
+
+
+    tr,th,td{
+        text-align:center;
+    }
+
+
+    </style>
+
+
+</head>
+
+<div style="margin-top:150px;margin-bottom:20px" class="center">
+
+</div>
+
+<main class="main-rows center" style="margin-top:20px;margin-bottom:100px" >
+	<div class="container col-md-8">
+        <div class="center" style="margin:20px 0px">
+            <h5 style="color:grey">My Plans</h5>
+        </div>
+
+        <div class="table-responsive">
+            <div style="margin:5px 0px;box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 0px 0px, rgba(0, 0, 0, 0.07) 0px 0px 0px;">
+                <table class="table">
+                <thead>
+                        <tr>
+                            <th style="width:10%">No.</th>
+                            <th style="width:25%">Membership Plan</th>
+                            <th style="width:25%">Brought On</th>
+                            <th style="width:20%">Expiry Date</th>
+                            <th style="width:10%"></th>
+                            <th style="width:10%"></th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+            {% for m in membership %}
+
+                <div style="margin:5px 0px;box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 0px 0px, rgba(0, 0, 0, 0.07) 0px 0px 0px;">
+                    <table class="table table-hover">
+                    <tbody>
+                        <tr>
+                            <td style="text-align:center;width:10%">{{ forloop.counter }}</td>
+                            <td style="width:25%">{{m.mem_plan.name}}</td>
+                            <td style="width:25%">{{m.brought_at}}</td>
+                            <td style="width:20%">{{m.expiry_at}}</td>
+                            {% if m.is_expired == True %}
+                                <td style="width:10%;background-color:rgba(255,0,0,0.6)">Expired</td>
+                            {% else %}
+                                <td style="width:10%;background-color:rgba(0,255,0,0.6)">Active</td>
+                            {% endif %}
+                            <td style="width:10%"><a href="{% url 'Member:view_plan' m.id %}" style="text-decoration:underline;margin:10px 0px;color:green">View</a></td>
+                        </tr>
+                    </tbody>
+                        </table>
+                </div>
+            {% endfor %}
+        </div>
+
+	</div>
+</main>
+
+{% endblock %}

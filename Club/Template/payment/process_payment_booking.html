@@ -1,0 +1,57 @@
+{% extends 'common.html' %}
+{% load static %}
+{% block content %}
+
+<head>
+	<title>{% block title %}Payment Booking{% endblock %}</title>
+    <style>
+    header{
+        background-color:#000000;
+    }
+
+    th,td{
+        padding:10px;
+    }
+</style>
+</head>
+
+<div style="margin-top:200px;margin-bottom:0px">
+    <div class="container">
+        <div class="col-md-12">
+            <center>
+                <div>
+                    <table style="border:1px solid grey">
+                        <tr>
+                            <th>Amenity Name</th>
+                            <td>{{amenity.name}}</td>
+                        </tr>
+                        <tr>
+                            <th>Timing</th>
+                            <td>From : {{booking.from_date}} - {{booking.from_time}}<br>To : {{booking.to_date}} - {{booking.to_time}}</td>
+                        </tr>
+                        <tr>
+                            <th>No. of Slots</th>
+                            <td>{{booking.no_of_slots}}</td>
+                        </tr>
+                        <tr>
+                            <th>Rate/Slot</th>
+                            <td>&#8377; {{amenity.rate}}</td>
+                        </tr>
+                        <tr>
+                            <th>Total</th>
+                            <td>&#8377; {{booking.total}}</td>
+                        </tr>
+                    </table>
+                </div>
+                <div style="width:200px;height:100px;margin-top:50px">
+                {{form.render}}
+                </div>
+                <div style="margin:20px 0px">
+                    <a href="javascript:history.go(-1)"><button type="button" class="myBtn" style="width:200px"><i class="fa fa-arrow-left"></i>  Back</button></a>
+                </div>
+            </center>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

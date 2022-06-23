@@ -1,0 +1,32 @@
+{% extends 'common.html' %}
+{% load static %}
+{% block content %}
+
+
+
+<div style="margin:150px 0px" class="col-md-12 col-sm-6 col-xs-3">
+    <center><h3 style="color:#000000;padding:20px">Inquiries</h3></center>
+    <table class="container" style="border:1px solid black">
+        <tr>
+            <th>No.</th>
+            <th>Name</th>
+            <th>Subject</th>
+            <th>Date</th>
+            <th></th>
+        </tr>
+        {% for i in inquiries %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{i.name}}</td>
+            <td>{{i.subject}}</td>
+            <td>{{i.created_at}}</td>
+            <td>
+                <div class="last-cart l-mrgn myBtn" style="height:30px;padding:5px;border:1px solid #f38121">
+                    <a class="las4" href="{% url 'Inquiry:single_inquiry' i.id %}">View</a>
+                </div>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}

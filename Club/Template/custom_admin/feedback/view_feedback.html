@@ -1,0 +1,220 @@
+{% extends 'custom_admin/common.html' %}
+{% load static %}
+{% load crispy_forms_filters %}
+<head>
+    <title>{% block title %}Feedback : {{feedback.member.first_name}} {% endblock %}</title>
+</head>
+
+{% block content %}
+
+<!--page-wrapper-->
+		<div class="page-wrapper">
+			<!--page-content-wrapper-->
+			<div class="page-content-wrapper">
+				<div class="page-content">
+					<!--breadcrumb-->
+					<div class="page-breadcrumb d-none d-md-flex align-items-center mb-3">
+						<div class="pl-3">
+							<nav aria-label="breadcrumb">
+								<ol class="breadcrumb mb-0 p-0">
+									<li class="breadcrumb-item"><a href="javascript:;"><i class='bx bx-home-alt'></i></a>
+									</li>
+									<li class="breadcrumb-item active" aria-current="page">Feedback</li>
+                                    <li style="margin-left:10px">
+                                        <i class="fa fa-pen"></i>
+                                    </li>
+								</ol>
+							</nav>
+						</div>
+					</div>
+					<!--end breadcrumb-->
+					<div class="card  col-md-6 col-lg-6">
+						<div class="card-body">
+
+                                <div class="form-group">
+                                    <label>Member Name</label>
+                                    <input type="text" value="{{feedback.member.first_name}} {{feedback.member.last_name}}" readonly class="form-control">
+                                    <label style="margin-top:10px">Member email</label>
+                                    <input type="text" value="{{feedback.member.email}}" readonly class="form-control">
+                                    <label style="margin-top:10px">Review (tips and guidelines)</label>
+                                    <textarea class="form-control" readonly>{{feedback.feedback}}</textarea>
+
+                                    <label style="margin-top:10px">Overall Experience</label>
+                                        <h5>
+                                            {% if feedback.rating.0 == "1" %}
+                                                    {% with var="1" %}
+                                                        {% for i in var %}
+                                                            <i class="bx bxs-star" style="fill:gold;color:gold"></i>
+                                                        {% endfor %}
+                                                    {% endwith %}
+                                                {% elif feedback.rating.0 == "2" %}
+                                                    {% with var="12" %}
+                                                    {% for i in var %}
+                                                            <i class="bx bxs-star" style="fill:gold;color:gold"></i>
+                                                        {% endfor %}
+                                                    {% endwith %}
+                                                {% elif feedback.rating.0 == "3" %}
+                                                    {% with var="123" %}
+                                                        {% for i in var %}
+                                                            <i class="bx bxs-star" style="fill:gold;color:gold"></i>
+                                                        {% endfor %}
+                                                    {% endwith %}
+                                                {% elif feedback.rating.0 == "4" %}
+                                                    {% with var="1234" %}
+                                                        {% for i in var %}
+                                                            <i class="bx bxs-star" style="fill:gold;color:gold"></i>
+                                                        {% endfor %}
+                                                    {% endwith %}
+                                                {% else %}
+                                                    {% with var="12345" %}
+                                                        {% for i in var %}
+                                                            <i class="bx bxs-star" style="fill:gold;color:gold"></i>
+                                                        {% endfor %}
+                                                    {% endwith %}
+                                                {% endif %}
+                                        </h5>
+                                    <label style="margin-top:10px">Timely Response</label>
+                                        <h5>
+                                            {% if feedback.rating.2 == "1" %}
+                                                    {% with var="1" %}
+                                                        {% for i in var %}
+                                                            <i class="bx bxs-star" style="fill:gold;color:gold"></i>
+                                                        {% endfor %}
+                                                    {% endwith %}
+                                                {% elif feedback.rating.2 == "2" %}
+                                                    {% with var="12" %}
+                                                    {% for i in var %}
+                                                            <i class="bx bxs-star" style="fill:gold;color:gold"></i>
+                                                        {% endfor %}
+                                                    {% endwith %}
+                                                {% elif feedback.rating.2 == "3" %}
+                                                    {% with var="123" %}
+                                                        {% for i in var %}
+                                                            <i class="bx bxs-star" style="fill:gold;color:gold"></i>
+                                                        {% endfor %}
+                                                    {% endwith %}
+                                                {% elif feedback.rating.2 == "4" %}
+                                                    {% with var="1234" %}
+                                                        {% for i in var %}
+                                                            <i class="bx bxs-star" style="fill:gold;color:gold"></i>
+                                                        {% endfor %}
+                                                    {% endwith %}
+                                                {% else %}
+                                                    {% with var="12345" %}
+                                                        {% for i in var %}
+                                                            <i class="bx bxs-star" style="fill:gold;color:gold"></i>
+                                                        {% endfor %}
+                                                    {% endwith %}
+                                                {% endif %}
+                                        </h5>
+                                    <label style="margin-top:10px">Our Support</label>
+                                        <h5>
+                                            {% if feedback.rating.4 == "1" %}
+                                                    {% with var="1" %}
+                                                        {% for i in var %}
+                                                            <i class="bx bxs-star" style="fill:gold;color:gold"></i>
+                                                        {% endfor %}
+                                                    {% endwith %}
+                                                {% elif feedback.rating.4 == "2" %}
+                                                    {% with var="12" %}
+                                                    {% for i in var %}
+                                                            <i class="bx bxs-star" style="fill:gold;color:gold"></i>
+                                                        {% endfor %}
+                                                    {% endwith %}
+                                                {% elif feedback.rating.4 == "3" %}
+                                                    {% with var="123" %}
+                                                        {% for i in var %}
+                                                            <i class="bx bxs-star" style="fill:gold;color:gold"></i>
+                                                        {% endfor %}
+                                                    {% endwith %}
+                                                {% elif feedback.rating.4 == "4" %}
+                                                    {% with var="1234" %}
+                                                        {% for i in var %}
+                                                            <i class="bx bxs-star" style="fill:gold;color:gold"></i>
+                                                        {% endfor %}
+                                                    {% endwith %}
+                                                {% else %}
+                                                    {% with var="12345" %}
+                                                        {% for i in var %}
+                                                            <i class="bx bxs-star" style="fill:gold;color:gold"></i>
+                                                        {% endfor %}
+                                                    {% endwith %}
+                                                {% endif %}
+                                        </h5>
+                                    <label style="margin-top:10px">Overall Satisfaction</label>
+                                        <h5>
+                                            {% if feedback.rating.6 == "1" %}
+                                                    {% with var="1" %}
+                                                        {% for i in var %}
+                                                            <i class="bx bxs-star" style="fill:gold;color:gold"></i>
+                                                        {% endfor %}
+                                                    {% endwith %}
+                                                {% elif feedback.rating.6 == "2" %}
+                                                    {% with var="12" %}
+                                                    {% for i in var %}
+                                                            <i class="bx bxs-star" style="fill:gold;color:gold"></i>
+                                                        {% endfor %}
+                                                    {% endwith %}
+                                                {% elif feedback.rating.6 == "3" %}
+                                                    {% with var="123" %}
+                                                        {% for i in var %}
+                                                            <i class="bx bxs-star" style="fill:gold;color:gold"></i>
+                                                        {% endfor %}
+                                                    {% endwith %}
+                                                {% elif feedback.rating.6 == "4" %}
+                                                    {% with var="1234" %}
+                                                        {% for i in var %}
+                                                            <i class="bx bxs-star" style="fill:gold;color:gold"></i>
+                                                        {% endfor %}
+                                                    {% endwith %}
+                                                {% else %}
+                                                    {% with var="12345" %}
+                                                        {% for i in var %}
+                                                            <i class="bx bxs-star" style="fill:gold;color:gold"></i>
+                                                        {% endfor %}
+                                                    {% endwith %}
+                                                {% endif %}
+                                        </h5>
+                                    <label style="margin-top:10px">Member Services</label>
+                                        <h5>
+                                            {% if feedback.rating.8 == "1" %}
+                                                    {% with var="1" %}
+                                                        {% for i in var %}
+                                                            <i class="bx bxs-star" style="fill:gold;color:gold"></i>
+                                                        {% endfor %}
+                                                    {% endwith %}
+                                                {% elif feedback.rating.8 == "2" %}
+                                                    {% with var="12" %}
+                                                    {% for i in var %}
+                                                            <i class="bx bxs-star" style="fill:gold;color:gold"></i>
+                                                        {% endfor %}
+                                                    {% endwith %}
+                                                {% elif feedback.rating.8 == "3" %}
+                                                    {% with var="123" %}
+                                                        {% for i in var %}
+                                                            <i class="bx bxs-star" style="fill:gold;color:gold"></i>
+                                                        {% endfor %}
+                                                    {% endwith %}
+                                                {% elif feedback.rating.8 == "4" %}
+                                                    {% with var="1234" %}
+                                                        {% for i in var %}
+                                                            <i class="bx bxs-star" style="fill:gold;color:gold"></i>
+                                                        {% endfor %}
+                                                    {% endwith %}
+                                                {% else %}
+                                                    {% with var="12345" %}
+                                                        {% for i in var %}
+                                                            <i class="bx bxs-star" style="fill:gold;color:gold"></i>
+                                                        {% endfor %}
+                                                    {% endwith %}
+                                                {% endif %}
+                                        </h5>
+                                    <div style="margin-top:30px">
+                                        <a href="javascript:history.go(-1)"><button type="button" class="btn btn-light m-1">Back</button></a>
+                                    </div>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+{% endblock %}

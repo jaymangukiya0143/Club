@@ -1,0 +1,78 @@
+{% extends 'common.html' %}
+{% load static %}
+{% load crispy_forms_filters %}
+{% block content %}
+
+<head>
+	<title>{% block title %}My Bookings{% endblock %}</title>
+    <style>
+    header{
+        background-color:#000000;
+    }
+
+
+    tr,th,td{
+        text-align:center;
+    }
+
+
+    </style>
+
+
+</head>
+
+<div style="margin-top:150px;margin-bottom:20px" class="center">
+
+</div>
+
+<main class="main-rows center" style="margin-top:20px;margin-bottom:100px" >
+	<div class="container col-md-8">
+        <div class="center" style="margin:20px 0px">
+            <h5 style="color:grey">My Bookings</h5>
+        </div>
+        {% if no_of_bookings > 0 %}
+        <div class="table-responsive">
+            <div style="margin:5px 0px;box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 0px 0px, rgba(0, 0, 0, 0.07) 0px 0px 0px;">
+                <table class="table">
+                <thead>
+                        <tr>
+                            <th style="width:10%">No.</th>
+                            <th style="width:25%">Amenity</th>
+                            <th style="width:25%">Booked On</th>
+                            <th style="width:10%">No. of<br>Slots</th>
+                            <th style="text-align:right;width:15%">Amount(&#8377;)</th>
+                            <th style="width:15%">&nbsp;</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+            {% for b in bookings %}
+
+                <div style="margin:5px 0px;box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 0px 0px, rgba(0, 0, 0, 0.07) 0px 0px 0px;">
+                    <table class="table table-hover">
+                    <tbody>
+                        <tr>
+                            <td style="text-align:center;width:10%">{{ forloop.counter }}</td>
+                            <td style="width:25%">{{b.amenity.name}}</td>
+                            <td style="width:25%">{{b.booked_on}}</td>
+                            <td style="width:10%">{{b.no_of_slots}}</td>
+                            <td style="width:15%;text-align:right">&#8377; {{b.total}}</td>
+                            <td class="a" style="width:15%;text-align:center"><a href="{% url 'Member:view_booking' b.id %}" style="text-decoration:underline;margin:10px 0px;color:green">View</a></td>
+                        </tr>
+                    </tbody>
+                        </table>
+                </div>
+            {% endfor %}
+        </div>
+        {% else %}
+            <div class="center" style="margin:25px 0px">
+                <h4>You have not booked any amenity yet !</h4>
+            </div>
+            <div class="center">
+                <a href="{% url 'Amenities:amenities' %}" class="myBtn">Book Now</a>
+            </div>
+        {% endif %}
+	</div>
+</main>
+
+{% endblock %}

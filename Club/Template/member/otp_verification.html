@@ -1,0 +1,107 @@
+{% extends 'common.html' %}
+{% load static %}
+{% load crispy_forms_filters %}
+{% block content %}
+
+<head>
+	<title>{% block title %}OTP Sent{% endblock %}</title>
+    <style>
+    header{
+        background-color:#000000;
+    }
+    </style>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+
+<div style="margin-top:200px;margin-bottom:20px" class="center">
+
+</div>
+<main class="main-rows center" style="margin-top:20px;margin-bottom:100px" >
+    <div id="r46" class="row-container  container ">
+        <h3>OTP sent to your email address</h3>
+        <h5 class="">{{request.session.member.email}}</h5>
+
+        <div class="container col-md-6"  style="margin:20px 0px">
+            <form id="otp_form" method="post" action="#" name="otp_form" onsubmit="return validation();" otp-validate-url="{% url 'Member:validate_otp' 1 %}">
+                {% csrf_token %}
+                <div class="form-group">
+                    <div class="form_element">
+                        <input id="otp" type="password" name="otp" maxlength="6" minlength="6">
+                        <span id="otp_error" style="color:red"></span>
+                    </div>
+                    <div class="form-element" style="margin:20px 0px">
+                        <input type="submit" class="myBtn" value="Submit">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</main>
+
+<script>
+
+    function validation(){
+        document.getElementById("otp_error").innerHTML = "";
+
+        var otp_exp = /^([0-9]{6})$/;
+        var otp_length = otp_form.otp.value.length;
+        var error = 0;
+
+        if(otp_form.otp.value == ""){
+            error += 1;
+            document.getElementById("otp_error").innerHTML = "Please enter an otp sent to your email address";
+        }
+        else{
+            if(otp_length > 6){
+                error += 1;
+                document.getElementById("otp_error").innerHTML = "Please enter an valid otp";
+            }
+            else{
+                if(otp_exp.test(otp_form.otp.value) == false){
+                    error += 1;
+                    document.getElementById("otp_error").innerHTML = "Please enter an valid otp";
+                }
+            }
+        }
+
+        if (error > 0){
+            swal("","Correct the error and try again!","error");
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+
+
+    $(document).ready(function(){
+		$("#otp_form").submit(function(e){
+			e.preventDefault();
+			var form = $(this).closest("form");
+			var otp = document.getElementById("otp").value;
+
+			if(otp != ""){
+				$.ajax({
+					type : "POST",
+					url : form.attr("otp-validate-url"),
+					data : form.serialize(),
+					dataType : "json",
+					success : function(data){
+						if(data.is_same == 'True'){
+							$("#otp_form").unbind().submit();
+						}
+						else{
+							swal("","OTP didn't matched","error");
+							document.getElementById("otp").value = "";
+						}
+                    }
+                });
+            }
+        });
+	});
+</script>
+
+
+
+{% endblock %}

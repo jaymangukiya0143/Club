@@ -1,0 +1,33 @@
+{% extends 'common.html' %}
+{% load static %}
+{% block content %}
+
+<head>
+	<title>{% block title %}Payment Success{% endblock %}</title>
+    <style>
+    header{
+        background-color:#000000;
+    }
+
+</style>
+</head>
+
+<div style="margin-top:200px;margin-bottom:0px">
+    <div class="container">
+        <div class="col-md-12">
+            <center>
+                <div style="width:200px;height:200px">
+                    <img src="{% static 'img/success.gif' %}">
+                </div>
+                <div style="margin-bottom:10px">
+                    <h3>Payment Success</h3>
+                </div>
+                <div style="margin:50px 0px">
+                    <a href="{% url 'Member:my_tickets' %}"><button type="button" class="myBtn" style="width:300px">View Tickets</button></a>
+                </div>
+            </center>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

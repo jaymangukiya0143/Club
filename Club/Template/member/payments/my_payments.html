@@ -1,0 +1,167 @@
+{% extends 'common.html' %}
+{% load static %}
+{% load crispy_forms_filters %}
+{% block content %}
+
+<head>
+	<title>{% block title %}My Payments{% endblock %}</title>
+    <style>
+    header{
+        background-color:#000000;
+    }
+
+
+    tr,th,td{
+        text-align:center;
+    }
+
+
+    </style>
+
+
+</head>
+
+<div style="margin-top:150px;margin-bottom:20px" class="center">
+
+</div>
+
+<main class="main-rows center" style="margin-top:20px;margin-bottom:100px" >
+	<div class="container col-md-8">
+        <div class="center" style="margin:20px 0px">
+            <h5 style="color:grey">My Payments</h5>
+        </div>
+        {% if no_of_payments > 0 %}
+            {% if plan_payment > 0 %}
+                <div class="table-responsive">
+                    <div style="margin:25px 0px;box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 0px 0px, rgba(0, 0, 0, 0.07) 0px 0px 0px;">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <td colspan="6"><h6 style="opacity:0.7">Membership Plan</h6></td>
+                                </tr>
+                                <tr>
+                                    <th style="width:5%">No.</th>
+                                    <th style="width:15%">Invoice Id</th>
+                                    <th style="width:25%">Membership Plan</th>
+                                    <th style="text-align:right;width:15%">Amount(&#8377;)</th>
+                                    <th style="text-align:center;width:25%">Date</th>
+                                    <th style="width:15%">&nbsp;</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+
+                {% for p in payments %}
+                    {% if p.payment_for == 'P' %}
+                        <div style="margin:5px 0px;box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 0px 0px, rgba(0, 0, 0, 0.07) 0px 0px 0px;">
+                            <table class="table table-hover">
+                                <tbody>
+                                    <tr>
+                                        <td style="text-align:center;width:5%">{{ forloop.counter }}</td>
+                                        <td style="width:15%">{{p.invoice_id}}</td>
+                                        <td style="width:25%">{{p.membership.mem_plan.name}}</td>
+                                        <td style="text-align:right;width:15%">{{p.amount}}</td>
+                                        <td style="width:25%;text-align:center">{{p.date}}</td>
+                                        <td class="a" style="width:15%;text-align:center"><a href="{% url 'Member:view_payment' p.id %}" style="text-decoration:underline;margin:10px 0px;color:green">View</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+
+
+
+            {% if booking_payment > 0 %}
+                <div class="table-responsive">
+                    <div style="margin:35px 0px;box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 0px 0px, rgba(0, 0, 0, 0.07) 0px 0px 0px;">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <td colspan="7"><h6 style="opacity:0.7">Amenities Booking</h6></td>
+                                </tr>
+                                <tr>
+                                    <th style="width:5%">No.</th>
+                                    <th style="width:15%">Invoice Id</th>
+                                    <th style="width:25%">Amenity Name</th>
+                                    <th style="width:15%">No. of Slots</th>
+                                    <th style="text-align:right;width:15%">Amount(&#8377;)</th>
+                                    <th style="text-align:center;width:15%">Date</th>
+                                    <th style="width:15%">&nbsp;</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+
+                {% for p in payments %}
+                    {% if p.payment_for == 'B' %}
+                        <div style="margin:5px 0px;box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 0px 0px, rgba(0, 0, 0, 0.07) 0px 0px 0px;">
+                            <table class="table table-hover">
+                                <tbody>
+                                    <tr>
+                                        <td style="text-align:center;width:5%">{{ forloop.counter }}</td>
+                                        <td style="width:15%">{{p.invoice_id}}</td>
+                                        <td style="width:25%">{{p.booking.amenity.name}}</td>
+                                        <td style="width:15%">{{p.booking.no_of_slots}}</td>
+                                        <td style="text-align:right;width:15%">{{p.amount}}</td>
+                                        <td style="width:15%;text-align:center">{{p.date}}</td>
+                                        <td class="a" style="width:15%;text-align:center"><a href="{% url 'Member:view_payment' p.id %}" style="text-decoration:underline;margin:10px 0px;color:green">View</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+
+
+            {% if ticket_payment > 0 %}
+                <div class="table-responsive">
+                    <div style="margin:35px 0px;box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 0px 0px, rgba(0, 0, 0, 0.07) 0px 0px 0px;">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <td colspan="7"><h6 style="opacity:0.7">Event Tickets</h6></td>
+                                </tr>
+                                <tr>
+                                    <th style="width:5%">No.</th>
+                                    <th style="width:15%">Invoice Id</th>
+                                    <th style="width:25%">Event Name</th>
+                                    <th style="width:15%">Quantity</th>
+                                    <th style="text-align:right;width:15%">Amount(&#8377;)</th>
+                                    <th style="text-align:center;width:15%">Date</th>
+                                    <th style="width:15%">&nbsp;</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+
+                {% for p in payments %}
+                    {% if p.payment_for == 'E' %}
+                        <div style="margin:5px 0px;box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 0px 0px, rgba(0, 0, 0, 0.07) 0px 0px 0px;">
+                            <table class="table table-hover">
+                                <tbody>
+                                    <tr>
+                                        <td style="text-align:center;width:5%">{{ forloop.counter }}</td>
+                                        <td style="width:15%">{{p.invoice_id}}</td>
+                                        <td style="width:25%">{{p.ticket.event.name}}</td>
+                                        <td style="width:15%">{{p.ticket.quantity}}</td>
+                                        <td style="text-align:right;width:15%">{{p.amount}}</td>
+                                        <td style="width:15%;text-align:center">{{p.date}}</td>
+                                        <td class="a" style="width:15%;text-align:center"><a href="{% url 'Member:view_payment' p.id %}" style="text-decoration:underline;margin:10px 0px;color:green">View</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+
+
+        {% endif %}
+        </div>
+	</div>
+</main>
+
+{% endblock %}

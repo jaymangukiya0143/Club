@@ -1,0 +1,138 @@
+{% extends 'common.html' %}
+{% load static %}
+{% block content %}
+
+<head>
+	<title>{% block title %}Amenities | Activities{% endblock %}</title>
+    <style>
+    header{
+        background-color:#000000;
+    }
+    footer{
+    position:relative;
+    bottom:0;
+    }
+    img{
+        border:1px transparent;
+        border-radius:5px;
+        max-height:500px;
+    }
+    img:hover{
+        opacity:0.9;
+        transition:0.3s
+    }
+    h2,h4{
+                padding:12px;
+                text-align:center;
+    }
+    p{
+            padding:2px;
+            text-align:center;
+    }
+    </style>
+</head>
+
+
+<main class="main-rows">
+    <div class="uc-row-wrapper">
+		<div class="uc-row first backgroundCover" data-id="47" style="   margin-bottom:15.730337078652vh;  ">
+			<div id="r47" class="row-container  container ">
+				<div class="row mainRow " style="">
+					<div class="column col-sm-12" dataColumn-id="71" style="     ">
+						<div class="column-container vertical-top" style=" margin-top:31.104356636272vh; " aria-label="column" role="contentinfo">
+							<div class="module-container   only-mobile   align-center ModuleTitle first" style=" padding: 0px 40px 0px 40px  ; padding-bottom:4.2598509052183vh ; " aria-label="module container" role="contentinfo" id="m107">
+								<div class="   module ModuleTitle" dataModule-id="107" style="display:block;max-width:613px;">
+									<div class="uc-content">
+										<div id="ember441" class="ember-view">
+											<h1 style="color:rgb(255, 255, 255);background-color:rgba(255, 255, 255, 0);filter:drop-shadow(0 0 0.95rem #000000);">Amenities <br> & <br> Activities</h1>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="bg-image">
+				<div  class="bg-image-view  lazy " data-bg="{% static 'img/r213-group-101-1194f.jpg' %}" style="
+											opacity: 0.95;
+											background-position: 50% 100%;
+											" aria-label="background image" role="img">
+				</div>
+			</div>
+		</div>
+	</div>
+
+    <div class="container" id="amenities">
+        <h2>Amenities</h2>
+    </div>
+    <div class="container row" style="margin:30px auto">
+        {% for a in amenities %}
+        {% if a.amenity_type == "A1" and request.user %}
+        <div class="col-md-6" style="padding:20px">
+            <div>
+                <img style="object-fit:fill" src="{{a.image1.url}}">
+            </div>
+            <div>
+                <h4>{{a.name}}</h4>
+            </div>
+            <div>
+                <p>&#8377 {{a.rate}}/day</p>
+            </div>
+            <div>
+                <p>Occupancy : {{a.occupancy}}</p>
+            </div>
+            <div style="margin:5px auto;" class="center">
+                <a class="myBtn" style="height:40px;margin:0px 10px" href="{% url 'Amenities:single_amenity' a.id %}">
+                    <span class="btn-text" >View</span>
+                   </a>
+
+                {% if request.user.is_authenticated %}
+                    <a class="myBtn" href="{% url 'Amenities:book_amenity' a.id %}" style="height:40px">
+                        <span class="btn-text" >Book now</span>
+                    </a>
+                {% endif %}
+
+            </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+
+    <div class="container" id="activities">
+        <hr style="margin-top:100px">
+        <h2>Activities</h2>
+    </div>
+    <div class="container row" style="margin:30px auto">
+        {% for a in amenities %}
+        {% if a.amenity_type == "A2" %}
+        <div class="col-md-6" style="padding:20px">
+            <div>
+                <img style="object-fit:cover" src="{{a.image1.url}}">
+            </div>
+            <div>
+                <h4>{{a.name}}</h4>
+            </div>
+            <div>
+                <p>Occupancy : {{a.occupancy}}</p>
+            </div>
+            <div style="margin:5px 0px;" class="center">
+                <a class="myBtn" style="height:40px;" href="{% url 'Amenities:single_amenity' a.id %}">
+                    <span class="btn-text" >View</span>
+                </a>
+            </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+
+
+    {% if user.is_superuser %}
+    <div class="container center" style="margin:30px ">
+        <a class="myBtn" href="{% url 'Amenities:add_amenity' %}">Add</a>
+    </div>
+    {% endif %}
+</main>
+
+
+{% endblock %}

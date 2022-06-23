@@ -1,0 +1,124 @@
+{% extends 'custom_admin/common.html' %}
+{% load static %}
+
+<head>
+    <title>{% block title %}Invoice : {{payment.invoice_id}}{% endblock %}</title>
+</head>
+
+{% block content %}
+
+<!--page-wrapper-->
+		<div class="page-wrapper">
+			<!--page-content-wrapper-->
+			<div class="page-content-wrapper">
+				<div class="page-content">
+					<!--breadcrumb-->
+					<div class="page-breadcrumb d-none d-md-flex align-items-center mb-3">
+						<div class="pl-3">
+							<nav aria-label="breadcrumb">
+								<ol class="breadcrumb mb-0 p-0">
+									<li class="breadcrumb-item"><a href="javascript:;"><i class='bx bx-home-alt'></i></a>
+									</li>
+									<li class="breadcrumb-item active" aria-current="page">Invoice</li>
+								</ol>
+							</nav>
+						</div>
+					</div>
+					<!--end breadcrumb-->
+					<div class="card">
+						<div class="card-body">
+
+                            <div style="background-color:white;width:900px;height:600px;padding:30px;color:black">
+                                <div>
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <img src="C:\Users\Jay\Desktop\Club\Club\static\static\img" style="height:25%;width:25%">
+                                            </td>
+                                            <td style="float:right;width:300px;text-align:right">
+                                                Invoice : <b>{{payment.invoice_id}}</b><br>
+                                                Date : <b>{{payment.date}}</b>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+
+                                <div style="width:840px;height:10px;background-color:rgba(0,0,0,0.7);margin-top:30px;margin-bottom:20px;"></div>
+                                <div>
+                                    <table>
+                                        <tr>
+                                            <th>Member Name : </th>
+                                            <td> {{payment.member.member.first_name}} {{payment.member.member.last_name}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Member Phone : </th>
+                                            <td> {{payment.member.phone}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Member Email : </th>
+                                            <td> {{payment.member.member.email}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Payment Status :  </th>
+                                            <td>
+                                                {% if payment.status == True %}
+                                                    Success
+                                                {% else %}
+                                                    Failed
+                                                {% endif %}
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div style="margin:15px 0px;width:840px;height:2px;background-color:rgba(0,0,0,0.7)">
+                                </div>
+
+                                {% if payment.payment_for == "P" %}
+                                <div>
+                                    <table>
+                                        <tr>
+                                            <th>No.</th>
+                                            <th colspan="4" style="padding:10px">Description</th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th style="padding:10px">Amount</th>
+                                        </tr>
+                                        <tr>
+                                            <td>1.</td>
+                                            <td style="width:500px;padding:10px" colspan="4">
+                                                Membership Plan : {{payment.mem_plan.name}}<br>Duration : {{payment.mem_plan.duration}} months
+                                            </td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td style="width:150px;">
+                                                &#8377 {{payment.mem_plan.fees}}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th colspan="4">Total</th>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <th>&#8377 {{payment.amount}}</th>
+                                        </tr>
+                                    </table>
+                                </div>
+                                {% endif %}
+
+                                <div style="margin-top:140px;margin-bottom:3px;width:840px;height:2px;background-color:rgba(0,0,0,0.7)">
+                                </div>
+                                <div>
+                                    <p style="text-align:center;font-size:10px">If you have any questions about this invoice, please contact<br><a style="position:relative;font-size:11px;margin-top:0px;color:blue;text-decoration:underline" href="mailto:hawk4club@gmail.com">hawk4@gmail.com</a></p>
+                                </div>
+                            </div>
+
+                            <div style="margin-top:20px">
+                                <a href="{% url 'Custom_Admin:save_invoice' payment.id %}" title="Reply"><button type="button" class="btn btn-light m-1"><i class="fa fa-download"></i></button></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    {% endblock %}

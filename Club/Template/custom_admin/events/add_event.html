@@ -1,0 +1,116 @@
+{% extends 'custom_admin/common.html' %}
+{% load static %}
+{% load crispy_forms_filters %}
+
+<head>
+	<title>{% block title %}Add Event{% endblock %}</title>
+
+	<link href="{% static 'assets/plugins/simplebar/css/simplebar.css' %}" rel="stylesheet" />
+	<link href="{% static 'assets/plugins/datetimepicker/css/classic.css' %}" rel="stylesheet" />
+	<link href="{% static 'assets/plugins/datetimepicker/css/classic.time.css' %}" rel="stylesheet" />
+	<link href="{% static 'assets/plugins/datetimepicker/css/classic.date.css' %}" rel="stylesheet" />
+	<link rel="stylesheet" href="{% static 'assets/plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.min.css' %}">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<link href="{% static 'assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css' %}" rel="stylesheet" />
+	<link href="{% static 'assets/plugins/metismenu/css/metisMenu.min.css' %}" rel="stylesheet" />
+
+</head>
+
+{% block content %}
+
+<!--page-wrapper-->
+		<div class="page-wrapper">
+			<!--page-content-wrapper-->
+			<div class="page-content-wrapper">
+				<div class="page-content">
+					<!--breadcrumb-->
+					<div class="page-breadcrumb d-none d-md-flex align-items-center mb-3">
+						<div class="pl-3">
+							<nav aria-label="breadcrumb">
+								<ol class="breadcrumb mb-0 p-0">
+									<li class="breadcrumb-item"><a href="javascript:;"><i class='bx bx-home-alt'></i></a>
+									</li>
+									<li class="breadcrumb-item active" aria-current="page">Events</li>
+								</ol>
+							</nav>
+						</div>
+					</div>
+					<!--end breadcrumb-->
+				<div class="card col-md-6 col-lg-6">
+                    <div class="card-body">
+							<div class="card-title">
+								<h5 class="mb-0">Add Event</h5>
+							</div>
+							<hr>
+
+						<form method="post" action="#" enctype="multipart/form-data">
+							{% csrf_token %}
+							<div>
+								<div>
+                                    <label>Name</label>
+                                    <input class="form-control" type="text" placeholder="Event Name" name="name" required>
+                                    <label style="margin-top:10px">Description</label>
+                                    <input class="form-control" type="text" placeholder="Event Description" name="description" required>
+									<label style="margin:20px 0px">Amenity : </label>
+									<select name="amenity" required>
+										{% for ea in amenity %}
+										{% if ea.amenity_type == "A1" %}
+										<option value="{{ea.id}}">{{ea.name}}</option>
+										{% endif %}
+										{% endfor %}
+									</select>
+									<br>
+
+                                    <label style="margin-top:10px">Capacity</label>
+                                    <input class="form-control" type="number" placeholder="Event Capacity" name="capacity" required>
+
+									<label style="margin-top:10px">Ticket Price</label>
+                                    <input class="form-control" type="number" placeholder="Event Capacity" name="price" required>
+
+									<hr>
+
+									<label style="margin-top:10px">From</label>
+									<input class="result form-control" type="datetime-local" id="datetime1" placeholder="Date Picker..." data-dtp="dtp_cG6Ee" required onchange="updateTime()" min="">
+
+									<label style="margin-top:10px">To</label>
+									<input class="result form-control" type="datetime-local" id="datetime2" placeholder="Date Picker..." data-dtp="dtp_cG6Ee" required min="">
+
+
+
+									<hr>
+									<label style="margin:20px 0px">Image : </label>
+									<input type="file" accept="image/*" name="image1" required>
+
+
+
+                                </div>
+							</div>
+							<div style="margin-top:20px">
+								<a href="javascript:history.go(-1)"><button type="button" class="btn btn-light m-1"><i class="fa fa-arrow-left"></i>  Back</button></a>
+								<input type="submit" class="btn btn-light m-1" value="Add Event">
+                            </div>
+						</form>
+
+                    </div>
+				</div>
+				</div>
+			</div>
+			<!--end page-content-wrapper-->
+		</div>
+		<!--end page-wrapper-->
+
+
+	<!--<script src="{% static 'assets/plugins/simplebar/js/simplebar.min.js' %}"></script>-->
+	<!--<script src="{% static 'assets/plugins/metismenu/js/metisMenu.min.js' %}"></script>-->
+	<!--<script src="{% static 'assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js' %}"></script>-->
+	<!--<script src="{% static 'assets/plugins/datetimepicker/js/legacy.js' %}"></script>-->
+	<!--<script src="{% static 'assets/plugins/datetimepicker/js/picker.js' %}"></script>-->
+	<!--<script src="{% static 'assets/plugins/datetimepicker/js/picker.time.js' %}"></script>-->
+	<!--<script src="{% static 'assets/plugins/datetimepicker/js/picker.date.js' %}"></script>-->
+	<!--<script src="{% static 'assets/plugins/bootstrap-material-datetimepicker/js/moment.min.js' %}"></script>-->
+	<!--<script src="{% static 'assets/plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.min.js' %}"></script>-->
+
+
+
+{% endblock %}
+

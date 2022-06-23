@@ -1,0 +1,195 @@
+{% extends 'common.html' %}
+{% load static %}
+{% load crispy_forms_filters %}
+{% block content %}
+
+<head>
+	<title>{% block title %}Edit Profile{% endblock %}</title>
+    <style>
+    header{
+        background-color:#000000;
+    }
+    </style>
+</head>
+<div style="margin-top:150px;margin-bottom:20px" class="center">
+
+</div>
+
+
+<main class="main-rows center" style="margin-top:0px;margin-bottom:100px">
+    <div class="container col-md-12 col-sm-6 center">
+        <form method="post" name="profile" action="{% url 'Member:edit_profile' %}" enctype="multipart/form-data" onsubmit="return validation();">
+            {% csrf_token %}
+            <div style="margin-bottom:10px">
+                <hr>
+                <center><img class="account-img" src="{{member.image1.url}}" width="270" height="270" style="object-fit:cover" ></center>
+
+                    <div>
+                        <label class="required" for="id_image1">Image:</label>
+                        <p class="file-upload">Currently: <a href="{{member.image1.url}}">{{member.image1.url}}</a><br>
+                            Change:
+                            <input type="file" name="image1" accept="image/*" id="id_image1"></p>
+                    </div>
+                <hr>
+            </div>
+            <div>
+                <label style="margin: 8px 0px">First Name</label>
+                <input type="text" name="Fname" value="{{member.member.first_name}}"  >
+                <span id="fname_error" style="color:red"></span>
+            </div>
+            <div>
+                <label style="margin: 8px 0px">Last Name</label>
+                <input type="text" name="Lname" value="{{member.member.last_name}}"  >
+                <span id="lname_error" style="color:red"></span>
+            </div>
+            <div>
+                <label style="margin: 8px 0px">Email</label>
+                <input type="text" name="email" value="{{member.member.email}}"  readonly>
+            </div>
+            <div>
+                <label style="margin: 8px 0px">Phone</label>
+                <input type="text" name="phone" value="{{member.phone}}"  >
+                <span id="phone_error" style="color:red"></span>
+            </div>
+            <div>
+                <label style="margin: 8px 0px">Address</label>
+                <textarea name="address">{{member.address}}</textarea>
+                <span id="address_error" style="color:red"></span>
+            </div>
+            <div>
+                <label style="margin: 8px 0px">Date of Birth</label>
+                <input id="dob" value="{{dob}}" type="date" name="dob"  max="" required>
+                <span id="dob_error" style="color:red"></span>
+            </div>
+
+            <div>
+                <label style="margin:10px 0px">Gender : </label>
+                <select name="gender" required>
+                    <option value="M">Male</option>
+                    <option value="F">Female</option>
+                </select>
+            </div>
+
+            <!--<div>-->
+                <!--<label style="margin:10px 0px">Occupation : </label>-->
+                <!--<select name="occupation" required>-->
+                    <!--<option value="Businessman">Businessman</option>-->
+                    <!--<option value="Job">Job</option>-->
+                    <!--<option value="opel">Opel</option>-->
+                    <!--<option value="Other">Other</option>-->
+                <!--</select>-->
+            <!--</div>-->
+
+            <!--<div>-->
+                <!--<label style="margin: 8px 0px">No. of Family Members</label>-->
+                <!--<input type="text" name="no_fam_mem"  value="{{member.no_fam_mem}}" required>-->
+            <!--</div>-->
+
+            <div style="margin-top:20px">
+                <a href="javascript:history.go(-1)"><button type="button" class="myBtn">Cancle</button></a>
+                <input type="submit" value="Save" class="myBtn">
+            </div>
+        </form>
+
+
+    </div>
+</main>
+
+<script type="text/javascript">
+
+function imgup(){
+
+    var img = document.getElementById("image1").value;
+    var x = document.getElementById("imgdiv");
+
+    if (img){
+        x.style.display = "block";
+        document.getElementById("upl").innerHTML = "Uploaded : " + img;
+    }
+    else{
+        x.style.display = "none";
+    }
+}
+
+    $(window).load(function() {
+        var date = new Date();
+        date.setFullYear(date.getFullYear() - 18);
+
+        document.getElementById("dob").setAttribute("max",date);
+    });
+
+    function giveDate(date){
+    var dd = date.getDate();
+    var mm = date.getMonth()+1;
+    var yy = date.getFullYear();
+    if(dd<10){
+        dd='0'+dd
+    }
+    if(mm<10){
+        mm='0'+mm
+    }
+    var date = yyyy+'-'+mm+'-'+dd;
+    return date;
+    }
+
+function validation(){
+    document.getElementById("fname_error").innerHTML = "";
+    document.getElementById("lname_error").innerHTML = "";
+    document.getElementById("phone_error").innerHTML = "";
+    document.getElementById("address_error").innerHTML = "";
+    document.getElementById("dob_error").innerHTML = "";
+
+    var text_exp = (/^[A-Za-z]+$/);
+    var phone_exp = /^([6-9]{1})+([0-9]{9})$/;
+    var error = 0;
+
+    if(profile.Fname.value == ""){
+        error += 1;
+        document.getElementById("fname_error").innerHTML = "Please enter your first name";
+    }
+    else{
+        if(text_exp.test(profile.Fname.value) == false){
+            error += 1;
+            document.getElementById("fname_error").innerHTML = "Please enter valid first name";
+        }
+    }
+
+    if(profile.Lname.value == ""){
+        error += 1;
+        document.getElementById("lname_error").innerHTML = "Please enter last name";
+    }
+    else{
+        if(text_exp.test(profile.Lname.value) == false){
+            error += 1;
+            document.getElementById("lname_error").innerHTML = "Please enter valid last name";
+        }
+    }
+
+    if(profile.phone.value == ""){
+        error += 1;
+        document.getElementById("phone_error").innerHTML = "Please enter phone number";
+    }
+    else{
+        if(phone_exp.test(profile.phone.value) == false){
+            error += 1;
+            document.getElementById("phone_error").innerHTML = "Please enter valid phone number";
+        }
+    }
+
+    if(profile.address.value == ""){
+        error += 1;
+        document.getElementById("address_error").innerHTML = "Please enter address";
+    }
+
+    if(error > 0){
+        swal("","Correct the error(s) and try again");
+        return false;
+    }
+    else{
+        return true;
+    }
+
+}
+</script>
+
+{% endblock %}

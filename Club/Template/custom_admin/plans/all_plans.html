@@ -1,0 +1,86 @@
+
+{% extends 'custom_admin/common.html' %}
+{% load static %}
+
+<head>
+    <title>{% block title %}All Membership Plan{% endblock %}</title>
+</head>
+
+{% block content %}
+
+<!--page-wrapper-->
+		<div class="page-wrapper">
+			<!--page-content-wrapper-->
+			<div class="page-content-wrapper">
+				<div class="page-content">
+					<!--breadcrumb-->
+					<div class="page-breadcrumb d-none d-md-flex align-items-center mb-3">
+						<div class="pl-3">
+							<nav aria-label="breadcrumb">
+								<ol class="breadcrumb mb-0 p-0">
+									<li class="breadcrumb-item"><a href="javascript:;"><i class='bx bx-home-alt'></i></a>
+									</li>
+									<li class="breadcrumb-item active" aria-current="page">Membership Plans</li>
+								</ol>
+							</nav>
+						</div>
+					</div>
+					<!--end breadcrumb-->
+					<div class="card">
+						<div class="card-body">
+
+							<div class="row">
+                                <div class="col-md-12 col-lg-12">
+                                    <div class="card radius-15">
+                                        <div class="card-body col-md-12">
+                                            <div class="media align-items-center">
+                                                <div class="media-body">
+                                                    <h4 class="mb-0 font-weight-bold text-white">{{plans|length}}</h4>
+                                                    <p class="mb-0 text-white">Total Membership Plans</p>
+                                                </div>
+                                                <div class="font-35 text-white"><i class="bx bx-arrow-to-top"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+							</div>
+
+							<div class="table-responsive">
+							<div class="table-responsive">
+								<table id="example" class="table table-striped table-bordered" style="width:100%">
+									<thead>
+										<tr>
+											<th>Name</th>
+											<th>Duration</th>
+											<th>Description</th>
+											<th>Fees</th>
+											<th></th>
+										</tr>
+									</thead>
+									<tbody>
+                                    {% for p in plans %}
+									  	<tr>
+											<td>{{p.name}}</td>
+											<td>{{p.duration}} months</td>
+											<td style="max-width:20px;overflow:hidden;">{{p.description}}</td>
+											<td>&#8377 {{p.fees}}</td>
+											<td style="width:10%">
+												<a href="{% url 'Custom_Admin:view_plan' p.id %}"><button type="button" class="btn btn-light m-1"><i class="fa fa-eye"></i></button></a>
+												<a href="{% url 'Custom_Admin:edit_plan' p.id %}"><button type="button" class="btn btn-light m-1"><i class="fa fa-pen"></i></button></a>
+												<a href="{% url 'Custom_Admin:delete_plan' p.id %}"><button type="button" class="btn btn-light m-1"><i class="fa fa-trash"></i></button></a>
+											</td>
+										</tr>
+                                    {% endfor %}
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--end page-content-wrapper-->
+		</div>
+		<!--end page-wrapper-->
+
+{% endblock %}

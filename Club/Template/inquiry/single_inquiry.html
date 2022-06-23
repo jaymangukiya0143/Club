@@ -1,0 +1,57 @@
+{% extends 'common.html' %}
+{% load static %}
+{% block content %}
+
+<head>
+	<title>{% block title %}Inquiry{% endblock %}</title>
+    <style>
+    header{
+        background-color:#000000;
+    }
+        td,th{
+            border:1px solid black;
+            padding:12px;
+            text-align:center;
+        }
+    </style>
+</head>
+
+
+<div style="margin:150px 0px" class="col-md-12 col-sm-12 col-xs-12">
+    <form method="post" action="{% url 'Inquiry:send_reply' inquiry.id %}">
+        {% csrf_token %}
+        <div class="form-group container">
+            <div class="form-element">
+                <label>Name :</label><input type="text" value="{{inquiry.name}}" readonly>
+            </div>
+            <div class="form-element">
+                <label>Email :</label><input type="text" value="{{inquiry.email}}" readonly>
+            </div>
+            <div class="form-element">
+                <label>Phone :</label><input type="text" value="{{inquiry.phone}}" readonly>
+            </div>
+            <div class="form-element">
+                <label>Subject :</label><input type="text" value="{{inquiry.subject}}" readonly>
+            </div>
+            <div class="form-element">
+                <label>Date :</label><input type="text" value="{{inquiry.created_at}}" readonly>
+            </div>
+            <div class="form-element">
+                <label>Message :</label><textarea name="message" readonly>{{inquiry.message}}</textarea>
+            </div>
+            {% if inquiry.reply == " " %}
+            <div class="form-element">
+                <label>Relpy :</label> <textarea name="reply"></textarea>
+            </div>
+            {% else %}
+            <div class="form-element">
+                <label>Relpy :</label> <textarea name="reply">{{inquiry.reply}}</textarea>
+            </div>
+            {% endif %}
+            <div class="last-cart l-mrgn" style="width:130px;height:20px;margin-top:15px">
+                <input type="submit" value="Send Reply" style="height:40px" class="myBtn">
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,151 @@
+{% extends 'custom_admin/common.html' %}
+{% load static %}
+
+<head>
+    <title>{% block title %}All Tickets{% endblock %}</title>
+</head>
+
+{% block content %}
+
+<!--page-wrapper-->
+		<div class="page-wrapper">
+			<!--page-content-wrapper-->
+			<div class="page-content-wrapper">
+				<div class="page-content">
+					<!--breadcrumb-->
+					<div class="page-breadcrumb d-none d-md-flex align-items-center mb-3">
+						<div class="pl-3">
+							<nav aria-label="breadcrumb">
+								<ol class="breadcrumb mb-0 p-0">
+									<li class="breadcrumb-item"><a href="javascript:;"><i class='bx bx-home-alt'></i></a>
+									</li>
+									<li class="breadcrumb-item active" aria-current="page">Tickets</li>
+								</ol>
+							</nav>
+						</div>
+					</div>
+					<!--end breadcrumb-->
+					<div class="card">
+						<div class="card-body">
+
+							<div class="row">
+                                <div class="col-6 col-lg-6">
+                                    <div class="card radius-15">
+                                        <div class="card-body">
+                                            <div class="media align-items-center">
+                                                <div class="media-body">
+                                                    <h4 class="mb-0 font-weight-bold text-white">{{tickets|length}}</h4>
+                                                    <p class="mb-0 text-white">Total Tickets</p>
+                                                </div>
+                                                <div class="font-35 text-white"><i class="bx bx-arrow-to-top"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+								<div class="col-md-6 col-lg-6">
+									<div class="card radius-15">
+                                        <div class="card-body col-md-12 col-lg-12">
+												<form method="post" action="{% url 'Custom_Admin:generate_ticket_report' %}" onsubmit="return validation()">
+													{% csrf_token %}
+													<div class="row">
+														<div class="col-lg-6 col-md-6">
+															<div class="media align-items-center">
+																<div class="media-body center">
+																		<input id="from" type="number" name="from" placeholder="from" class="form-control" style="width:100px;margin:15px 8px" value="0">
+																		<input id="to" type="number" name="to" placeholder="to" class="form-control" style="width:100px;margin:15px 8px" value="0">
+																</div>
+															</div>
+														</div>
+														<div class="col-md-6 col-lg-6 center">
+															<a onclick="" class="btn btn-light m-1"><i class="fa fa-download"></i>&nbsp;<input type="submit" class="btn btn-light m-1" value="Report" ></a>
+														</div>
+													</div>
+												</form>
+										</div>
+									</div>
+								</div>
+
+                            </div>
+
+							<div class="table-responsive">
+							<div class="table-responsive">
+								<table id="example" class="table table-striped table-bordered" style="width:100%">
+									<thead>
+										<tr>
+											<th>No.</th>
+											<th>Ticket Id</th>
+                                            <th>Event</th>
+                                            <th>Quantity</th>
+											<th>Member</th>
+											<th>Amount</th>
+											<th></th>
+										</tr>
+									</thead>
+									<tbody>
+                                    {% for t in tickets %}
+									  	<tr>
+											<td>{{forloop.counter}}</td>
+											<td>{{t.invoice_id}}</td>
+											<td>{{t.ticket.event.name}}</td>
+											<td>{{t.ticket.quantity}}</td>
+                                            <td>{{t.member.member.first_name}} {{t.member.member.last_name}}</td>
+											<td>&#8377  {{t.amount}}</td>
+											<td style="width:10%">
+                                                    <table style="border:none">
+                                                        <tr>
+                                                            <td style="width:70%;border:none;margin:0px 0px;padding:0px">{% if t.ticket.collected == True %}
+                                                                    <a href="{% url 'Custom_Admin:collect_tickets' t.id %}" style="width:100%;color:red" title="Reply"><button type="button" class="btn btn-light m-1"><i style="color:red" class="fa fa-hand-rock"></i>  Collected</button></a>
+                                                                {% else %}
+                                                                    <a href="{% url 'Custom_Admin:collect_tickets' t.id %}" style="width:100%;color:#32CD32" title="Reply"><button type="button" class="btn btn-light m-1"><i style="color:#32CD32" class="fa fa-hand-rock"></i>  Collect</button></a>
+                                                                {% endif %}
+                                                            </td>
+                                                            <td style="30%;border:none;margin:0px 0px;padding:0px">
+                                                                <a href="{% url 'Custom_Admin:view_ticket' t.id %}"><button type="button" class="btn btn-light m-1"><i class="fa fa-eye"></i> </button></a>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+
+
+											</td>
+										</tr>
+                                    {% endfor %}
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--end page-content-wrapper-->
+		</div>
+		<!--end page-wrapper-->
+
+<script>
+	function validation(){
+		var from = document.getElementById("from").value;
+		var to = document.getElementById("to").value;
+
+		if(from<0 || to<0){
+			swal("","Report can't be generated from your entered range","error");
+			return false;
+		}
+
+		if(from>0 && to>0){
+			if(from==to){
+				swal("","Report can't be generated from your entered range","error");
+				return false;
+			}
+			else{
+				return true;
+			}
+		}
+		else{
+			return true;
+		}
+	}
+</script>
+
+{% endblock %}
+
+

@@ -1,0 +1,374 @@
+{% extends 'common.html' %}
+{% load static %}
+{% load crispy_forms_filters %}
+{% block content %}
+
+<head>
+	<title>{% block title %}Become a Member{% endblock %}</title>
+    <style>
+    header{
+        background-color:#000000;
+    }
+    </style>
+
+    <script src="{% static 'js/vendor/jquery.min.js' %}"></script>
+    <script src="{% static 'js/vendor/jquery-1.12.4.min.js' %}"></script>
+    <script src="{% static 'js/jquery.validate.min.js' %}"></script>
+    <script src="{% static 'js/sweetalert.min.js' %}"></script>
+
+</head>
+
+<div style="margin-top:130px;margin-bottom:20px" class="center">
+    <h4>Member Registration<hr></h4>
+</div>
+<main class="main-rows center" style="margin-top:0px;margin-bottom:100px" >
+    <div id="r46" class="row-container  container ">
+         <div class="row mainRow "
+            style="">
+            <div
+               class="column col-sm-12 "
+               dataColumn-id="70"
+               style="     "
+               >
+               <div class="column-container vertical-top"style="" aria-label="column" role="contentinfo">
+                  <div class="module-container   only-mobile   align-center ModuleForm first   last                             " style=" padding: 0px 40px 0px 40px  " aria-label="module container" role="contentinfo" id="m106">
+                     <div
+                        class="   module ModuleForm "
+                        dataModule-id="106"
+                        style="display:block;max-width:560px;"
+                        >
+                        <style>
+                           #form-module-106 .form-submit {
+                           text-align: right;
+                           }
+                        </style>
+                        <form method="post" id="signup" action="{% url 'Member:signup' %}" class="col-md-12" name="signup"  data-validate-email-url="{% url 'Member:validate_email' %}" onsubmit="return validation();" email-validate-url="{% url 'Member:validate_email_signup' %}" >
+                           {% csrf_token %}
+                            <!--<input type="file" id="image1" name="image1" accept="image/*" style="width:130px;height:150px;margin:0px 210px;margin-bottom:10px" class="center" onchange="imgup()"  >-->
+                            <!--<div id="imgdiv" class="center" style="width:100px;height:30px;display:none"><i class="fa fa-check" aria-hidden="true" style="color:green;fill:green"></i><p id="upl" style="width:500px"></p></div>-->
+                            <!--<label style="margin:10px 200px;color:grey">Passport Size Image</label>-->
+
+                            <div class="form-group">
+                                <div class="form-element">
+                                    <input type="text" name="Fname" placeholder="First Name"  >
+                                    <span style="color:red" id="Fname"></span>
+                              </div>
+                               <div class="form-element">
+                                    <input type="text" name="Lname" placeholder="LastName"  >
+                                    <span style="color:red" id="Lname"></span>
+                              </div>
+                           </div>
+                           <div class="form-group">
+                              <div class="form-element">
+                                    <input type="email" name="email" placeholder="Email"  >
+                                    <span style="color:red" id="email"></span>
+                              </div>
+                           </div>
+                            <div class="form-group">
+                              <div class="form-element">
+                                 <input type="number" name="phone" placeholder="Phone"  >
+                                  <span style="color:red" id="phone"></span>
+                              </div>
+                           </div>
+                            <div class="form-group">
+                              <div class="form-element">
+                                 <input type="password" name="password" placeholder="Password"  >
+                                  <span style="color:red" id="password"></span>
+                              </div>
+                           </div>
+                            <div class="form-group">
+                              <div class="form-element">
+                                 <input type="password" name="password2" placeholder="Confirm Password"  >
+                                  <span style="color:red" id="password2"></span>
+                              </div>
+                           </div>
+                           <div class="form-group">
+                              <div class="form-element">
+                                  <label>Address</label>
+                                  <input type="text" name="addressline1" placeholder="Address Line 1"  >
+                                  <span style="color:red" id="addressline1"></span>
+                              </div>
+                           </div>
+                            <div class="form-group">
+                              <div class="form-element">
+                                    <input type="text" name="addressline2" placeholder="Address Line 2">
+                              </div>
+                           </div>
+                            <div class="form-group">
+                              <div class="form-element">
+                                <input type="text" name="city" placeholder="City"  >
+                                  <span style="color:red" id="city"></span>
+                              </div>
+                           </div>
+                            <div class="form-group">
+                              <div class="form-element">
+                                <input type="text" name="state" placeholder="State"  >
+                                  <span style="color:red" id="state"></span>
+                              </div>
+                           </div>
+                            <div class="form-group">
+                              <div class="form-element">
+                                <input type="text" name="postal" placeholder="Postal Code"  >
+                                  <span style="color:red" id="postal"></span>
+                              </div>
+                           </div>
+                            <div>
+                                <hr>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-element">
+                                    <label>Date of Birth</label>
+                                    <input type="date" name="dob"  >
+                                    <span style="color:red" id="dob"></span>
+                                </div>
+                            </div>
+                            <div style="margin:10px"></div>
+                            <div class="form-group">
+                              <div class="form-control" style="height:50px;border:2px solid #b3b3b3;border-radius:0px;padding:12px">
+                                  <label>Gender : </label>
+                                  <select name="gender"  >
+                                      <option value="M">Male</option>
+                                      <option value="F">Female</option>
+                                  </select>
+                              </div>
+                           </div>
+                            <div style="margin:10px"></div>
+                            <!--<div class="form-group">-->
+                              <!--<div class="form-control" style="height:50px;border:2px solid #b3b3b3;border-radius:0px;padding:12px">-->
+                                  <!--<label>Occupation : </label>-->
+                                  <!--<select name="occupation"  >-->
+                                      <!--<option value="Businessman">Businessman</option>-->
+                                      <!--<option value="Job">Job</option>-->
+                                      <!--<option value="opel">Opel</option>-->
+                                      <!--<option value="Other">Other</option>-->
+                                  <!--</select>-->
+                              <!--</div>-->
+                           <!--</div>-->
+                            <!--<div style="margin:10px"></div>-->
+                            <!--<div class="form-group">-->
+                                <!--<div class="form-element">-->
+                                    <!--<input type="number" name="no_fam_mem" placeholder="No. of Family Members" max="5" min="0"  >-->
+                                    <!--<span style="color:red" id="no_fem_mem"></span>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                           <div class="last-cart l-mrgn" style="width:130px;height:20px;margin-top:15px">
+                              <input type="submit" value="Register" style="height:40px" class="myBtn" id="submit">
+                           </div>
+                        </form>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+    </div>
+</main>
+
+<script type="text/javascript">
+
+function imgup(){
+
+    var img = document.getElementById("image1").value;
+    var x = document.getElementById("imgdiv");
+
+    if (img){
+        x.style.display = "block";
+        document.getElementById("upl").innerHTML = "Uploaded : " + img;
+    }
+    else{
+        x.style.display = "none";
+    }
+}
+
+
+function validation(){
+
+            document.getElementById("Fname").innerHTML = " ";
+            document.getElementById("Lname").innerHTML = " ";
+            document.getElementById("email").innerHTML = " ";
+            document.getElementById("phone").innerHTML = " ";
+            document.getElementById("password").innerHTML = " ";
+            document.getElementById("password2").innerHTML = " ";
+            document.getElementById("addressline1").innerHTML = " ";
+            document.getElementById("city").innerHTML = " ";
+            document.getElementById("state").innerHTML = " ";
+            document.getElementById("postal").innerHTML = " ";
+            document.getElementById("dob").innerHTML = " ";
+
+
+            var error = 0;
+            var fname = (/^[A-Za-z]+$/);
+            var lname = (/^[A-Za-z]+$/);
+            var email = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+            var phone = /^([6-9]{1})+([0-9]{9})$/;
+            var password = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/;
+            var pass1len = signup.password.value.length;
+            var pass2len = signup.password2.value.length;
+            var postal_len = signup.postal.value.length;
+
+            var postal_code = /^([0-9]{6})$/;
+            var fam_mem = /^([1-5]{1})$/;
+
+            if(signup.Fname.value == ""){
+                error = error + 1;
+                document.getElementById("Fname").innerHTML = "*Please enter your first name";
+            }
+            else{
+                if (fname.test(signup.Fname.value) == false ){
+                    error = error + 1;
+                    document.getElementById("Fname").innerHTML = "*Please enter a valid first name";
+                }
+            }
+
+            if(signup.Lname.value == ""){
+                error = error + 1;
+                document.getElementById("Lname").innerHTML = "*Please enter your last name";
+            }
+            else{
+                if (lname.test(signup.Lname.value) == false ){
+                    error = error + 1;
+                    document.getElementById("Lname").innerHTML = "*Please enter a valid last name";
+                }
+            }
+
+            if(signup.email.value == ""){
+                error = error + 1;
+                document.getElementById("email").innerHTML = "*Please enter your email address";
+            }
+            else{
+                if (email.test(signup.email.value) == false ){
+                    error = error + 1;
+                    document.getElementById("email").innerHTML = "*Please enter a valid email address";
+                }
+            }
+
+            if(signup.phone.value == ""){
+                error = error + 1;
+                document.getElementById("phone").innerHTML = "*Please enter your phone number";
+            }
+            else{
+                if (phone.test(signup.phone.value) == false){
+                    error = error + 1;
+                    document.getElementById("phone").innerHTML = "*Please enter valid phone number";
+                }
+            }
+
+            if(signup.password.value == ""){
+                error = error + 1;
+                document.getElementById("password").innerHTML = "*Please enter password";
+            }
+            else{
+                if (pass1len < 8){
+                error = error + 1;
+                document.getElementById("password").innerHTML = "*Password should be minimum of 8 characters\n";
+                }
+                else{
+                    if(password.test(signup.password.value) == false){
+                    error = error + 1;
+                    document.getElementById("password").innerHTML = "*Password must contain contain at least one lowercase letter, one uppercase letter, one numeric digit, and one special character\n";
+                    }
+                }
+            }
+
+            if(signup.password2.value == ""){
+                error = error + 1;
+                document.getElementById("password2").innerHTML = "*Please enter confirm password";
+            }
+            else{
+                if(signup.password.value != signup.password2.value){
+                    error = error + 1;
+                    document.getElementById("password2").innerHTML = "*Both password must be same\n"
+                }
+            }
+
+            if(signup.addressline1.value == ""){
+                error = error + 1;
+                document.getElementById("addressline1").innerHTML = "*Please enter an address line 1";
+            }
+
+            if(signup.city.value == ""){
+                error = error + 1;
+                document.getElementById("city").innerHTML = "*Please enter city name";
+            }
+            else{
+                if(fname.test(signup.city.value) == false){
+                    error += 1;
+                    document.getElementById("city").innerHTML = "*Please enter valid city name";
+                }
+            }
+
+            if(signup.state.value == ""){
+                error = error + 1;
+                document.getElementById("state").innerHTML = "*Please enter state name";
+            }
+            else{
+                if(fname.test(signup.state.value) == false){
+                    error += 1;
+                    document.getElementById("state").innerHTML = "*Please enter valid state name";
+                }
+            }
+
+            if(signup.dob.value == ""){
+                error = error + 1;
+                document.getElementById("dob").innerHTML = "*Please select date of birth";
+            }
+
+            if(signup.postal.value == ""){
+                error = error + 1;
+                document.getElementById("postal").innerHTML = "*Please enter postal code";
+            }
+            else{
+                if(postal_len < 6){
+                    error = error + 1;
+                    document.getElementById("postal").innerHTML = "*Please enter valid postal code";
+                }
+                else{
+                    if(postal_code.test(signup.postal.value) == false){
+                        error = error + 1;
+                        document.getElementById("postal").innerHTML = "*Please enter valid postal code";
+                    }
+                }
+            }
+
+            if (error > 0){
+                swal('',"Please correct the error and try again!",'error');
+                return false;
+            }
+            else{
+                return true;
+            }
+        }
+
+
+$(document).ready(function(){
+    $("#signup").submit(function(e){
+        e.preventDefault();
+        var form = $(this).closest("form");
+        var email = document.getElementById("email").value;
+
+        if(email != ""){
+            $.ajax({
+                type : "POST",
+                url : form.attr("email-validate-url"),
+                data : form.serialize(),
+                dataType : "json",
+                success : function(data){
+                    if(data.is_exists == 'True'){
+                        swal("","Email Address already exists!","error");
+                    }
+                    else{
+                        $("#signup").unbind().submit();
+                    }
+                }
+            });
+        }
+    });
+});
+
+
+
+</script>
+
+<script src="{% static 'js/jquery.validate.min.js' %}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+{% endblock %}

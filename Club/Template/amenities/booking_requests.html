@@ -1,0 +1,95 @@
+{% extends 'common.html' %}
+{% load static %}
+{% load crispy_forms_filters %}
+{% block content %}
+
+<head>
+	<title>{% block title %}Booking Requests{% endblock %}</title>
+
+    <style>
+    header{
+        background-color:#000000;
+    }
+    footer{
+    position:relative;
+    bottom:0;
+    }
+        td,th{
+            border:1px solid grey;
+            padding:12px;
+            min-width:100px;
+            text-align:center;
+        }
+        table{
+            width:100%;
+            border:1px solid grey;
+        }
+        #nos,#total{
+            font-weight:bold;
+            color:#006400;
+            text-align:center;
+        }
+
+        table,tr,td,th{
+            border:none;
+        }
+    </style>
+</head>
+
+<main class="main-rows" style="margin:200px 30px" >
+    <div class="container form-group col-md-6">
+        <div class="center">
+            <h4 style="opacity:0.8">Booking Requests</h4>
+        </div>
+        <div>
+            {% for b in bookings %}
+            <div style="margin:40px 0px;box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;">
+                <table>
+                    <tr>
+                       <th colspan="2">{{b.amenity.name}}</th>
+                    </tr>
+                    <tr>
+                       <th>No. of Slots</th>
+                        <td>{{b.no_of_slots}}</td>
+                    </tr>
+                    <tr>
+                       <th>Amount</th>
+                        <td>&#8377; {{b.total}}</td>
+                    </tr>
+                    <tr>
+                        <th>Status</th>
+                        <td>{% if b.status == True %}
+                            <p style="color:#32CD32">Approved</p>
+                            {% else %}
+                            <p style="color:orange">Pending</p>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% if b.status == True %}
+                    <tr>
+                        <td colspan="2">
+                            <a class="myBtn" href="{% url 'Payments:process_payment_booking' b.id %}">Make Payment</a>
+                        </td>
+                    </tr>
+                    {% endif %}
+                    <tr>
+                        <table>
+                            <tr>
+                                <hr style="margin:0px 60px">
+                                <th><u>From</u></th>
+                                <th><u>To</u></th>
+                            </tr>
+                            <tr>
+                                <td>{{b.from_date}} - {{b.from_time}}</td>
+                                <td>{{b.to_date}} - {{b.to_time}}</td>
+                            </tr>
+                        </table>
+                    </tr>
+                </table>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</main>
+
+{% endblock %}

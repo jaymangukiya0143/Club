@@ -1,0 +1,755 @@
+{% extends 'common.html' %}
+{% load static %}
+{% block content %}
+<head>
+	<title>{% block title %}Hawk Club{% endblock %}</title>
+</head>
+
+<main class="main-rows">
+	<div class="uc-row-wrapper">
+		<div class="uc-row first backgroundCover" data-id="47" style="   margin-bottom:15.730337078652vh;  ">
+			<div id="r47" class="row-container  container ">
+				<div class="row mainRow " style="">
+					<div class="column col-sm-12" dataColumn-id="71" style="     ">
+						<div class="column-container vertical-top" style=" margin-top:31.104356636272vh; " aria-label="column" role="contentinfo">
+							<div class="module-container   only-mobile   align-center ModuleTitle first" style=" padding: 0px 40px 0px 40px  ; padding-bottom:4.2598509052183vh ; " aria-label="module container" role="contentinfo" id="m107">
+								<div class="   module ModuleTitle" dataModule-id="107" style="display:block;max-width:613px;">
+									<div class="uc-content">
+										<div id="ember441" class="ember-view">
+											<h1 style="color:rgb(255, 255, 255);background-color:rgba(255, 255, 255, 0);filter:drop-shadow(0 0 0.95rem #000000);">Welcome to our Club</h1>
+										</div>
+									</div>
+								</div>
+							</div>
+							{% if user.is_authenticated == False %}
+							<div class="module-container   only-mobile   align-center ModuleButton last" style=" padding: 0px 40px 0px 40px  " aria-label="module container" role="contentinfo" id="m108">
+								<div class="module ModuleButton" dataModule-id="108">
+									<div class="button">
+										<a class="btn buttons1557843418679" href="{% url 'Member:signup' %}" data-link="13" data-linkType="1" target="_self" role="button" aria-label="Become a Member" rel="" tabindex="0">
+											<span class="btn-text" >Become a Member</span>
+										</a>
+									</div>
+									<style>
+									</style>
+								</div>
+							</div>
+							{% endif %}
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="bg-image">
+				<div  class="bg-image-view  lazy " data-bg="{% static 'img/pexels-pixabay-258154.jpg' %}" style="
+											opacity: 0.95;
+											background-position: 50% 100%;
+											" aria-label="background image" role="img">
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="uc-row-wrapper">
+		<div class="uc-row" data-id="48" style="   margin-bottom:8vh;  ">
+			<div id="r48" class="row-container  container ">
+				<div class="row mainRow" style="">
+					<div class="column col-sm-12" dataColumn-id="72" style="     ">
+						<div class="column-container vertical-top" style="" aria-label="column" role="contentinfo">
+							<div class="module-container   only-mobile   align-center ModuleTitle first   last" style=" padding: 0px 0px 0px 0px" aria-label="module container" role="contentinfo" id="m109" >
+								<div class="   module ModuleTitle " dataModule-id="109" style="display:block;max-width:1200px;" >
+									<div class="uc-content">
+										<h4 style="color:rgb(0, 0, 0);">We Stands For</h4>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="uc-row-wrapper">
+		<div
+									class="uc-row
+									" data-id="49"
+									style="   margin-bottom:8.1053698074975vh;  "
+									>
+									<div id="r49" class="row-container  container ">
+										<div class="row mainRow "
+											style="">
+											<div
+												class="column col-sm-3 "
+												dataColumn-id="73"
+												style="     "
+												>
+												<div class="column-container vertical-top"
+													style="" aria-label="column" role="contentinfo">
+													<div
+														class="module-container   only-mobile   align-center ModuleIcon
+														first                              "
+														style=" ; padding-bottom:3.0395136778116vh ; "
+														aria-label="module container" role="contentinfo"
+														id="m110"
+														>
+														<div
+															class="   module ModuleIcon "
+															dataModule-id="110"
+															>
+															<div class="icon" style="width:70px;height:70px; color:#353535; fill:#353535;">
+																<img src="{% static 'img/house.svg' %}" style="opacity:0.8" />
+																	<g transform="scale(0.1968503937007874)">
+																		<path d="M416.3,160.2l5.5-4.8c9.2-8,27.5-39.1,2.1-64.4C401.4,68.5,376,80.5,369,85C322.6,12.3,243.8,2,243.8,2l-4.5,15.8  c0,0,80,11.6,117.4,78.4L4.8,498.4L16.4,510l387.4-339c44.8,52.2,98.8,60.8,98.8,60.8l4.5-15.8C507.2,216,448.1,202.3,416.3,160.2z   M410.9,143L98.5,416.3l266.3-304.4c2.8,6.2,5.2,12.6,7.3,19.2l-13,13l11.6,11.6l32.9-32.9l-11.6-11.6l-6.9,6.9  c-2.3-6.4-4.9-12.7-8-18.7c4.5-3.1,21.5-10.3,35.1,3.2C428.9,119.3,416.7,137.9,410.9,143z" transform="translate(-4.800000190734863,-2)"></path>
+																	</g>
+																</svg>
+															</div>
+														</div>
+													</div>
+													<div
+														class="module-container   only-mobile   align-center ModuleParagraph
+														last                             "
+														style=" padding: 0px 20px 0px 20px  "
+														aria-label="module container" role="contentinfo"
+														id="m111"
+														>
+														<div
+															class="   module ModuleParagraph "
+															dataModule-id="111"
+															style="display:block;max-width:260px;"
+															>
+															<div class="uc-content">
+																<h5>10+ Amenities</h5>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div
+												class="column col-sm-3 "
+												dataColumn-id="74"
+												style="     "
+												>
+												<div class="column-container vertical-top"
+													style="" aria-label="column" role="contentinfo">
+													<div
+														class="module-container   only-mobile   align-center ModuleIcon
+														first                              "
+														style=" ; padding-bottom:3.0395136778116vh ; "
+														aria-label="module container" role="contentinfo"
+														id="m112"
+														>
+														<div
+															class="   module ModuleIcon "
+															dataModule-id="112"
+															>
+															<div class="icon" style="width:70px;height:70px; color:#353535; fill:#353535;">
+																<img src="{% static 'img/dumbbell.svg' %}" style="opacity:0.8" />
+																	<g transform="scale(0.1446619612679607)">
+																		<g>
+																			<path fill="#000000" d="M773.6,172.3c-1.6-3-4.8-4.9-8.2-4.9H457.1c3.9-9.8,6.1-20.4,6.1-31.5c0-46.4-37.8-84.2-84.2-84.2   c-31.4,0-58.8,17.3-73.3,42.9l0,0L96.1,414.8l0.1,0.1c-8,12.9-12.8,28.1-12.8,44.4c0,46.4,37.8,84.2,84.2,84.2h354.9   c3.1,0,6-1.5,7.7-4.1L773,181.8C775,179,775.2,175.3,773.6,172.3z M320.3,106.2l1-1.4c12.1-20.5,32.8-34.5,57.8-34.5   c36.2,0,65.6,29.4,65.6,65.6c0,10.8-2.7,20.9-7.3,29.9l-3.1,5.3L251.3,450.9c-4.2-42.5-40.1-75.8-83.7-75.8c-9.1,0-17.8,1.5-26,4.2   L320.3,106.2z M167.6,524.9c-36.2,0-65.6-29.4-65.6-65.6s29.4-65.6,65.6-65.6s65.6,29.4,65.6,65.6S203.7,524.9,167.6,524.9z    M517.6,524.9H220.2c7.6-6.1,14-13.5,19.1-21.8l0.1,0.1l206.4-315.9c0.3-0.4,0.7-0.9,1-1.3h301L517.6,524.9z" transform="translate(-83.39999389648438,-51.70001220703125)"></path>
+																			<path fill="#000000" d="M536.9,416.6c1.6,1,3.3,1.5,5.1,1.5c3,0,6-1.5,7.8-4.2L623.1,302c2.8-4.3,1.6-10.1-2.7-12.9   c-4.3-2.8-10.1-1.6-12.9,2.7l-73.3,111.9C531.5,408,532.7,413.8,536.9,416.6z" transform="translate(-83.39999389648438,-51.70001220703125)"></path>
+																			<path fill="#000000" d="M167.6,411.8c-26.2,0-47.4,21.3-47.4,47.4s21.3,47.4,47.4,47.4s47.4-21.3,47.4-47.4   S193.7,411.8,167.6,411.8z M167.6,488.1c-15.9,0-28.8-12.9-28.8-28.8c0-15.9,12.9-28.8,28.8-28.8s28.8,12.9,28.8,28.8   C196.4,475.2,183.5,488.1,167.6,488.1z" transform="translate(-83.39999389648438,-51.70001220703125)"></path>
+																			<circle fill="#000000" cx="167.6" cy="459.3" r="11.7" transform="translate(-83.39999389648438,-51.70001220703125)"></circle>
+																		</g>
+																	</g>
+																</svg>
+															</div>
+														</div>
+													</div>
+													<div
+														class="module-container   only-mobile   align-center ModuleParagraph
+														last                             "
+														style=" padding: 0px 40px 0px 40px  "
+														aria-label="module container" role="contentinfo"
+														id="m113"
+														>
+														<div
+															class="   module ModuleParagraph "
+															dataModule-id="113"
+															>
+															<div class="uc-content">
+																<h5>20+ Activities</h5>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div
+												class="column col-sm-3 "
+												dataColumn-id="75"
+												style="     "
+												>
+												<div class="column-container vertical-top"
+													style="" aria-label="column" role="contentinfo">
+													<div
+														class="module-container   only-mobile   align-center ModuleIcon
+														first                              "
+														style=" ; padding-bottom:3.0395136778116vh ; "
+														aria-label="module container" role="contentinfo"
+														id="m114"
+														>
+														<div
+															class="   module ModuleIcon "
+															dataModule-id="114"
+															>
+															<div class="icon" style="width:70px;height:70px; color:#353535; fill:#353535;">
+																<img src="{% static 'img/event.svg' %}" style="opacity:0.8;width:80%;height:80%" />
+																	<g transform="scale(3.125)">
+																		<g>
+																			<g>
+																				<g>
+																					<g>
+																						<g>
+																							<path d="M12.522,12.925c2.818,0,5.338,1.78,6.272,4.43l0.327,0.928l0.933-0.312c0.401-0.134,0.815-0.208,1.163-0.208       c1.637,0,3.045,1.111,3.423,2.701l0.183,0.769h0.79h0.474c2.709,0,4.913,2.191,4.913,4.883C31,28.809,28.796,31,26.087,31       H5.913C3.204,31,1,28.809,1,26.116c0-2.378,1.716-4.4,4.08-4.807L6,21.151l-0.095-0.929c-0.023-0.227-0.035-0.457-0.035-0.682       C5.869,15.893,8.854,12.925,12.522,12.925 M12.522,11.925c-4.226,0-7.653,3.41-7.653,7.615c0,0.265,0.014,0.527,0.04,0.784       C2.132,20.802,0,23.221,0,26.116C0,29.352,2.661,32,5.913,32h20.174C29.339,32,32,29.352,32,26.116       c0-3.235-2.661-5.883-5.913-5.883h-0.474c-0.471-1.983-2.258-3.469-4.396-3.469c-0.519,0-1.045,0.114-1.48,0.26       C18.692,14.056,15.86,11.925,12.522,11.925L12.522,11.925z" transform="translate(0,0)"></path>
+																						</g>
+																					</g>
+																				</g>
+																				<g>
+																					<g>
+																						<rect x="22.942" y="6.089" width="1" height="7.866" transform="translate(0,0)"></rect>
+																					</g>
+																					<g>
+																						<rect x="5.75" y="6.089" width="1" height="5" transform="translate(0,0)"></rect>
+																					</g>
+																					<g>
+																						<rect x="11.48" y="2.089" width="1" height="5.75" transform="translate(0,0)"></rect>
+																					</g>
+																					<g>
+																						<rect x="17.211" y="0" width="1" height="11.089" transform="translate(0,0)"></rect>
+																					</g>
+																				</g>
+																			</g>
+																		</g>
+																	</g>
+																</svg>
+															</div>
+														</div>
+													</div>
+													<div
+														class="module-container   only-mobile   align-center ModuleParagraph
+														last                             "
+														style=" padding: 0px 40px 0px 40px  "
+														aria-label="module container" role="contentinfo"
+														id="m115"
+														>
+														<div
+															class="   module ModuleParagraph "
+															dataModule-id="115"
+															>
+															<div class="uc-content">
+																<h5>Fascinating Events</h5>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div
+												class="column col-sm-3 "
+												dataColumn-id="76"
+												style="     "
+												>
+												<div class="column-container vertical-top"
+													style="" aria-label="column" role="contentinfo">
+													<div
+														class="module-container   only-mobile   align-center ModuleIcon
+														first                              "
+														style=" ; padding-bottom:3.0395136778116vh ; "
+														aria-label="module container" role="contentinfo"
+														id="m116"
+														>
+														<div
+															class="   module ModuleIcon "
+															dataModule-id="116"
+															>
+															<div class="icon" style="width:70px;height:70px; color:#353535; fill:#353535;">
+																<img src="{% static 'img/medal.svg' %}" style="opacity:0.8" />
+																	<g transform="scale(1.031815031537303)">
+																		<title>Asset 57</title>
+																		<g data-name="Layer 2">
+																			<g>
+																				<path d="M96.81,49.16a1.46,1.46,0,0,0,.11-.28,1.49,1.49,0,0,0,0-.22,1.52,1.52,0,0,0,0-.58,1.4,1.4,0,0,0-.11-.28,1.56,1.56,0,0,0-.18-.27s0-.08-.07-.11l-16-16a1.5,1.5,0,0,0-2.12,2.12L91.88,47H50V5.09L63.49,18.57a1.5,1.5,0,1,0,2.12-2.12L49.56.41s-.08,0-.11-.08a1.49,1.49,0,0,0-.26-.17A1.4,1.4,0,0,0,48.9.05l-.21,0a1.47,1.47,0,0,0-.37,0l-.21,0a1.43,1.43,0,0,0-.29.12,1.51,1.51,0,0,0-.26.17s-.08,0-.11.08l-16.05,16a1.5,1.5,0,1,0,2.12,2.12L47,5.09V47H5.12L18.59,33.49a1.5,1.5,0,0,0-2.12-2.12l-16,16a1.5,1.5,0,0,0,0,2.12l16,16.05a1.5,1.5,0,1,0,2.12-2.12L5.12,50H47V91.86L33.51,78.38a1.5,1.5,0,1,0-2.12,2.12l16.05,16a1.5,1.5,0,0,0,2.12,0l16.05-16a1.5,1.5,0,0,0-2.12-2.12L50,91.86V50H91.88L78.41,63.47a1.5,1.5,0,0,0,2.12,2.12l16-16.05s0-.07.07-.11A1.55,1.55,0,0,0,96.81,49.16Z" transform="translate(-0.03132113814353943,-0.03831235319375992)"></path>
+																			</g>
+																		</g>
+																	</g>
+																</svg>
+															</div>
+														</div>
+													</div>
+													<div
+														class="module-container   only-mobile   align-center ModuleParagraph
+														last                             "
+														style=" padding: 0px 40px 0px 40px  "
+														aria-label="module container" role="contentinfo"
+														id="m117"
+														>
+														<div
+															class="   module ModuleParagraph "
+															dataModule-id="117"
+															>
+															<div class="uc-content">
+																<h5>Best Service</h5>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="uc-row-wrapper">
+								<div
+									class="uc-row
+									" data-id="50"
+									style="   margin-bottom:16.826411075612vh;  "
+									>
+									<div id="r50" class="row-container  container ">
+										<div class="row mainRow "
+											style="">
+											<div
+												class="column col-sm-12 "
+												dataColumn-id="77"
+												style="     "
+												>
+												<div class="column-container vertical-top"
+													style="" aria-label="column" role="contentinfo">
+													<div
+														class="module-container   only-mobile   align-center ModuleButton
+														first   last                             "
+														aria-label="module container" role="contentinfo"
+														id="m118"
+														>
+														<div
+															class="   module ModuleButton "
+															dataModule-id="118"
+															>
+															<!--<div class="button">-->
+																<!--<a-->
+																	<!--class="btn buttons1557833784589"-->
+																	<!--href="our-story/design-journey.html"-->
+																	<!--data-link="20"-->
+																	<!--data-linkType="1"-->
+																	<!--target="_self"-->
+																	<!--role="button"-->
+																	<!--aria-label="FIND OUT MORE"-->
+																	<!--rel=""-->
+																	<!--tabindex="0">-->
+																<!--<span class="btn-text" >FIND OUT MORE</span>-->
+																<!--</a>-->
+															<!--</div>-->
+															<style>
+															</style>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="uc-row-wrapper">
+								<div
+									class="uc-row
+									" data-id="51"
+									style="   margin-bottom:14.909478168264vh;  "
+									>
+									<div id="r51" class="row-container  container ">
+										<div class="row mainRow "
+											style="">
+											<div
+												class="column col-sm-6  uc-animation fadeIn "
+												dataColumn-id="78"
+												data-effect="fadeIn"     style="  padding:0vh 0vh;      background: #FFFFFF; "
+												>
+												<div class="column-container vertical-top"
+													style=" margin-top:0vh; " aria-label="column" role="contentinfo">
+													<div
+														class="module-container   only-mobile   align-center ModuleImage
+														first   last                             "
+														style=" padding: 0px 40px 0px 40px  "
+														aria-label="module container" role="contentinfo"
+														id="m119"
+														>
+														<div
+															class="  row-on-module-effect    module ModuleImage "
+															dataModule-id="119"
+															style="display:block;max-width:515px;"
+															>
+															<style>
+																.animated-119 .effect-block.effect-lilly .layer{background: rgb(0, 0, 0,0.5) !important;}.animated-119 .effect-block.effect-default .layer{background: rgb(0, 0, 0) !important;}.animated-119 .effect-block.effect-sadie .layer{background: rgb(0, 0, 0) !important;}.animated-119 .effect-block.effect-honey .layer{background: rgb(0, 0, 0) !important;}.animated-119 .effect-block.effect-roxy .layer{background: rgb(0, 0, 0) !important;}.animated-119 .effect-block.effect-sarah .layer{background: rgb(0, 0, 0) !important;}.animated-119 .effect-block.effect-Soft-Fade .layer{ background: rgb(0, 0, 0) !important;}.animated-119 .effect-block.effect-apollo .layer{background: rgb(0, 0, 0) !important;}.animated-119 .effect-block.effect-honey .figcaption:before{background: rgb(0, 0, 0) !important;}.animated-119 .effect-block.effect-roxy .figcaption:before{border-image: rgb(0, 0, 0) 3 stretch;-moz-border-image: -moz-rgb(0, 0, 0) 3 stretch;border-width: 3px;border:3px solid rgb(0, 0, 0);}.animated-119 .effect-block.effect-apollo .figcaption:before{background: rgb(0, 0, 0) !important;}.animated-119 .effect-block.effect-apollo .description:before{background: rgb(0, 0, 0) !important ;}.animated-119 .effect-block.effect-sarah .title:after{background: rgb(0, 0, 0) !important;}.animated-119 .effect-block.effect-steve .title,.animated-119 .effect-block.effect-steve .description{background: rgb(0, 0, 0) !important;}.animated-119 .effect-block.effect-goliath {background: rgb(0, 0, 0) !important;
+															</style>
+															<a class="image-module-link" target="_self"  rel=""
+																href="{% url 'Home:about_us' %}"
+																data-link="12"
+																data-linkType="1"
+																tabindex="0"
+																>
+																<div class="animated animated-119 "
+																	data-loading-animation=""
+																	data-animated-id="119"
+																	>
+																	<div class=" effect-block public-mode figure effect-sadie  ">
+																		<div                     >
+																			<div class="layer"></div>
+																			<div class="fixed-ratio" style="padding-bottom: 81.560283687943%">
+																				<img class="image  fixed-ratio-content lazy  "
+																					data-src="{% static 'img/about-us.jpg' %}"
+																					alt="010456446058-2a8e2ab0f4e1fb0361ca2be7b3a0e599.jpg"
+																					style="max-height:320px"
+																					/>
+																			</div>
+																			<div
+																				data-bg="{% static 'img/about-us.jpg' %}"
+																				data-target="0"
+																				data-link="our-story.html"
+																				class="figcaption not-clickable"
+																				style=""
+																				>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+																<span class="outline"></span>
+															</a>
+															<div class="uc-row-wrapper">
+																<div
+																	class="uc-row   row-on-module uc-row-public  high-z-index
+																	" data-id="52"
+																	style="  "
+																	>
+																	<div id="r52" class="row-container  container ">
+																		<div class="row mainRow "
+																			style="">
+																			<div
+																				class="column col-sm-12 "
+																				dataColumn-id="79"
+																				style="      background: transparent; "
+																				>
+																				<div class="column-container vertical-bottom"
+																					style=" margin-bottom:2.247191011236vh; " aria-label="column" role="contentinfo">
+																					<div
+																						class="module-container   only-mobile   align-center ModuleButton
+																						first   last                             "
+																						style=" padding: 0px 40px 0px 40px  "
+																						aria-label="module container" role="contentinfo"
+																						id="m120"
+																						>
+																						<div
+																							class="   module ModuleButton "
+																							dataModule-id="120"
+																							>
+																							<div class="button">
+																								<a
+																									class="btn buttons1559718122152"
+																									href=""
+																									data-link="20"
+																									data-linkType="1"
+																									target="_self"
+																									role="button"
+																									aria-label="ABOUT US ➔"
+																									rel=""
+																									tabindex="0">
+																								<span class="btn-text" >ABOUT US ➔</span>
+																								</a>
+																							</div>
+																							<style>
+																							</style>
+																						</div>
+																					</div>
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div
+												class="column col-sm-6  uc-animation fadeIn "
+												dataColumn-id="80"
+												data-effect="fadeIn"     style="  padding:0vh 0vh;     "
+												>
+												<div class="column-container vertical-top"
+													style=" margin-top:0vh; " aria-label="column" role="contentinfo">
+													<div
+														class="module-container   only-mobile   align-center ModuleImage
+														first   last                             "
+														style=" padding: 0px 40px 0px 40px  "
+														aria-label="module container" role="contentinfo"
+														id="m121"
+														>
+														<div
+															class="  row-on-module-effect    module ModuleImage "
+															dataModule-id="121"
+															style="display:block;max-width:525px;"
+															>
+															<style>
+																.animated-121 .effect-block.effect-lilly .layer{background: rgb(0, 0, 0) !important;}.animated-121 .effect-block.effect-default .layer{background: rgb(0, 0, 0) !important;}.animated-121 .effect-block.effect-sadie .layer{background: rgb(0, 0, 0) !important;}.animated-121 .effect-block.effect-honey .layer{background: rgb(0, 0, 0) !important;}.animated-121 .effect-block.effect-roxy .layer{background: rgb(0, 0, 0) !important;}.animated-121 .effect-block.effect-sarah .layer{background: rgb(0, 0, 0) !important;}.animated-121 .effect-block.effect-Soft-Fade .layer{ background: rgb(0, 0, 0) !important;}.animated-121 .effect-block.effect-apollo .layer{background: rgb(0, 0, 0) !important;}.animated-121 .effect-block.effect-honey .figcaption:before{background: rgb(0, 0, 0) !important;}.animated-121 .effect-block.effect-roxy .figcaption:before{border-image: rgb(0, 0, 0) 3 stretch;-moz-border-image: -moz-rgb(0, 0, 0) 3 stretch;border-width: 3px;border:3px solid rgb(0, 0, 0);}.animated-121 .effect-block.effect-apollo .figcaption:before{background: rgb(0, 0, 0) !important;}.animated-121 .effect-block.effect-apollo .description:before{background: rgb(0, 0, 0) !important ;}.animated-121 .effect-block.effect-sarah .title:after{background: rgb(0, 0, 0) !important;}.animated-121 .effect-block.effect-steve .title,.animated-121 .effect-block.effect-steve .description{background: rgb(0, 0, 0) !important;}.animated-121 .effect-block.effect-goliath {background: rgb(0, 0, 0) !important;}
+															</style>
+															<a class="image-module-link" target="_self"  rel=""
+																href=""
+																data-link="21"
+																data-linkType="1"
+																tabindex="0"
+																>
+																<div class="animated animated-121 "
+																	data-loading-animation=""
+																	data-animated-id="121"
+																	>
+																	<div class=" effect-block public-mode figure effect-sadie  ">
+																		<div                     >
+																			<div class="layer"></div>
+																			<div class="fixed-ratio" style="padding-bottom: 80.769230769231%">
+																				<img class="image  fixed-ratio-content lazy  "
+																					data-src="{% static 'img/safety.jpg' %}"
+																					alt="1210754609296-11ashutterstock1315868435.jpg"
+																					style="max-height:320px"
+																					/>
+																			</div>
+																			<div
+																				data-bg="{% static 'img/safety.jpg' %}"
+																				data-target="0"
+																				data-link="tent-rent.html"
+																				class="figcaption not-clickable"
+																				>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+																<span class="outline"></span>
+															</a>
+															<div class="uc-row-wrapper">
+																<div
+																	class="uc-row   row-on-module uc-row-public  high-z-index
+																	" data-id="53"
+																	style="  "
+																	>
+																	<div id="r53" class="row-container  container ">
+																		<div class="row mainRow "
+																			style="">
+																			<div
+																				class="column col-sm-12 "
+																				dataColumn-id="81"
+																				style="     "
+																				>
+																				<div class="column-container vertical-bottom"
+																					style=" margin-bottom:2.247191011236vh; " aria-label="column" role="contentinfo">
+																					<div
+																						class="module-container   only-mobile   align-center ModuleButton
+																						first   last                             "
+																						style=" padding: 0px 40px 0px 40px  "
+																						aria-label="module container" role="contentinfo"
+																						id="m122"
+																						>
+																						<div
+																							class="   module ModuleButton "
+																							dataModule-id="122"
+																							>
+																							<div class="button">
+																								<a
+																									class="btn buttons1559718122152"
+																									href="{% url 'Home:safety_measures' %}"
+																									data-link="13"
+																									data-linkType="1"
+																									target="_self"
+																									role="button"
+																									aria-label="TENT RENT ➔"
+																									rel=""
+																									tabindex="0">
+																								<span class="btn-text" >SAFETY MEASURES ➔</span>
+																								</a>
+																							</div>
+																							<style>
+																							</style>
+																						</div>
+																					</div>
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="uc-row-wrapper">
+								<div
+									class="uc-row
+									" data-id="54"
+									style="   margin-bottom:14.943820224719vh;  "
+									>
+									<div id="r54" class="row-container  container ">
+										<div class="row mainRow "
+											style="">
+											<div
+												class="column col-sm-12 "
+												dataColumn-id="82"
+												style="     "
+												>
+												<div class="column-container vertical-top" style="" aria-label="column" role="contentinfo">
+													<div class="module-container   only-mobile   align-center ModuleParagraph first                              " style=" padding: 0px 40px 0px 40px  ; padding-bottom:6.3897763578275vh ; " aria-label="module container" role="contentinfo" id="m123" >
+														<div class="   module ModuleParagraph " dataModule-id="123" style="display:block;max-width:920px;">
+															<div class="uc-content">
+																<h4 style="color:rgb(0, 0, 0,0.8);margin-bottom:300px;margin-top:100px">Each element of the club is unique, along with the immense warmth of our welcome, that will surely touch your spirits. You would experience the sense of uniqueness everywhere…</h4>
+															</div>
+														</div>
+													</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="uc-row-wrapper">
+								<div
+									class="uc-row     last
+									" data-id="55"
+									style="   margin-bottom:14.909478168264vh;  "
+									>
+									<div id="r55" class="row-container  container ">
+										<div class="row mainRow "
+											style="">
+											<div
+												class="column col-sm-12 "
+												dataColumn-id="83"
+												style="     "
+												>
+												<div class="column-container vertical-top"
+													style="" aria-label="column" role="contentinfo">
+													<div
+														class="module-container   only-mobile   align-center ModuleGallery
+														first   last                             "
+														style=" padding: 0px 40px 0px 40px  "
+														aria-label="module container" role="contentinfo"
+														id="m125"
+														>
+														<div
+															class="full-width    module ModuleGallery  uc-animation  fadeIn "
+															dataModule-id="125"
+															data-effect="fadeIn"                                  style=" max-width:100%;"
+															>
+															<style>
+																.animated-125 .effect-block.effect-lilly .layer{background: rgba(0, 0, 0, 0.5) !important;}.animated-125 .effect-block.effect-default .layer{background: rgba(0, 0, 0, 0.5) !important;}.animated-125 .effect-block.effect-sadie .layer{background: rgba(0, 0, 0, 0.5) !important;}.animated-125 .effect-block.effect-honey .layer{background: rgba(0, 0, 0, 0.5) !important;}.animated-125 .effect-block.effect-roxy .layer{background: rgba(0, 0, 0, 0.5) !important;}.animated-125 .effect-block.effect-sarah .layer{background: rgba(0, 0, 0, 0.5) !important;}.animated-125 .effect-block.effect-Soft-Fade .layer{ background: rgba(0, 0, 0, 0.5) !important;}.animated-125 .effect-block.effect-apollo .layer{background: rgba(0, 0, 0, 0.5) !important;}.animated-125 .effect-block.effect-honey .figcaption:before{background: rgb(52, 52, 52) !important;}.animated-125 .effect-block.effect-roxy .figcaption:before{border-image: rgb(52, 52, 52) 3 stretch;-moz-border-image: -moz-rgb(52, 52, 52) 3 stretch;border-width: 3px;border:3px solid rgb(52, 52, 52);}.animated-125 .effect-block.effect-apollo .figcaption:before{background: rgb(52, 52, 52) !important;}.animated-125 .effect-block.effect-apollo .description:before{background: rgb(52, 52, 52) !important ;}.animated-125 .effect-block.effect-sarah .title:after{background: rgb(52, 52, 52) !important;}.animated-125 .effect-block.effect-steve .title,.animated-125 .effect-block.effect-steve .description{background: rgb(52, 52, 52) !important;}.animated-125 .effect-block.effect-goliath {background: rgb(52, 52, 52) !important;}
+															</style>
+															<style>
+																#galleryPopup img {
+																}
+															</style>
+															<script type="text/javascript">
+																var pageLimit125;
+																var firstLoad125 = false;
+																var slider125options = {
+																    slideType: "horizontal",
+																    animationSpeed: 1000 / 1000,
+																    autoPlay: "on",
+																    autoPlayDelay: 4000,
+																    pagination: "on",
+																    arrows: "0",
+																    touchEvents: "on"
+																};
+
+																var imgPerPage125 = 3;
+															</script>
+															<input type="hidden" class="gallery-images-data"
+																value="[{&quot;src&quot;:&quot;https:\/\/img\/62-D-S-Sy13Z_0.jpg?v=1579246922&quot;,&quot;tags&quot;:[]},{&quot;src&quot;:&quot;https:\/\/static.ucraft.app\/fs\/ucraft\/userFiles\/preview-belltents\/images\/62-untitled-46-750x625.jpg?v=1579246922&quot;,&quot;tags&quot;:[]},{&quot;src&quot;:&quot;https:\/\/static.ucraft.app\/fs\/ucraft\/userFiles\/preview-belltents\/images\/62-camping-chairs-dark-2212570.jpg?v=1579246922&quot;,&quot;tags&quot;:[]},{&quot;src&quot;:&quot;https:\/\/static.ucraft.app\/fs\/ucraft\/userFiles\/preview-belltents\/images\/62-shutterstosck1327490675-1.jpg?v=1579246922&quot;,&quot;tags&quot;:[]},{&quot;src&quot;:&quot;https:\/\/static.ucraft.app\/fs\/ucraft\/userFiles\/preview-belltents\/images\/62-dsc6413-768x1150.jpg?v=1579246922&quot;,&quot;tags&quot;:[]},{&quot;src&quot;:&quot;https:\/\/static.ucraft.app\/fs\/ucraft\/userFiles\/preview-be?v=1579246922&quot;,&quot;tags&quot;:[]}]"/>
+															<div  class="gallery    animated-125"
+																data-animated-id="125"
+																data-imgPerRow="3"
+																data-horizontalPadding="20"
+																data-verticalPadding="20"
+																style="margin: -10px -10px;">
+																<!-- Images Data for Gallery js -->
+																<input class="has-effect" type="hidden"/>
+																{% for a in amenities|slice:"0:3" %}
+																<div data-width="33.333333333333%" data-tags="[]"
+																	style="
+																	width: 33.333333333333%; padding: 10px 10px;
+																	opacity: 1 !important;
+																	"
+																	class="animated-item ">
+																	<div class="effect-block public-mode figure effect-selena  animated-125">
+																		<div class="layer"></div>
+																		<div class=" gallery-img-container "
+																			style="padding-top:  100% ">
+																			<div class="gallery-image" data-preview="1">
+																				<div
+																					data-src="{{a.image1.url}}"
+																					role="img"
+																					style="                                                            background-position: 50% 50%;
+																					"
+																					data-bg="{{a.image1.url}}"
+																					class="single-item  lazy image  "
+																					>
+																				</div>
+																			</div>
+																		</div>
+																		<div style="                                            background-position: 50% 50%;
+																			"
+																			data-src="{{a.image1.url}}"
+																			class="figcaption">
+																		</div>
+																	</div>
+																</div>
+																{% endfor %}
+																{% for e in events|slice:"0:3" %}
+																<div data-width="33.333333333333%" data-tags="[]"
+																	style="
+																	width: 33.333333333333%; padding: 10px 10px;
+																	opacity: 1 !important;
+																	"
+																	class="animated-item ">
+																	<div class="effect-block public-mode figure effect-selena  animated-125">
+																		<div class="layer"></div>
+																		<div class=" gallery-img-container "
+																			style="padding-top:  100% ">
+																			<div class="gallery-image" data-preview="1">
+																				<div
+																					data-src="{{e.image1.url}}"
+																					role="img"
+																					style="                                                            background-position: 50% 50%;
+																					"
+																					data-bg="{{e.image1.url}}"
+																					class="single-item  lazy image  "
+																					>
+																				</div>
+																			</div>
+																		</div>
+																		<div style="                                            background-position: 50% 50%;
+																			"
+																			data-src="{{e.image1.url}}"
+																			class="figcaption">
+																		</div>
+																	</div>
+																</div>
+																{% endfor %}
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</main>
+						<div class="push"></div>
+					</div>
+
+				</div>
+			</div>
+			<div class="accounts-popup">
+				<div class="loading-container">
+					<div class="loading-spinner"></div>
+				</div>
+				<iframe id="accounts-iframe" style="border: none;"></iframe>
+			</div>
+		</div>
+		<div class="module-datepicker-container"></div>
+		{% endblock %}
+</html>
+

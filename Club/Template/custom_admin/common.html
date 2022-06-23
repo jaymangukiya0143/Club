@@ -1,0 +1,383 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from codervent.com/syntrans/demo/vertical/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 06 Jan 2021 07:15:58 GMT -->
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<title>{% block title %}{% endblock %}</title>
+	<!--favicon-->
+	<link rel="icon" href="{% static 'img/Hawk copy1.png' %}" type="image/png" />
+	<!-- Vector CSS -->
+	<link href="{% static 'custom_admin/assets/plugins/vectormap/jquery-jvectormap-2.0.2.css' %}" rel="stylesheet" />
+	<!--plugins-->
+	<link href="{% static 'custom_admin/assets/plugins/simplebar/css/simplebar.css' %}" rel="stylesheet" />
+	<link href="{% static 'custom_admin/assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css' %}" rel="stylesheet" />
+	<link href="{% static 'custom_admin/assets/plugins/metismenu/css/metisMenu.min.css' %}" rel="stylesheet" />
+	<!-- loader-->
+	<!--<link href="{% static 'custom_admin/assets/css/pace.min.css' %}" rel="stylesheet" />-->
+	<!--<script src="{% static 'custom_admin/assets/js/pace.min.js' %}"></script>-->
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="{% static 'custom_admin/assets/css/bootstrap.min.css' %}" />
+	<!-- Icons CSS -->
+	<link rel="stylesheet" href="{% static 'custom_admin/assets/css/icons.css' %}" />
+	<!-- App CSS -->
+	<link rel="stylesheet" href="{% static 'custom_admin/assets/css/app.css' %}" />
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+	<style>
+		.custom_div{
+			margin-bottom:10px;
+		}
+		.center{
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+	</style>
+
+</head>
+
+<body class="bg-theme bg-theme9">
+	<!-- wrapper -->
+	<div class="wrapper">
+		<!--sidebar-wrapper-->
+		<div class="sidebar-wrapper" data-simplebar="true">
+			<div class="sidebar-header">
+				<div class="">
+					<img src="{% static 'img/Hawk copy.png' %}" class="logo-icon-2" alt=""/>
+				</div>
+				<div>
+					<h4 class="logo-text">Hawk Club</h4>
+				</div>
+				<a href="javascript:;" class="toggle-btn ml-auto"> <i class="bx bx-menu"></i>
+				</a>
+			</div>
+			<!--navigation-->
+			<ul class="metismenu" id="menu">
+				<li>
+					<a href="{% url 'Custom_Admin:dashboard' %}">
+						<div class="parent-icon"><i class="bx bx-home-alt"></i>
+						</div>
+						<div class="menu-title">Dashboard</div>
+					</a>
+				</li>
+
+				{% if request.user.is_superuser %}
+				<li>
+					<a href="javascript:;" class="has-arrow">
+						<div class="parent-icon"><img style="opacity:0.6" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAA10lEQVRIie2UQRWDMBBEkRAJSEACUiIBCXFSHBQJOGgdtA5SB7+X5bHlhWYJOfTQPXGY+ZOdPNI0/ykdwAOR/ETAH4X3BvB2+iMBdzEFgzaI9maFD2J4As6gd6IFGCzipffedKLmo9L49VDAJMLJCk94r7lTvIC2IKAVb3p71WONeaQC5ooBcyrAsa54KahoFO+LvYsGupKQDbzLiXVIMMCDGa5MXvXpz+qKzKfgCrKsH/X6UuPyx4ciuIKNOmQDH0/Bd0LqwiXAsT7hyHf2pS0NqQ//6XkDuDaNrlSlhZwAAAAASUVORK5CYII="/>
+						</div>
+						<div class="menu-title">Membership Plans</div>
+					</a>
+					<ul>
+						<li> <a href="{% url 'Custom_Admin:all_plans' %}"><i class="bx bx-right-arrow-alt"></i>All Plans</a>
+						</li>
+						<li> <a href="{% url 'Custom_Admin:add_plan' %}"><i class="bx bx-right-arrow-alt"></i>Add Plan</a>
+						</li>
+					</ul>
+				</li>
+				{% endif %}
+
+				{% if perms.Amenities.view_booking %}
+				<li>
+					<a href="javascript:;" class="has-arrow">
+						<div class="parent-icon"><img style="opacity:0.6" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAeElEQVRIie2R0Q2AIAwFGaEbymaOACO4AY7iBudP/cEAJZKQGO6zeXB9qXOLxTBQpgqAkzIJ2L4KLOxNASBA0FEApLaE5j1wacS3BEe2VbS0VAlAagleGAVSzIxoUM1kAgHi8zmNG3QLuh/3CEYxT1Crb+HHgsU0bslDLnSpJCWYAAAAAElFTkSuQmCC"/>
+						</div>
+						<div class="menu-title">Amenities</div>
+					</a>
+					<ul>
+						<li> <a href="{% url 'Custom_Admin:all_amenities' %}"><i class="bx bx-right-arrow-alt"></i>All Amenities</a>
+						</li>
+						<li> <a href="{% url 'Custom_Admin:add_amenity' %}"><i class="bx bx-right-arrow-alt"></i>Add Amenity</a>
+						</li>
+					</ul>
+				</li>
+				{% endif %}
+
+				{% if perms.Events.manage_events_and_tickets %}
+				<li>
+					<a href="javascript:;" class="has-arrow">
+						<div class="parent-icon"><img style="opacity:0.6" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAo0lEQVRIid3V0Q2DMAxFUUZghI7ABniDrpBR2ICR6CZkhGxw+0FUoQoZE6eF9kl8EOScCFtK0/x1yCn9/n0AEGCmPDMgGhAdm7+Q3V/izfmAqWEl9acDLFMmnwQewFQVyKe+A+Oqj2Ne62sAQRmY4AYUJFjrLcDtffcj9RZAgAQM+UlsTJMH6IB29d4CXTXAmksAaWNajiZqgOC7EyLahfOTeQKpUB3mPEbchAAAAABJRU5ErkJggg=="/>
+						</div>
+						<div class="menu-title">Events</div>
+					</a>
+					<ul>
+						<li> <a href="{% url 'Custom_Admin:all_events' %}"><i class="bx bx-right-arrow-alt"></i>All Events</a>
+						</li>
+						<li> <a href="{% url 'Custom_Admin:add_event' %}"><i class="bx bx-right-arrow-alt"></i>Add Event</a>
+						</li>
+					</ul>
+				</li>
+				{% endif %}
+
+				{% if perms.Inquiry.manage_inquiries_and_feedbacks %}
+				<li>
+					<a href="javascript:;" class="has-arrow">
+						<div class="parent-icon"><img style="opacity:0.6" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAuklEQVRIid3UIQ7CMBiG4Z2AM8xzB1JNgsZicUhwuwncAG4EEgcOgXgwDVlIN7YxEthnKvrlffs3abNsMEHA0ec5IqQEpx7gT0lKAHq4iTTnpwRYYPsVAUbYxXroVYA5zhin4B8JMMM91jY1vfYCTHGLlaIK3kmASQm+roN3Fazi1vIdvJOgbYYtuKpIqdP0xz2lBEH1j5pj3wAsMkKrcXGJ69Wbd9AqLyc7IO8NXhI0H7mDoPgK+K/yAIMZghzArM4ZAAAAAElFTkSuQmCC"/>
+						</div>
+						<div class="menu-title">Inquiry</div>
+					</a>
+					<ul>
+						<li> <a href="{% url 'Custom_Admin:all_inquiries' %}"><i class="bx bx-right-arrow-alt"></i>All Inquiries</a>
+						</li>
+					</ul>
+				</li>
+				{% endif %}
+
+				{% if perms.Inquiry.manage_inquiries_and_feedbacks %}
+				<li>
+					<a href="{% url 'Custom_Admin:all_feedbacks' %}">
+						<div class="parent-icon"><img style="opacity:0.6" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAz0lEQVRIie2UWxHDIBBFIyESkBAJSImESkACEiIhDhoHrYPgoHFw+gGZMnTJY6Afnfb+7c7dezIBtml+RkAL3HjpCrQ1ASPvutQKtyFwAVRUmxrhffTFXei5uC4J76LwPum50nAFPEKYjfo27R0N1MAsHOSY+JzgiTUDWgLkBtvEd98BAMwSAIBcfeJPyHNfAcCfI0g3rBJgCGOmOgC/q9ZrrT4BWF/8lDOUAqYw0lcH4F89+GUor/BCgAn2Ycu0UC69BdDs75ktnVt+f616Aumyk08oMg+aAAAAAElFTkSuQmCC"/>
+						</div>
+						<div class="menu-title">Feedbacks</div>
+					</a>
+
+				</li>
+				{% endif %}
+
+
+
+				{% if request.user.is_superuser %}
+
+				<li><div style="width:100%;height:1px;background-color:rgba(255,255,255,0.2)"></div></li>
+				<li>
+					<a href="{% url 'Custom_Admin:all_members' %}">
+						<div class="parent-icon"><img style="opacity:0.6" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAoUlEQVRIie3U0Q2CMBSFYUZgFEZwBEZgE9lINsENdAPY4POlJsZIKbZGjf7JfWvO6e25t1X1E6DBAadQBzSlxFvLtLniNaaIwYT6Vbe/sssx6BMM+o/uoMYcEZ/lZJDQRd4U3Zg0GHAONSi1B99LCHiPMZLBGM5sCxqd+AbfM6HbIv4s8amy/vekdLL8XNK+hjX6mMGxgMEYMyjC+wz+POICaf0sGar3luYAAAAASUVORK5CYII="/>
+						</div>
+						<div class="menu-title">Members</div>
+					</a>
+
+				</li>
+				{% endif %}
+
+				{% if request.user.is_superuser %}
+				<li>
+					<a href="{% url 'Custom_Admin:all_payments' %}">
+						<div class="parent-icon"><img style="opacity:0.6" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAaklEQVRIie3SQQ2AMAxG4UmoFCRMGs7AwSYBB+DgcekupBwIXbJAfwHvS7qlFBt2PNiYgAFmoGpzcYkaiACHItPb2MfeQFEBdpcTGfEMFI2vHsG7bYD0ACowu8QVaH++uEUvgATyQyTWZSeWEolPUcnc+AAAAABJRU5ErkJggg=="/>
+						</div>
+						<div class="menu-title">Payments</div>
+					</a>
+				</li>
+				{% endif %}
+
+				{% if perms.Events.manage_events_and_tickets %}
+				<li>
+					<a href="{% url 'Custom_Admin:all_tickets' %}">
+						<div class="parent-icon"><img style="opacity:0.6" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAiElEQVRIie3SwQ2AIBAEQEugZDrTDqCj9YPREDhvl3v4cJ8EdgLctv1hAqDClwIgKQATHrlOvuxJj5tyiAdYQnoAQG5LOQQZAOjXlhDmBhLi/QMZUYEBspsAPd83UNr5Y7ZJmu+uvFpPRI+eu1xB6HIGkcs9yHK5hYSVG0hc+QSJLR8g8eWfzgnD8V8EI799AQAAAABJRU5ErkJggg=="/>
+
+						</div>
+						<div class="menu-title">Tickets</div>
+					</a>
+
+				</li>
+				{% endif %}
+
+				<li><div style="width:100%;height:1px;background-color:rgba(255,255,255,0.2)"></div></li>
+
+				{% if perms.Amenities.view_booking %}
+				<li>
+					<a href="{% url 'Custom_Admin:booking_requests' %}">
+						<div class="parent-icon"><img style="opacity:0.6;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAWklEQVRIie2Vuw1AIQgAHY39l5AR3OBszCtRpPDzvJKCSy4hpHQ9NEbnawWAAJl5MiCWQAPLP0k3RxR3b0fizQTeJD8UeHmCJ7hEUIx7GkUtgRD7CYr1cI6kAvTPyWhmV9bpAAAAAElFTkSuQmCC"/>
+
+						</div>
+						<div class="menu-title">Booking Requests</div>
+					</a>
+				</li>
+				{% endif %}
+
+				{% if perms.Amenities.view_booking %}
+				<li>
+					<a href="{% url 'Custom_Admin:bookings' %}">
+						<div class="parent-icon"><img style="opacity:0.6;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAn0lEQVRIieXU4QmDMBDFcUdwBEdxo7pJu1HdRDewG/z8khZBW5M0ULEPDgL3Xv6EHFdVpxNaDNI1oI0BjBmXvyAxAJDx8rjcTwG5vZMD9sbm+IASvT8CFMm9M6LGNVRdFIAO02J4Jly+Bliv7j7UU4OwopMBuC/Oo8WuD+Bxy5sCgAe6D94ueOQAbjY+c8NfB280oEeza1znGvSpueNrBrQ9nMmO6yWGAAAAAElFTkSuQmCC"/>
+
+						</div>
+						<div class="menu-title">Bookings</div>
+					</a>
+				</li>
+				<li><div style="width:100%;height:1px;background-color:rgba(255,255,255,0.2)"></div></li>
+				{% endif %}
+
+
+				{% if request.user.is_superuser %}
+				<li>
+					<a href="{% url 'Custom_Admin:select_report' %}">
+						<div class="parent-icon"><img style="opacity:0.6;width:80%;height:80%" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAeklEQVRIie3SyQ3AIAxEUUqgtJSUDqGjnwtIKBoHnPUQ5mppHmBCmPGEkgn8DAAWID4ClHKApBAgunABRCArpMyShQ8BFtKUo3AXYCC1PFs3dAECqeWRg2d0ATski330kR7QlFk/qiLraWAA1+V3ACMneAe4mu+AGZUNB+363i4fXMIAAAAASUVORK5CYII="/>
+
+						</div>
+						<div class="menu-title">Reports</div>
+					</a>
+				</li>
+				{% endif %}
+
+				<!--{% if request.user.is_superuser %}-->
+				<!--<li>-->
+					<!--<a href="{% url 'Custom_Admin:broadcast' %}">-->
+						<!--<div class="parent-icon"><img style="opacity:0.6;width:80%;height:80%" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAn0lEQVRIie2U0Q2EIBBELcES6OjoQEq4TqUD7eT54RI38RZR+DDk5pdh3rAJOwxdCgjATLlmYCoJHm8G/wKNOUAU4wp4wBWUcuJdE8QyflW43SL/+gQJufb+brjK8OYr1BzN9smQOXem5+pytadPAIV6L6Cp5w+Q87qPdiWOVRGbA9iX3SIxoRlAxvJR4ef2GlCpiLUsOdb10+DzWLrQBky521wLVAtXAAAAAElFTkSuQmCC"/>-->
+
+						<!--</div>-->
+						<!--<div class="menu-title">Broadcast</div>-->
+					<!--</a>-->
+				<!--</li>-->
+				<!--{% endif %}-->
+
+				{% if request.user.is_superuser %}
+				<li>
+					<a href="{% url 'Custom_Admin:add_staff' %}">
+						<div class="parent-icon"><img style="opacity:0.6;width:80%;height:80%" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAYAAADhAJiYAAAA9UlEQVRYhe2U0RGCMBAFKcESKIESKIEOLEE7IB1IR9CBdKAdaAfrh4kTI4YjxjiD2Zn7IeFlczBXFJlMJjMNUAFbXdWvRXpe6ZOLaZnLhIzhklQKGDwyj06lktkIZAybFEL1AqF6JktZe9U6hHTQVSBzFeREE1JvJGxmD4gmpMNGj8zoEWit6q13emetDZFSwNkKPftuKujqE4uFAi7wPSHu03rntlk/m5zSuqN22QN2cNelIg1wElzwBDQzWZ/91EC3tO3A4StCwD5AxrCPKgSUH8gYyphCIZ/KpRMfKBDyDUEpx5hCUVi1kDvQgiqaUCaT+Qdu5xkXDFw4ml4AAAAASUVORK5CYII="/>
+
+						</div>
+						<div class="menu-title">Add Staff</div>
+					</a>
+				</li>
+				{% endif %}
+			</ul>
+			<!--end navigation-->
+		</div>
+		<!--end sidebar-wrapper-->
+		<!--header-->
+		<header class="top-header">
+			<nav class="navbar navbar-expand">
+				<div class="left-topbar d-flex align-items-center">
+					<a href="javascript:;" class="toggle-btn">	<i class="bx bx-menu"></i>
+					</a>
+				</div>
+				<!--<div class="flex-grow-1 search-bar">-->
+					<!--<div class="input-group">-->
+						<!--<div class="input-group-prepend search-arrow-back">-->
+							<!--<button class="btn btn-search-back" type="button"><i class="bx bx-arrow-back"></i>-->
+							<!--</button>-->
+						<!--</div>-->
+						<!--<input type="text" class="form-control" placeholder="search" />-->
+						<!--<div class="input-group-append">-->
+							<!--<button class="btn btn-search" type="button"><i class="lni lni-search-alt"></i>-->
+							<!--</button>-->
+						<!--</div>-->
+					<!--</div>-->
+				<!--</div>-->
+				<div class="right-topbar ml-auto">
+					<ul class="navbar-nav">
+					<ul class="navbar-nav">
+						<!--<li class="nav-item search-btn-mobile">-->
+							<!--<a class="nav-link position-relative" href="javascript:;">	<i class="bx bx-search vertical-align-middle"></i>-->
+							<!--</a>-->
+						<!--</li>-->
+						<li class="nav-item dropdown dropdown-user-profile">
+							<a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="{% url 'Custom_Admin:profile' %}" data-toggle="dropdown">
+								<div class="media user-box align-items-center">
+									<div class="media-body user-info">
+										<p class="user-name mb-0">{{request.user.first_name}}&nbsp;{{request.user.last_name}}</p>
+										<p class="designattion mb-0">Available</p>
+									</div>
+									<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAx0lEQVRIie2U0Q2DMAxEM0JGYJSMwAiM0A3IKB2BDWADuklGeP2JVZemSUuCVImehISwuTvODsacAkAPzDwwA64V+ZX38C2cCy5AFy+vnu//EmAR8kRNRJYaAYFN1Dop/rSAROQTNYloqhHQQx7VkMcmQ944bb+mSsSpuIj3dc4PB2Bj1msmojX2vGxZiXwAQoZ4iwAM35ALplzWidn0JXKrnH/myDxtWsjGRcXhIXModdMtNrkdAk4Gn2sC9v9biu8fLvBHCnc1JvqVN4T4dgAAAABJRU5ErkJggg=="/>
+								</div>
+							</a>
+							<div class="dropdown-menu dropdown-menu-right">	<a class="dropdown-item" href="{% url 'Custom_Admin:profile' %}"><i
+										class="bx bx-user"></i><span>Profile</span></a>
+								<!--<a class="dropdown-item" href="javascript:;"><i-->
+										<!--class="bx bx-cog"></i><span>Settings</span></a>-->
+								<a class="dropdown-item" href="{% url 'Custom_Admin:dashboard' %}"><i
+										class="bx bx-tachometer"></i><span>Dashboard</span></a>
+								<!--<a class="dropdown-item" href="javascript:;"><i-->
+										<!--class="bx bx-wallet"></i><span>Earnings</span></a>-->
+								<!--<a class="dropdown-item" href="javascript:;"><i-->
+										<!--class="bx bx-cloud-download"></i><span>Downloads</span></a>-->
+								<div class="dropdown-divider mb-0"></div>	<a class="dropdown-item" href="{% url 'Custom_Admin:admin_logout' %}"><i
+										class="bx bx-power-off"></i><span>Logout</span></a>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</nav>
+		</header>
+		<!--end header-->
+
+		{% block content %}{% endblock %}
+
+
+		<!--start overlay-->
+		<div class="overlay toggle-btn-mobile"></div>
+		<!--end overlay-->
+		<!--Start Back To Top Button--> <a href="javaScript:;" class="back-to-top"><i class='bx bxs-up-arrow-alt'></i></a>
+		<!--End Back To Top Button-->
+		<!--footer -->
+		<div class="footer">
+			<p class="mb-0">Hawk Club @2020 | Developed By : Group 41
+			</p>
+		</div>
+		<!-- end footer -->
+	</div>
+	<!-- end wrapper -->
+	<!--start switcher-->
+	<!--<div class="switcher-wrapper">-->
+		<!--<div class="switcher-btn"> <i class='bx bx-cog bx-spin'></i>-->
+		<!--</div>-->
+		<!--<div class="switcher-body">-->
+			<!--<hr/>-->
+			<!--<p class="mb-0">Day</p>-->
+			  <!--<hr>-->
+
+			  <!--<ul class="switcher">-->
+				<!--<li id="theme1"></li>-->
+				<!--<li id="theme2"></li>-->
+				<!--<li id="theme3"></li>-->
+				<!--<li id="theme4"></li>-->
+				<!--<li id="theme5"></li>-->
+				<!--<li id="theme6"></li>-->
+			  <!--</ul>-->
+               <!--<hr>-->
+			  <!--<p class="mb-0">Night</p>-->
+			  <!--<hr>-->
+
+			  <!--<ul class="switcher">-->
+				<!--&lt;!&ndash;<li id="theme7"></li>&ndash;&gt;-->
+				<!--&lt;!&ndash;<li id="theme8"></li>&ndash;&gt;-->
+				<!--<li id="theme9"></li>-->
+				<!--&lt;!&ndash;<li id="theme10"></li>&ndash;&gt;-->
+				<!--&lt;!&ndash;<li id="theme11"></li>&ndash;&gt;-->
+				<!--&lt;!&ndash;<li id="theme12"></li>&ndash;&gt;-->
+			  <!--</ul>-->
+		<!--</div>-->
+	<!--</div>-->
+	<!--end switcher-->
+	<!-- JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="{% static 'custom_admin/assets/js/jquery.min.js' %}"></script>
+	<script src="{% static 'custom_admin/assets/js/popper.min.js' %}"></script>
+	<script src="{% static 'custom_admin/assets/js/bootstrap.min.js' %}"></script>
+	<!--plugins-->
+	<script src="{% static 'custom_admin/assets/plugins/simplebar/js/simplebar.min.js' %}"></script>
+	<script src="{% static 'custom_admin/assets/plugins/metismenu/js/metisMenu.min.js' %}"></script>
+	<script src="{% static 'custom_admin/assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js' %}"></script>
+	<!-- Vector map JavaScript -->
+	<script src="{% static 'custom_admin/assets/plugins/vectormap/jquery-jvectormap-2.0.2.min.js' %}"></script>
+	<script src="{% static 'custom_admin/assets/plugins/vectormap/jquery-jvectormap-world-mill-en.js' %}"></script>
+	<script src="{% static 'custom_admin/assets/plugins/vectormap/jquery-jvectormap-in-mill.js' %}"></script>
+	<script src="{% static 'custom_admin/assets/plugins/vectormap/jquery-jvectormap-us-aea-en.js' %}"></script>
+	<script src="{% static 'custom_admin/assets/plugins/vectormap/jquery-jvectormap-uk-mill-en.js' %}"></script>
+	<script src="{% static 'custom_admin/assets/plugins/vectormap/jquery-jvectormap-au-mill.js' %}"></script>
+	<script src="{% static 'custom_admin/assets/plugins/apexcharts-bundle/js/apexcharts.min.js' %}"></script>
+	<script src="{% static 'custom_admin/assets/js/index.js' %}"></script>
+	<script src="{% static 'assets/plugins/fancy-file-uploader/jquery.ui.widget.js' %}"></script>
+	<script src="{% static 'assets/plugins/fancy-file-uploader/jquery.fileupload.js' %}"></script>
+	<script src="{% static 'assets/plugins/fancy-file-uploader/jquery.iframe-transport.js' %}"></script>
+	<script src="{% static 'assets/plugins/fancy-file-uploader/jquery.fancy-fileupload.js' %}"></script>
+	<script src="{% static 'assets/plugins/Drag-And-Drop/dist/imageuploadify.min.js' %}"></script>
+	<!-- App JS -->
+	<script src="{% static 'custom_admin/assets/js/app.js' %}"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" integrity="sha512-F5QTlBqZlvuBEs9LQPqc1iZv2UMxcVXezbHzomzS6Df4MZMClge/8+gXrKw2fl5ysdk4rWjR0vKS7NNkfymaBQ==" crossorigin="anonymous"></script>
+
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<script>
+		new PerfectScrollbar('.dashboard-social-list');
+		new PerfectScrollbar('.dashboard-top-countries');
+	</script>
+</body>
+
+
+
+<!-- Mirrored from codervent.com/syntrans/demo/vertical/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 06 Jan 2021 07:16:22 GMT -->
+</html>

@@ -1,0 +1,78 @@
+{% extends 'common.html' %}
+{% load static %}
+{% load crispy_forms_filters %}
+{% block content %}
+
+<head>
+	<title>{% block title %}Plan : {{membership.mem_plan.name}}{% endblock %}</title>
+    <style>
+    header{
+        background-color:#000000;
+    }
+
+
+    tr,th,td{
+        text-align:center;
+    }
+
+    p{
+        padding:10px;
+    }
+
+    </style>
+
+
+</head>
+
+<div style="margin-top:150px;margin-bottom:20px" class="center">
+
+</div>
+
+<main class="main-rows center" style="margin-top:60px;margin-bottom:100px" >
+	<div class="container col-md-8">
+        <div style="border-radius:5px;margin:5px 0px;box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 16px 32px;">
+            <div style="margin:0px 40px">
+                <div class="center">
+                    <h5 style="margin:20px 0px">{{membership.mem_plan.name}}</h5>
+                </div>
+
+                <div class="row">
+                    <div class="center col-md-6">
+                        <p>Brought On : {{membership.brought_at}}<hr></p>
+                        <p></p>
+                    </div>
+
+                    <div class="center col-md-6">
+                        <p>Expires On : {{membership.expiry_at}}</p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="center col-md-6">
+                        <p>Amount Paid : &#8377;&nbsp; {{payment.amount}}<hr></p>
+                    </div>
+
+                    <div class="center col-md-6" style="margin-bottom:30px">
+                            {% if membership.is_expired == True %}
+                                <p style="border-radius:10px;background-color:rgba(255,0,0,0.6)">Expired</p>
+                            {% else %}
+                                <p style="border-radius:10px;background-color:rgba(0,255,0,0.6)">Active</p>
+                            {% endif %}
+                    </div>
+                </div>
+
+                <div class="center">
+                    <a href="{% url 'Custom_Admin:view_invoice' payment.id %}" style="margin-bottom:15px;margin-top:5px" class="myBtn"><i class="fa fa-download"></i>&nbsp;&nbsp;Invoice</a>
+                </div>
+
+            </div>
+        </div>
+
+    <div class="center" style="margin-top:80px">
+        <a href="javascript:history.go(-1)" style="margin-bottom:15px'margin-top:5px" class="myBtn"><i class="fa fa-arrow-left"></i>&nbsp;&nbsp;Back</a>
+    </div>
+
+	</div>
+</main>
+
+{% endblock %}
